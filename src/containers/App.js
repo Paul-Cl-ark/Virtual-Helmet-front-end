@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css'
 import { simpleAction } from '../actions/simpleAction'
-import Logo from '../components/Logo'
-import Map from '../components/Map'
+
+import LandingPage from './LandingPage'
+import LoginForm from '../components/LoginForm'
+import RegisterForm from '../components/RegisterForm'
+import ProfilePage from './ProfilePage'
 
 class App extends Component {
 	simpleAction = event => {
@@ -15,8 +18,10 @@ class App extends Component {
 		return (
 			<Router>
 				<Fragment>
-					<Route exact path="/" component={Logo} />
-					<Route exact path="/home" component={Map} />
+					<Route exact path="/" component={LandingPage} />
+					<Route exact path="/login" component={LoginForm} />
+					<Route exact path="/register" component={RegisterForm} />
+					<Route exact path="/profile" component={ProfilePage} />
 				</Fragment>
 			</Router>
 		)

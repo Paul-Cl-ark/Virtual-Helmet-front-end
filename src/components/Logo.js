@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 const Logo = props => {
 	return (
 		<Fragment>
-			<p>Hi from Logo</p>
+			<p>I'm a Logo</p>
 		</Fragment>
 	)
 }
