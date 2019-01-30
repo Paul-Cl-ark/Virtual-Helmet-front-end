@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css'
-import { simpleAction } from './actions/simpleAction'
+import { simpleAction } from '../actions/simpleAction'
+import Logo from '../components/Logo'
+import Map from '../components/Map'
 
 class App extends Component {
 	simpleAction = event => {
@@ -10,10 +13,12 @@ class App extends Component {
 
 	render() {
 		return (
-			<Fragment>
-				<pre>{JSON.stringify(this.props)}</pre>
-				<button onClick={this.simpleAction}>Test redux action</button>
-			</Fragment>
+			<Router>
+				<Fragment>
+					<Route exact path="/" component={Logo} />
+					<Route exact path="/home" component={Map} />
+				</Fragment>
+			</Router>
 		)
 	}
 }
