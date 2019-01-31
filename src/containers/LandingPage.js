@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import MapContainer from './MapContainer'
 
 class LandingPage extends Component {
 	constructor(props) {
@@ -6,7 +7,12 @@ class LandingPage extends Component {
 		this.state = {}
 	}
 	render() {
-		return 'LandingPage'
+		return (
+			<Fragment>
+				<h1>'LandingPage'</h1>
+				<MapContainer />
+			</Fragment>
+		)
 	}
 }
 
