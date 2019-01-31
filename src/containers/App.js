@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css'
-import { simpleAction } from '../actions/simpleAction'
 
 import LandingPage from './LandingPage'
 import LoginForm from '../components/LoginForm'
@@ -10,10 +9,6 @@ import RegisterForm from '../components/RegisterForm'
 import ProfilePage from './ProfilePage'
 
 class App extends Component {
-	simpleAction = event => {
-		this.props.simpleAction()
-	}
-
 	render() {
 		return (
 			<Router>
@@ -32,9 +27,7 @@ const mapStateToProps = state => ({
 	...state
 })
 
-const mapDispatchToProps = dispatch => ({
-	simpleAction: () => dispatch(simpleAction())
-})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(
 	mapStateToProps,

@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+
 import { Button, Input, Form, Header, Icon } from 'semantic-ui-react'
 
 class LoginForm extends Component {
@@ -11,7 +14,7 @@ class LoginForm extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
-		this.setState({ email: '', password: '' })
+		this.props.authenticateUser(this.state)
 	}
 
 	render() {
@@ -53,4 +56,11 @@ class LoginForm extends Component {
 	}
 }
 
-export default LoginForm
+const mapStateToProps = state => ({
+	...state
+})
+
+export default connect(
+	mapStateToProps,
+	actions
+)(LoginForm)
