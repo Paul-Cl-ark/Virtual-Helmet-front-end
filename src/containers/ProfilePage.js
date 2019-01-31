@@ -6,7 +6,7 @@ class ProfilePage extends Component {
 		this.state = {}
 	}
 	render() {
-		return 'ProfilePage'
+		return <Fragment>ProfilePage</Fragment>
 	}
 }
 
