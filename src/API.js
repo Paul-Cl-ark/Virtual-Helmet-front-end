@@ -2,10 +2,11 @@ class API {
 	static init() {
 		this.baseURL = 'http://localhost:3001'
 		this.logInURL = this.baseURL + '/users/authenticate'
+		this.registerURL = this.baseURL + '/users/register'
 	}
 
 	static registerUser(user) {
-		return fetch('http://localhost:3001/register', {
+		return fetch(this.registerURL, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(user)
