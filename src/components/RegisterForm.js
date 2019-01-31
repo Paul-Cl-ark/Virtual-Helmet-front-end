@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { Button, Input, Form, Header, Icon } from 'semantic-ui-react'
+import * as actions from '../actions'
 
 class RegisterForm extends Component {
 	state = {
@@ -14,7 +16,12 @@ class RegisterForm extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault()
-		this.setState({ email: '', password: '' })
+		this.props.registerUser({
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			email: this.state.email,
+			password: this.state.password
+		})
 	}
 
 	render() {
@@ -89,4 +96,7 @@ class RegisterForm extends Component {
 	}
 }
 
-export default RegisterForm
+export default connect(
+	null,
+	actions
+)(RegisterForm)
