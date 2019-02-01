@@ -18,7 +18,7 @@ class API {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(user)
-		}).then(response => response.json())
+		}).then(response => (response.status !== 500 ? response.json() : { message: 'Unauthorised' }))
 	}
 
 	static validate() {
