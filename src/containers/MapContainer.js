@@ -13,7 +13,9 @@ export class MapContainer extends Component {
 	state = {
 		showingInfoWindow: false,
 		activeMarker: {},
-		selectedPlace: {}
+		selectedPlace: {},
+		selectedLat: '',
+		selectedLng: ''
 	}
 
 	onMarkerClick = (props, marker, e) =>
@@ -33,18 +35,18 @@ export class MapContainer extends Component {
 	}
 
 	onMapClick = (location, map) => {
-		console.log(location.lat(), location.lng())
-		console.log(map)
+		this.setState({ selectedLat: location.lat(), selectedLng: location.lng() })
 	}
 
 	render() {
+		const latlong = {lat: this.state.selectedLat, lng: this.state.selectedLng}
 		return (
 			<Map
 				google={this.props.google}
 				centerAroundCurrentLocation
 				style={mapStyles}
-				onClick={(t, map, c) => this.onMapClick(c.latLng, map)}>
-				<Marker onClick={this.onMarkerClick} name={'You are here'} />
+				onClick={(t, map, c) => this.onMapClick(c.latLng, map)} >
+				<Marker position={latlong} />
 				<InfoWindow
 					marker={this.state.activeMarker}
 					visible={this.state.showingInfoWindow}
