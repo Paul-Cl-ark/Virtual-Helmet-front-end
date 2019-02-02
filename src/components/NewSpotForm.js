@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
 class NewSpotForm extends Component {
-	constructor(props) {
-		super(props)
-		this.state = { newSpotDescription: '' }
-	}
+	state = { newSpotDescription: '' }
 
 	handleChange = (event, data) => {
 		this.setState({
@@ -13,7 +10,10 @@ class NewSpotForm extends Component {
 		})
 	}
 
-	handleFormSubmit = () => {}
+	handleFormSubmit = event => {
+		event.preventDefault()
+		this.props.getNewSpotDescription(this.state.newSpotDescription)
+	}
 
 	render() {
 		return (

@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 import NewSpotForm from '../components/NewSpotForm'
+import * as actions from '../actions'
 
 const mapStyles = {
 	width: '90%',
@@ -15,7 +17,8 @@ export class MapContainer extends Component {
 		activeMarker: {},
 		selectedPlace: {},
 		selectedLat: '',
-		selectedLng: ''
+		selectedLng: '',
+		newSpotDescription: ''
 	}
 
 	onMarkerClick = (props, marker, e) => {
@@ -27,7 +30,7 @@ export class MapContainer extends Component {
 	}
 
 	onOpen(props, event) {
-		const newSpotForm = <NewSpotForm />
+		const newSpotForm = <NewSpotForm getNewSpotDescription={this.getNewSpotDescription} />
 		ReactDOM.render(React.Children.only(newSpotForm), document.getElementById('infoWindowForm'))
 	}
 
@@ -46,6 +49,10 @@ export class MapContainer extends Component {
 			selectedLng: location.lng(),
 			showingInfoWindow: false
 		})
+	}
+
+	getNewSpotDescription = description => {
+		this.setState({ newSpotDescription: description })
 	}
 
 	render() {
@@ -75,6 +82,11 @@ export class MapContainer extends Component {
 	}
 }
 
-export default GoogleApiWrapper({
+const WrappedMapContainer = GoogleApiWrapper({
 	apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapContainer)
+
+export default connect(
+	null,
+	actions
+)(WrappedMapContainer)
