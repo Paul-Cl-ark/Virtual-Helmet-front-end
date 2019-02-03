@@ -17,8 +17,7 @@ export class MapContainer extends Component {
 		activeMarker: {},
 		selectedPlace: {},
 		selectedLat: '',
-		selectedLng: '',
-		newSpotDescription: ''
+		selectedLng: ''
 	}
 
 	onMarkerClick = (props, marker, e) => {
@@ -30,7 +29,7 @@ export class MapContainer extends Component {
 	}
 
 	onOpen(props, event) {
-		const newSpotForm = <NewSpotForm getNewSpotDescription={this.getNewSpotDescription} />
+		const newSpotForm = <NewSpotForm addNewSpot={this.addNewSpot} />
 		ReactDOM.render(React.Children.only(newSpotForm), document.getElementById('infoWindowForm'))
 	}
 
@@ -51,12 +50,31 @@ export class MapContainer extends Component {
 		})
 	}
 
-	getNewSpotDescription = description => {
-		this.setState({ newSpotDescription: description })
+	addNewSpot = description => {
+		this.props.addNewSpot({
+			type: 'danger',
+			description: description,
+			latitude: this.state.selectedLat,
+			longitude: this.state.selectedLng,
+			user: 'paul'
+		})
 	}
 
+	renderMarkers = () => {
+		// console.log(this.props)
+		return this.props.spotsReducer.spots.length !== 0
+			? this.props.spotsReducer.spots.data.spots.map(marker => (
+					<Marker position={{ lat: marker.latitude, lng: marker.longitude }} />
+			  ))
+			: null
+	}
+
+	componentDidMount() {
+		this.props.getAllSpots()
+		console.log(this.props)
+	}
 	render() {
-		const latlong = { lat: this.state.selectedLat, lng: this.state.selectedLng }
+		const latLng = { lat: this.state.selectedLat, lng: this.state.selectedLng }
 		if (!this.props.google) {
 			return <div>Loading...</div>
 		}
@@ -66,8 +84,8 @@ export class MapContainer extends Component {
 				centerAroundCurrentLocation
 				style={mapStyles}
 				onClick={(t, map, c) => this.onMapClick(c.latLng, map)}>
-				<Marker position={latlong} onClick={this.onMarkerClick} />
-
+				<Marker position={latLng} onClick={this.onMarkerClick} />
+				{this.renderMarkers()}
 				<InfoWindow
 					marker={this.state.activeMarker}
 					visible={this.state.showingInfoWindow}
@@ -82,11 +100,13 @@ export class MapContainer extends Component {
 	}
 }
 
+const mapStateToProps = state => state
+
 const WrappedMapContainer = GoogleApiWrapper({
 	apiKey: process.env.REACT_APP_GOOGLE_API_KEY
 })(MapContainer)
 
 export default connect(
-	null,
+	mapStateToProps,
 	actions
 )(WrappedMapContainer)
