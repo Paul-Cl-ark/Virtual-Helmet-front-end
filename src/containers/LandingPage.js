@@ -9,7 +9,6 @@ class LandingPage extends Component {
 	render() {
 		return (
 			<Fragment>
-				<h1>'LandingPage'</h1>
 				<MapContainer />
 			</Fragment>
 		)

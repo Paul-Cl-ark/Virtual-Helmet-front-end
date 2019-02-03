@@ -5,11 +5,11 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 import NewSpotForm from '../components/NewSpotForm'
 import * as actions from '../actions'
 
-const mapStyles = {
-	width: '90%',
-	height: '85%',
-	margin: 'auto'
-}
+// const mapStyles = {
+// 	width: '90%',
+// 	height: '100%',
+// 	margin: 'auto'
+// }
 
 export class MapContainer extends Component {
 	state = {
@@ -64,7 +64,10 @@ export class MapContainer extends Component {
 		// console.log(this.props)
 		return this.props.spotsReducer.spots.length !== 0
 			? this.props.spotsReducer.spots.data.spots.map(marker => (
-					<Marker position={{ lat: marker.latitude, lng: marker.longitude }} />
+					<Marker
+						position={{ lat: marker.latitude, lng: marker.longitude }}
+						onClick={this.onMarkerClick}
+					/>
 			  ))
 			: null
 	}
@@ -82,7 +85,6 @@ export class MapContainer extends Component {
 			<Map
 				google={this.props.google}
 				centerAroundCurrentLocation
-				style={mapStyles}
 				onClick={(t, map, c) => this.onMapClick(c.latLng, map)}>
 				<Marker position={latLng} onClick={this.onMarkerClick} />
 				{this.renderMarkers()}

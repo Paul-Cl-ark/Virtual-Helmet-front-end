@@ -13,7 +13,8 @@ const divStyle = {
 	right: '20px',
 	color: 'black',
 	textAlign: 'center',
-	boxShadow: '4px 4px 4px grey'
+	boxShadow: '4px 4px 4px grey',
+	zIndex: 1
 }
 
 const NavBar = props => {
