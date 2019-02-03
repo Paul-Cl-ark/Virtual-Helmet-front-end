@@ -3,6 +3,7 @@ class API {
 		this.baseURL = 'http://localhost:3001'
 		this.logInURL = this.baseURL + '/users/authenticate'
 		this.registerURL = this.baseURL + '/users/register'
+		this.spotsURL = this.baseURL + '/spots'
 	}
 
 	static registerUser(user) {
@@ -21,19 +22,19 @@ class API {
 		}).then(response => (response.status !== 500 ? response.json() : { message: 'Unauthorised' }))
 	}
 
-	static validate() {
-		return this.get('http://localhost:3001/validate')
+	static addNewSpot(spot) {
+		console.log(spot)
+		return fetch(this.spotsURL, {
+			method: 'POST',
+			header: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(spot)
+		})
+			.then(response => response.json())
+			.then(data => console.log(data))
 	}
 
-	static getInventory() {
-		return this.get('http://localhost:3001/inventory')
-	}
-
-	static get(url) {
-		const token = localStorage.getItem('token')
-		return fetch(url, {
-			headers: { Authorization: token }
-		}).then(response => response.json())
+	static getAllSpots() {
+		return fetch(this.spotsURL).then(response => response.json())
 	}
 }
 
