@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+import NavBar from '../components/NavBar'
 import './App.css'
 
 import LandingPage from './LandingPage'
@@ -13,6 +14,8 @@ class App extends Component {
 		return (
 			<Router>
 				<Fragment>
+					<NavBar />
+
 					<Route exact path="/" component={LandingPage} />
 					<Route exact path="/login" component={LoginForm} />
 					<Route exact path="/register" component={RegisterForm} />
