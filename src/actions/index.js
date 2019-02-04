@@ -1,4 +1,5 @@
 import API from '../API'
+import history from '../history'
 
 export const registerUser = user => {
 	return dispatch => {
@@ -12,6 +13,7 @@ export const authenticateUser = user => {
 	return dispatch => {
 		return API.authenticateUser(user).then(data => {
 			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
+			history.push('/')
 		})
 	}
 }
