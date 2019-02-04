@@ -10,10 +10,10 @@ class LoginForm extends Component {
 		password: ''
 	}
 
-	handleChange = (e, { name, value }) => this.setState({ [name]: value })
+	handleChange = (event, { name, value }) => this.setState({ [name]: value })
 
-	handleSubmit = e => {
-		e.preventDefault()
+	handleSubmit = event => {
+		event.preventDefault()
 		this.props.authenticateUser(this.state)
 	}
 
@@ -32,6 +32,7 @@ class LoginForm extends Component {
 						<Input
 							fluid
 							required
+							type="email"
 							placeholder="Email"
 							name="email"
 							value={email}
@@ -43,6 +44,7 @@ class LoginForm extends Component {
 						<Input
 							fluid
 							required
+							type="password"
 							placeholder="Password"
 							name="password"
 							value={password}

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Button, Input, Form, Header, Icon } from 'semantic-ui-react'
 import * as actions from '../actions'
+
+import { Button, Input, Form, Header, Icon } from 'semantic-ui-react'
 
 class RegisterForm extends Component {
 	state = {
@@ -12,10 +13,10 @@ class RegisterForm extends Component {
 		passwordConfirmation: ''
 	}
 
-	handleChange = (e, { name, value }) => this.setState({ [name]: value })
+	handleChange = (event, { name, value }) => this.setState({ [name]: value })
 
-	handleSubmit = e => {
-		e.preventDefault()
+	handleSubmit = event => {
+		event.preventDefault()
 		this.props.registerUser({
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
@@ -61,6 +62,7 @@ class RegisterForm extends Component {
 						<Input
 							fluid
 							required
+							type="email"
 							placeholder="Email"
 							name="email"
 							value={email}
@@ -72,6 +74,7 @@ class RegisterForm extends Component {
 						<Input
 							fluid
 							required
+							type="password"
 							placeholder="Password"
 							name="password"
 							value={password}
@@ -83,6 +86,7 @@ class RegisterForm extends Component {
 						<Input
 							fluid
 							required
+							type="password"
 							placeholder="Confirm Password"
 							name="passwordConfirmation"
 							value={passwordConfirmation}
