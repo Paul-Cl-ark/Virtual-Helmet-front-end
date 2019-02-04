@@ -12,7 +12,7 @@ class NewSpotForm extends Component {
 
 	handleFormSubmit = event => {
 		event.preventDefault()
-		this.props.getNewSpotDescription(this.state.newSpotDescription)
+		this.props.addNewSpot(this.state.newSpotDescription)
 	}
 
 	render() {
