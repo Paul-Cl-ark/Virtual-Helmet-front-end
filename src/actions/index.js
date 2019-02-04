@@ -5,6 +5,7 @@ export const registerUser = user => {
 	return dispatch => {
 		API.registerUser(user).then(data => {
 			dispatch({ type: 'REGISTER_USER', payload: data })
+			history.push('/')
 		})
 	}
 }
