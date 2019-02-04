@@ -1,11 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
-const Logo = props => {
-	return (
-		<Fragment>
-			<p>I'm a Logo</p>
-		</Fragment>
-	)
-}
+const Logo = props => <img src="/images/green.png" alt="Virtual Helmet Logo" />
 
 export default Logo
