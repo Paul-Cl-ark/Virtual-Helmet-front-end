@@ -7,12 +7,13 @@ export default function spotsReducer(
 	switch (action.type) {
 		case 'GET_ALL_SPOTS':
 			return {
-				spots: action.payload
+				spots: action.payload.data.spots
 			}
 		case 'ADD_NEW_SPOT':
+			const newSpot = action.payload.data
 			return {
-				state,
-				spots: [...state.spots, action.payload]
+				...state,
+				spots: [...state.spots, newSpot]
 			}
 		default:
 			return state

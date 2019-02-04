@@ -23,14 +23,11 @@ class API {
 	}
 
 	static addNewSpot(spot) {
-		console.log(spot)
 		return fetch(this.spotsURL, {
 			method: 'POST',
-			header: { 'Content-Type': 'application/json' },
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(spot)
-		})
-			.then(response => response.json())
-			.then(data => console.log(data))
+		}).then(response => response.json())
 	}
 
 	static getAllSpots() {

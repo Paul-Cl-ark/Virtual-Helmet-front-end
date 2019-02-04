@@ -63,7 +63,7 @@ export class MapContainer extends Component {
 	renderMarkers = () => {
 		// console.log(this.props)
 		return this.props.spotsReducer.spots.length !== 0
-			? this.props.spotsReducer.spots.data.spots.map(marker => (
+			? this.props.spotsReducer.spots.map(marker => (
 					<Marker
 						position={{ lat: marker.latitude, lng: marker.longitude }}
 						onClick={this.onMarkerClick}
@@ -74,7 +74,7 @@ export class MapContainer extends Component {
 
 	componentDidMount() {
 		this.props.getAllSpots()
-		console.log(this.props)
+		// console.log(this.props)
 	}
 	render() {
 		const latLng = { lat: this.state.selectedLat, lng: this.state.selectedLng }
