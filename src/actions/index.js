@@ -31,3 +31,7 @@ export const getAllSpots = () => {
 		})
 	}
 }
+
+export const openMenu = () => {
+	return { type: 'OPEN_MENU' }
+}
