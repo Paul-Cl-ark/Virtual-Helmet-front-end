@@ -15,7 +15,7 @@ class LandingPage extends Component {
 			<Fragment>
 				<MapContainer />
 				{this.renderNewSpotForm()}
-				<RegisterOrLoginButton />
+				{!!!localStorage.getItem('user') ? <RegisterOrLoginButton /> : null}
 			</Fragment>
 		)
 	}
