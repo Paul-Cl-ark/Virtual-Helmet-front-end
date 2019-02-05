@@ -5,7 +5,7 @@ export default function appActionsReducer(
 	action
 ) {
 	switch (action.type) {
-		case 'OPEN_MENU':
+		case 'TOGGLE_MENU':
 			return { ...state, menuIsOpen: !state.menuIsOpen }
 		default:
 			return state

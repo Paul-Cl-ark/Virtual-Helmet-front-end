@@ -21,6 +21,14 @@ export const authenticateUser = user => {
 	}
 }
 
+export const logOut = () => {
+	return dispatch => {
+		history.push('/')
+		localStorage.removeItem('user')
+		dispatch({ type: 'TOGGLE_MENU' })
+	}
+}
+
 export const addNewSpot = spot => {
 	return dispatch => {
 		API.addNewSpot(spot).then(data => {
@@ -38,7 +46,7 @@ export const getAllSpots = () => {
 }
 
 export const openMenu = () => {
-	return { type: 'OPEN_MENU' }
+	return { type: 'TOGGLE_MENU' }
 }
 
 export const goToLogin = () => {
