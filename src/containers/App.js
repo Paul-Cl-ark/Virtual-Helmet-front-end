@@ -19,7 +19,9 @@ class App extends Component {
 		return (
 			<Router history={history}>
 				<Fragment>
-					{!!localStorage.getItem('user') ? <NavBar toggleMenu={this.props.toggleMenu} /> : null}
+					{!!localStorage.getItem('user') ? (
+						<NavBar removeSpotForm={this.props.removeSpotForm} toggleMenu={this.props.toggleMenu} />
+					) : null}
 					{this.renderMenu()}
 					<Route exact path="/" component={LandingPage} />
 					<Route exact path="/login" component={LoginForm} />
