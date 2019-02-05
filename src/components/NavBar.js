@@ -20,7 +20,7 @@ const divStyle = {
 const NavBar = props => {
 	return (
 		<Fragment>
-			<div style={divStyle} onClick={props.openMenu}>
+			<div style={divStyle} onClick={props.toggleMenu}>
 				P
 			</div>
 		</Fragment>

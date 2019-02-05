@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
 class NewSpotForm extends Component {
@@ -12,7 +15,14 @@ class NewSpotForm extends Component {
 
 	handleFormSubmit = event => {
 		event.preventDefault()
-		this.props.addNewSpot(this.state.newSpotDescription)
+		this.props.addNewSpot({
+			type: 'danger',
+			description: this.state.newSpotDescription,
+			latitude: this.props.spotsReducer.selectedLat,
+			longitude: this.props.spotsReducer.selectedLng,
+			user: 'paul'
+		})
+		this.props.removeSpotForm()
 	}
 
 	render() {
@@ -31,4 +41,9 @@ class NewSpotForm extends Component {
 	}
 }
 
-export default NewSpotForm
+const mapStateToProps = state => state
+
+export default connect(
+	mapStateToProps,
+	actions
+)(NewSpotForm)

@@ -14,12 +14,12 @@ import StatsPage from './StatsPage'
 import ProfileMenu from '../components/ProfileMenu'
 
 class App extends Component {
-	renderMenu = () => (this.props.appActionsReducer.menuIsOpen ? <ProfileMenu /> : null)
+	renderMenu = () => (this.props.appActionsReducer.renderMenu ? <ProfileMenu /> : null)
 	render() {
 		return (
 			<Router history={history}>
 				<Fragment>
-					<NavBar openMenu={this.props.openMenu} />
+					<NavBar toggleMenu={this.props.toggleMenu} />
 					{this.renderMenu()}
 					<Route exact path="/" component={LandingPage} />
 					<Route exact path="/login" component={LoginForm} />
