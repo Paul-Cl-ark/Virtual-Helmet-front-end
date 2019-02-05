@@ -1,20 +1,31 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+
 import MapContainer from './MapContainer'
+import NewSpotForm from '../components/NewSpotForm'
 import RegisterOrLoginButton from '../components/RegisterOrLoginButton'
 
 class LandingPage extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {}
+	renderNewSpotForm = () => {
+		return this.props.appActionsReducer.renderSpotForm ? <NewSpotForm /> : null
 	}
 	render() {
 		return (
 			<Fragment>
 				<MapContainer />
+				{this.renderNewSpotForm()}
 				<RegisterOrLoginButton />
 			</Fragment>
 		)
 	}
 }
 
-export default LandingPage
+const mapStateToProps = state => ({
+	...state
+})
+
+export default connect(
+	mapStateToProps,
+	actions
+)(LandingPage)

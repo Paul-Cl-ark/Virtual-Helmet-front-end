@@ -1,36 +1,25 @@
 import React, { Component, Fragment } from 'react'
-import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
-import NewSpotForm from '../components/NewSpotForm'
 import * as actions from '../actions'
-
-// const mapStyles = {
-// 	width: '90%',
-// 	height: '100%',
-// 	margin: 'auto'
-// }
 
 export class MapContainer extends Component {
 	state = {
 		showingInfoWindow: false,
 		activeMarker: {},
 		selectedPlace: {},
-		selectedLat: '',
-		selectedLng: ''
+		renderNewMarker: false
 	}
 
-	onMarkerClick = (props, marker, e) => {
+	onMarkerClick = (props, marker, event) => {
 		this.setState({
 			selectedPlace: props,
 			activeMarker: marker,
-			showingInfoWindow: true
+			showingInfoWindow: true,
+			renderNewMarker: false,
+			spotDescription: props.spotDescription
 		})
-	}
-
-	onOpen(props, event) {
-		const newSpotForm = <NewSpotForm addNewSpot={this.addNewSpot} />
-		ReactDOM.render(React.Children.only(newSpotForm), document.getElementById('infoWindowForm'))
+		this.props.removeSpotForm()
 	}
 
 	onClose = props => {
@@ -44,58 +33,54 @@ export class MapContainer extends Component {
 
 	onMapClick = (location, map) => {
 		this.setState({
-			selectedLat: location.lat(),
-			selectedLng: location.lng(),
-			showingInfoWindow: false
+			showingInfoWindow: false,
+			renderNewMarker: true
 		})
-	}
-
-	addNewSpot = description => {
-		this.props.addNewSpot({
-			type: 'danger',
-			description: description,
-			latitude: this.state.selectedLat,
-			longitude: this.state.selectedLng,
-			user: 'paul'
-		})
+		this.props.renderSpotForm()
+		this.props.addNewSpotLatLng({ lat: location.lat(), lng: location.lng() })
 	}
 
 	renderMarkers = () => {
-		// console.log(this.props)
 		return this.props.spotsReducer.spots.length !== 0
-			? this.props.spotsReducer.spots.map(marker => (
+			? this.props.spotsReducer.spots.map(spot => (
 					<Marker
-						position={{ lat: marker.latitude, lng: marker.longitude }}
+						spotDescription={spot.description}
+						position={{ lat: spot.latitude, lng: spot.longitude }}
 						onClick={this.onMarkerClick}
+						key={spot.id}
+						id={spot.id}
 					/>
 			  ))
 			: null
 	}
 
+	renderNewMarker = () => {
+		const lat = this.props.spotsReducer.selectedLat
+		const lng = this.props.spotsReducer.selectedLng
+		return this.state.renderNewMarker ? <Marker position={{ lat: lat, lng: lng }} /> : null
+	}
+
 	componentDidMount() {
 		this.props.getAllSpots()
-		// console.log(this.props)
 	}
+
 	render() {
-		const latLng = { lat: this.state.selectedLat, lng: this.state.selectedLng }
 		if (!this.props.google) {
 			return <div>Loading...</div>
 		}
+
 		return (
 			<Map
 				google={this.props.google}
 				centerAroundCurrentLocation
 				onClick={(t, map, c) => this.onMapClick(c.latLng, map)}>
-				<Marker position={latLng} onClick={this.onMarkerClick} />
 				{this.renderMarkers()}
+				{this.renderNewMarker()}
 				<InfoWindow
 					marker={this.state.activeMarker}
 					visible={this.state.showingInfoWindow}
-					onOpen={event => {
-						this.onOpen(this.props, event)
-					}}
 					onClose={this.onClose}>
-					<div id="infoWindowForm" />
+					<h3>{this.state.spotDescription}</h3>
 				</InfoWindow>
 			</Map>
 		)

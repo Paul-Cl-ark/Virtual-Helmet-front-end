@@ -29,6 +29,10 @@ export const logOut = () => {
 	}
 }
 
+export const addNewSpotLatLng = latLng => {
+	return { type: 'ADD_NEW_SPOT_LAT_LNG', payload: latLng }
+}
+
 export const addNewSpot = spot => {
 	return dispatch => {
 		API.addNewSpot(spot).then(data => {
@@ -45,8 +49,16 @@ export const getAllSpots = () => {
 	}
 }
 
-export const openMenu = () => {
+export const toggleMenu = () => {
 	return { type: 'TOGGLE_MENU' }
+}
+
+export const renderSpotForm = () => {
+	return { type: 'RENDER_SPOT_FORM' }
+}
+
+export const removeSpotForm = () => {
+	return { type: 'REMOVE_SPOT_FORM' }
 }
 
 export const goToLogin = () => {
