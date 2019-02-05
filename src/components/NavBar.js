@@ -20,7 +20,12 @@ const divStyle = {
 const NavBar = props => {
 	return (
 		<Fragment>
-			<div style={divStyle} onClick={props.toggleMenu}>
+			<div
+				style={divStyle}
+				onClick={() => {
+					props.toggleMenu()
+					props.removeSpotForm()
+				}}>
 				P
 			</div>
 		</Fragment>
