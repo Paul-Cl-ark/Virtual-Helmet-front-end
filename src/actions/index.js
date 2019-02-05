@@ -6,6 +6,7 @@ export const registerUser = user => {
 		API.registerUser(user).then(data => {
 			dispatch({ type: 'REGISTER_USER', payload: data })
 			history.push('/')
+			localStorage.setItem('user', data.user.firstName)
 		})
 	}
 }
@@ -15,6 +16,7 @@ export const authenticateUser = user => {
 		return API.authenticateUser(user).then(data => {
 			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
 			history.push('/')
+			localStorage.setItem('user', data.user.firstName)
 		})
 	}
 }
