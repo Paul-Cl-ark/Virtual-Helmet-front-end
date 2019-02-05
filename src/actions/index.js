@@ -38,3 +38,11 @@ export const getAllSpots = () => {
 export const openMenu = () => {
 	return { type: 'OPEN_MENU' }
 }
+
+export const goToLogin = () => {
+	history.push('/login')
+}
+
+export const goToRegister = () => {
+	history.push('/register')
+}

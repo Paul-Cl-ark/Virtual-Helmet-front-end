@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import MapContainer from './MapContainer'
+import RegisterOrLoginButton from '../components/RegisterOrLoginButton'
 
 class LandingPage extends Component {
 	constructor(props) {
@@ -10,6 +11,7 @@ class LandingPage extends Component {
 		return (
 			<Fragment>
 				<MapContainer />
+				<RegisterOrLoginButton />
 			</Fragment>
 		)
 	}
