@@ -10,17 +10,14 @@ const menuStyle = {
 
 class ProfileMenu extends Component {
 	state = {}
-	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+	handleItemClick = (event, { name }) => this.setState({ activeItem: name })
 
 	render() {
 		const { activeItem } = this.state
 
 		return (
 			<Menu style={menuStyle} compact icon="labeled" vertical>
-				<Menu.Item
-					name="user outline"
-					active={activeItem === 'user outline'}
-					onClick={this.handleItemClick}>
+				<Menu.Item name="profile" active={activeItem === 'profile'} onClick={this.handleItemClick}>
 					<Icon name="user outline" />
 					Profile
 				</Menu.Item>
@@ -33,12 +30,14 @@ class ProfileMenu extends Component {
 					Settings
 				</Menu.Item>
 
-				<Menu.Item
-					name="line graph"
-					active={activeItem === 'line graph'}
-					onClick={this.handleItemClick}>
+				<Menu.Item name="stats" active={activeItem === 'stats'} onClick={this.handleItemClick}>
 					<Icon name="line graph" />
 					Stats
+				</Menu.Item>
+
+				<Menu.Item name="logOut" active={activeItem === 'logOut'} onClick={this.handleItemClick}>
+					<Icon name="log out" />
+					Log Out
 				</Menu.Item>
 			</Menu>
 		)
