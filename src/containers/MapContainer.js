@@ -32,12 +32,14 @@ export class MapContainer extends Component {
 	}
 
 	onMapClick = (location, map) => {
-		this.setState({
-			showingInfoWindow: false,
-			renderNewMarker: true
-		})
-		this.props.renderSpotForm()
-		this.props.addNewSpotLatLng({ lat: location.lat(), lng: location.lng() })
+		if (!!localStorage.getItem('user')) {
+			this.setState({
+				showingInfoWindow: false,
+				renderNewMarker: true
+			})
+			this.props.renderSpotForm()
+			this.props.addNewSpotLatLng({ lat: location.lat(), lng: location.lng() })
+		}
 	}
 
 	renderMarkers = () => {
