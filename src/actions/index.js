@@ -56,3 +56,20 @@ export const goToLogin = () => {
 export const goToRegister = () => {
 	history.push('/register')
 }
+export const goToProfile = () => {
+	return dispatch => {
+		history.push('/profile')
+	}
+}
+
+export const goToSettings = () => {
+	return dispatch => {
+		history.push('/settings')
+	}
+}
+
+export const goToStats = () => {
+	return dispatch => {
+		history.push('/stats')
+	}
+}
