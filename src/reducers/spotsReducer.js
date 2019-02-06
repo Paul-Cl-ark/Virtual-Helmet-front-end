@@ -1,6 +1,7 @@
 export default function spotsReducer(
 	state = {
 		spots: [],
+		userSpots: [],
 		selectedLat: '',
 		selectedLng: ''
 	},
@@ -10,6 +11,10 @@ export default function spotsReducer(
 		case 'GET_ALL_SPOTS':
 			return {
 				spots: action.payload.data.spots
+			}
+		case 'GET_USER_SPOTS':
+			return {
+				userSpots: action.payload.data.spots
 			}
 		case 'ADD_NEW_SPOT_LAT_LNG':
 			const lat = action.payload.lat
