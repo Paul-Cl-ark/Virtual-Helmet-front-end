@@ -17,6 +17,9 @@ class ProfileMenu extends Component {
 			case 'profile':
 				this.props.goToProfile()
 				break
+			case 'home':
+				this.props.goToHome()
+				break
 			case 'settings':
 				this.props.goToSettings()
 				break
@@ -38,6 +41,11 @@ class ProfileMenu extends Component {
 				<Menu.Item name="profile" active={activeItem === 'profile'} onClick={this.handleItemClick}>
 					<Icon name="user outline" />
 					Profile
+				</Menu.Item>
+
+				<Menu.Item name="home" active={activeItem === 'home'} onClick={this.handleItemClick}>
+					<Icon name="map outline" />
+					Map
 				</Menu.Item>
 
 				<Menu.Item
