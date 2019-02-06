@@ -14,18 +14,23 @@ export const registerUser = user => {
 export const authenticateUser = user => {
 	return dispatch => {
 		return API.authenticateUser(user).then(data => {
-			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
+			console.log(data)
 			history.push('/')
 			localStorage.setItem('user', data.user.firstName)
+			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
 		})
 	}
 }
 
-export const logOut = () => {
+export const logOutUser = () => {
 	return dispatch => {
-		history.push('/')
-		localStorage.removeItem('user')
-		dispatch({ type: 'TOGGLE_MENU' })
+		return API.logOutUser().then(data => {
+			console.log('in the actions index: ', data)
+			history.push('/')
+			localStorage.removeItem('user')
+			dispatch({ type: 'TOGGLE_MENU' })
+			dispatch({ type: 'LOGOUT_USER' })
+		})
 	}
 }
 
@@ -45,6 +50,15 @@ export const getAllSpots = () => {
 	return dispatch => {
 		API.getAllSpots().then(data => {
 			dispatch({ type: 'GET_ALL_SPOTS', payload: data })
+		})
+	}
+}
+
+export const getUserSpots = () => {
+	return dispatch => {
+		API.getUserSpots().then(data => {
+			console.log('user spot data: ', data)
+			dispatch({ type: 'GET_USER_SPOTS', payload: data })
 		})
 	}
 }

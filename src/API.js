@@ -1,9 +1,12 @@
 class API {
 	static init() {
 		this.baseURL = 'http://localhost:3001'
-		this.logInURL = this.baseURL + '/users/authenticate'
-		this.registerURL = this.baseURL + '/users/register'
+		this.usersURL = this.baseURL + '/users'
+		this.registerURL = this.usersURL + '/register'
+		this.logInURL = this.usersURL + '/authenticate'
+		this.logOutURL = this.usersURL + '/logout'
 		this.spotsURL = this.baseURL + '/spots'
+		this.userSpotsURL = this.spotsURL + '/user-spots'
 	}
 
 	static registerUser(user) {
@@ -22,6 +25,10 @@ class API {
 		}).then(response => (response.status !== 500 ? response.json() : { message: 'Unauthorised' }))
 	}
 
+	static logOutUser() {
+		return fetch(this.logOutURL).then(response => response.json())
+	}
+
 	static addNewSpot(spot) {
 		return fetch(this.spotsURL, {
 			method: 'POST',
@@ -32,6 +39,10 @@ class API {
 
 	static getAllSpots() {
 		return fetch(this.spotsURL).then(response => response.json())
+	}
+
+	static getUserSpots() {
+		return fetch(this.userSpotsURL).then(response => console.log(response.json()))
 	}
 }
 
