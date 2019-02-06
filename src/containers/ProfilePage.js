@@ -6,7 +6,7 @@ class ProfilePage extends Component {
 		this.state = {}
 	}
 	render() {
-		return <Fragment>ProfilePage</Fragment>
+		return <Fragment>ProfilePage - user will be able to edit their information</Fragment>
 	}
 }
 
