@@ -20,7 +20,7 @@ class NewSpotForm extends Component {
 			description: this.state.newSpotDescription,
 			latitude: this.props.spotsReducer.selectedLat,
 			longitude: this.props.spotsReducer.selectedLng,
-			user: 'paul'
+			user: '5c596629ff980865f5e2af20'
 		})
 		this.props.removeSpotForm()
 	}
@@ -35,7 +35,9 @@ class NewSpotForm extends Component {
 					placeholder="Description"
 					name="newSpotDescription"
 				/>
-				<Button type="submit">Add!</Button>
+				<input type="file" />
+				<Button type="submit">Add</Button>
+				<Button onClick={this.props.removeSpotForm}>Cancel</Button>
 			</Form>
 		)
 	}
