@@ -6,7 +6,7 @@ export const registerUser = user => {
 		API.registerUser(user).then(data => {
 			dispatch({ type: 'REGISTER_USER', payload: data })
 			history.push('/')
-			localStorage.setItem('user', data.user.firstName)
+			localStorage.setItem('user', data.data.firstName)
 		})
 	}
 }
