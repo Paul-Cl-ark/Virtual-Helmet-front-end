@@ -75,6 +75,9 @@ export const removeSpotForm = () => {
 	return { type: 'REMOVE_SPOT_FORM' }
 }
 
+export const goToHome = () => {
+	history.push('/')
+}
 export const goToLogin = () => {
 	history.push('/login')
 }

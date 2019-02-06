@@ -15,12 +15,12 @@ const buttonStyle = {
 	zIndex: 1
 }
 
-class RegisterOrLoginButton extends Component {
+class HomeOrRegisterButton extends Component {
 	state = {}
 	render() {
 		return (
 			<Button.Group size="large" style={buttonStyle}>
-				<Button onClick={this.props.goToLogin}>Log In</Button>
+				<Button onClick={this.props.goToHome}>Home</Button>
 				<Button.Or />
 				<Button onClick={this.props.goToRegister}>Sign Up</Button>
 			</Button.Group>
@@ -31,4 +31,4 @@ class RegisterOrLoginButton extends Component {
 export default connect(
 	null,
 	actions
-)(RegisterOrLoginButton)
+)(HomeOrRegisterButton)
