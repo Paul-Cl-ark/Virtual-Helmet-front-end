@@ -1,9 +1,17 @@
-export default function usersReducer(state = {}, action) {
+export default function usersReducer(
+	state = {
+		user: ''
+	},
+	action
+) {
 	switch (action.type) {
 		case 'REGISTER_USER':
-			return action.payload
+			return { ...state, user: action.payload }
 		case 'AUTHENTICATE_USER':
-			return action.payload
+			return { ...state, user: action.payload.user }
+		case 'LOGOUT_USER':
+			console.log('logout')
+			return { ...state, user: '' }
 		default:
 			return state
 	}
