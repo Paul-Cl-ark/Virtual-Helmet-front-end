@@ -6,8 +6,8 @@ import * as actions from '../actions'
 import history from '../history'
 
 import LandingPage from './LandingPage'
-import LoginForm from '../components/LoginForm'
-import RegisterForm from '../components/RegisterForm'
+import LoginPage from './LoginPage'
+import RegisterPage from './RegisterPage'
 import ProfilePage from './ProfilePage'
 import SettingsPage from './SettingsPage'
 import StatsPage from './StatsPage'
@@ -24,8 +24,8 @@ class App extends Component {
 					) : null}
 					{this.renderMenu()}
 					<Route exact path="/" component={LandingPage} />
-					<Route exact path="/login" component={LoginForm} />
-					<Route exact path="/register" component={RegisterForm} />
+					<Route exact path="/login" component={LoginPage} />
+					<Route exact path="/register" component={RegisterPage} />
 					<Route exact path="/profile" component={ProfilePage} />
 					<Route exact path="/settings" component={SettingsPage} />
 					<Route exact path="/stats" component={StatsPage} />
