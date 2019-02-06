@@ -75,6 +75,7 @@ export class MapContainer extends Component {
 			<Map
 				google={this.props.google}
 				centerAroundCurrentLocation
+				zoom={16}
 				onClick={(t, map, c) => this.onMapClick(c.latLng, map)}>
 				{this.renderMarkers()}
 				{this.renderNewMarker()}
