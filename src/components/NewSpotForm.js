@@ -19,8 +19,7 @@ class NewSpotForm extends Component {
 			type: 'danger',
 			description: this.state.newSpotDescription,
 			latitude: this.props.spotsReducer.selectedLat,
-			longitude: this.props.spotsReducer.selectedLng,
-			user: '5c596629ff980865f5e2af20'
+			longitude: this.props.spotsReducer.selectedLng
 		})
 		this.props.removeSpotForm()
 	}
