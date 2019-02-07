@@ -7,6 +7,7 @@ class API {
 		this.logOutURL = this.usersURL + '/logout'
 		this.spotsURL = this.baseURL + '/spots'
 		this.userSpotsURL = this.spotsURL + '/user-spots'
+		this.cloudinaryURL = this.baseURL + '/image-upload'
 	}
 
 	static registerUser(user) {
@@ -30,11 +31,22 @@ class API {
 	}
 
 	static addNewSpot(spot) {
-		return fetch(this.spotsURL, {
+		const image = spot.image
+		const newSpot = spot
+		delete newSpot.image
+
+		return fetch(this.cloudinaryURL, {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(spot)
-		}).then(response => response.json())
+			body: image
+		})
+			.then(response => response.json())
+			.then(imageData => {
+				return fetch(this.spotsURL, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ ...newSpot, image: imageData[0].url })
+				}).then(response => response.json())
+			})
 	}
 
 	static getAllSpots() {

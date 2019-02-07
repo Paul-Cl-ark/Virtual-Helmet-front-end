@@ -5,7 +5,7 @@ import * as actions from '../actions'
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
 class NewSpotForm extends Component {
-	state = { newSpotDescription: '' }
+	state = { newSpotDescription: '', selectedFile: null, loaded: 0 }
 
 	handleChange = (event, data) => {
 		this.setState({
@@ -13,13 +13,25 @@ class NewSpotForm extends Component {
 		})
 	}
 
+	handleSelectedFile = event => {
+		this.setState({
+			selectedFile: event.target.files[0],
+			loaded: 0
+		})
+	}
+
 	handleFormSubmit = event => {
 		event.preventDefault()
+
+		const formData = new FormData()
+		formData.append('file', this.state.selectedFile, this.state.selectedFile.name)
+
 		this.props.addNewSpot({
 			type: 'danger',
 			description: this.state.newSpotDescription,
 			latitude: this.props.spotsReducer.selectedLat,
-			longitude: this.props.spotsReducer.selectedLng
+			longitude: this.props.spotsReducer.selectedLng,
+			image: formData
 		})
 		this.props.removeSpotForm()
 	}
@@ -34,9 +46,10 @@ class NewSpotForm extends Component {
 					placeholder="Description"
 					name="newSpotDescription"
 				/>
-				<input type="file" />
+				<input type="file" onChange={this.handleSelectedFile} />
 				<Button type="submit">Add</Button>
 				<Button onClick={this.props.removeSpotForm}>Cancel</Button>
+				<div>{Math.round(this.state.loaded, 2)} %</div>
 			</Form>
 		)
 	}
