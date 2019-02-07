@@ -9,13 +9,9 @@ export default function spotsReducer(
 ) {
 	switch (action.type) {
 		case 'GET_ALL_SPOTS':
-			return {
-				spots: action.payload.data.spots
-			}
+			return { ...state, spots: action.payload.data.spots }
 		case 'GET_USER_SPOTS':
-			return {
-				userSpots: action.payload.data.spots
-			}
+			return { ...state, userSpots: action.payload.data.spots }
 		case 'ADD_NEW_SPOT_LAT_LNG':
 			const lat = action.payload.lat
 			const lng = action.payload.lng
