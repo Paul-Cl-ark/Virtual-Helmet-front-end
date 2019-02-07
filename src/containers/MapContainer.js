@@ -18,7 +18,8 @@ export class MapContainer extends Component {
 			activeMarker: marker,
 			showingInfoWindow: true,
 			renderNewMarker: false,
-			spotDescription: props.spotDescription
+			spotDescription: props.spotDescription,
+			image: props.image
 		})
 		console.log(props)
 		this.props.removeSpotForm()
@@ -51,6 +52,7 @@ export class MapContainer extends Component {
 						spotDescription={spot.description}
 						position={{ lat: spot.latitude, lng: spot.longitude }}
 						onClick={this.onMarkerClick}
+						image={spot.image}
 						key={spot.id}
 						id={spot.id}
 					/>
@@ -86,7 +88,12 @@ export class MapContainer extends Component {
 					visible={this.state.showingInfoWindow}
 					onClose={this.onClose}>
 					<Card>
-						<Image src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg" />
+						<Image
+							src={
+								this.state.image ||
+								'https://www.wibc.com/sites/g/files/exi441/f/styles/large_730/public/article-images-featured/554676-391326.jpg?itok=VPAnqxDA'
+							}
+						/>
 						<Card.Content>
 							<Card.Header>{this.state.spotDescription}</Card.Header>
 							<Card.Meta>Date added</Card.Meta>
