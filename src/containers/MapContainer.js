@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 import * as actions from '../actions'
+import { Card, Icon, Image } from 'semantic-ui-react'
 
 export class MapContainer extends Component {
 	state = {
@@ -19,6 +20,7 @@ export class MapContainer extends Component {
 			renderNewMarker: false,
 			spotDescription: props.spotDescription
 		})
+		console.log(props)
 		this.props.removeSpotForm()
 	}
 
@@ -83,7 +85,20 @@ export class MapContainer extends Component {
 					marker={this.state.activeMarker}
 					visible={this.state.showingInfoWindow}
 					onClose={this.onClose}>
-					<h3>{this.state.spotDescription}</h3>
+					<Card>
+						<Image src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg" />
+						<Card.Content>
+							<Card.Header>{this.state.spotDescription}</Card.Header>
+							<Card.Meta>Date added</Card.Meta>
+							<Card.Description>Lat long</Card.Description>
+						</Card.Content>
+						<Card.Content extra>
+							<a>
+								<Icon name="thumbs up outline" />
+								10 Likes
+							</a>
+						</Card.Content>
+					</Card>
 				</InfoWindow>
 			</Map>
 		)
