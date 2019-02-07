@@ -19,7 +19,10 @@ export class MapContainer extends Component {
 			showingInfoWindow: true,
 			renderNewMarker: false,
 			spotDescription: props.spotDescription,
-			image: props.image
+			spotImage: props.spotImage,
+			spotRating: props.spotRating,
+			spotRaters: props.spotRaters,
+			spotPosition: this.props.position
 		})
 		console.log(props)
 		this.props.removeSpotForm()
@@ -52,9 +55,11 @@ export class MapContainer extends Component {
 						spotDescription={spot.description}
 						position={{ lat: spot.latitude, lng: spot.longitude }}
 						onClick={this.onMarkerClick}
-						image={spot.image}
+						spotImage={spot.image}
+						spotRating={spot.rating}
+						spotRaters={spot.raters}
 						key={spot.id}
-						id={spot.id}
+						spotId={spot.id}
 					/>
 			  ))
 			: null
@@ -97,12 +102,12 @@ export class MapContainer extends Component {
 						<Card.Content>
 							<Card.Header>{this.state.spotDescription}</Card.Header>
 							<Card.Meta>Date added</Card.Meta>
-							<Card.Description>Lat long</Card.Description>
+							<Card.Description>{this.state.spotPosition}</Card.Description>
 						</Card.Content>
 						<Card.Content extra>
 							<a>
 								<Icon name="thumbs up outline" />
-								10 Likes
+								{this.state.spotRating}
 							</a>
 						</Card.Content>
 					</Card>
