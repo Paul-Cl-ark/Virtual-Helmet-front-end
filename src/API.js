@@ -1,6 +1,6 @@
 class API {
 	static init() {
-		this.baseURL = 'http://localhost:3001'
+		this.baseURL = '/API'
 		this.usersURL = this.baseURL + '/users'
 		this.registerURL = this.usersURL + '/register'
 		this.logInURL = this.usersURL + '/authenticate'
@@ -42,7 +42,7 @@ class API {
 	}
 
 	static getUserSpots() {
-		return fetch(this.userSpotsURL).then(response => console.log(response.json()))
+		return fetch(this.userSpotsURL).then(response => response.json())
 	}
 }
 
