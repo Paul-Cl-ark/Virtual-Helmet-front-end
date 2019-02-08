@@ -2,18 +2,19 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Map from '../components/Map'
 import NewSpotForm from '../components/NewSpotForm'
-import RegisterOrLoginButton from '../components/RegisterOrLoginButton'
+import HomeRegisterLogInButton from '../components/HomeRegisterLogInButton'
 
 class LandingPage extends Component {
 	renderNewSpotForm = () => {
 		return this.props.renderSpotForm ? <NewSpotForm /> : null
 	}
+
 	render() {
 		return (
 			<Fragment>
 				<Map />
 				{this.renderNewSpotForm()}
-				{!!!localStorage.getItem('user') ? <RegisterOrLoginButton /> : null}
+				{!!!localStorage.getItem('user') ? <HomeRegisterLogInButton /> : null}
 			</Fragment>
 		)
 	}

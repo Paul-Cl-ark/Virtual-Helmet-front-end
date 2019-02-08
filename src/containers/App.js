@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import NavBar from '../components/NavBar'
-import * as actions from '../actions'
 import history from '../history'
 
 import LandingPage from './LandingPage'
@@ -37,7 +36,4 @@ const mapStateToProps = state => ({
 	renderMenu: state.appActions.renderMenu
 })
 
-export default connect(
-	mapStateToProps,
-	actions
-)(App)
+export default connect(mapStateToProps)(App)
