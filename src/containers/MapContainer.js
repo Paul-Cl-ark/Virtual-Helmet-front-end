@@ -17,8 +17,7 @@ const navStyle = {
 
 export class MapContainer extends Component {
 	state = {
-		showingInfoWindow: false,
-		activeMarker: {},
+		showingPopUp: false,
 		selectedSpot: null,
 		renderNewMarker: false,
 		viewport: {
@@ -33,17 +32,16 @@ export class MapContainer extends Component {
 	onMarkerClick = spot => {
 		this.setState({
 			selectedSpot: spot,
-			activeMarker: spot,
-			showingInfoWindow: true,
+			showingPopUp: true,
 			renderNewMarker: false
 		})
 		this.props.removeSpotForm()
 	}
 
 	onClose = props => {
-		if (this.state.showingInfoWindow) {
+		if (this.state.showingPopUp) {
 			this.setState({
-				showingInfoWindow: false,
+				showingPopUp: false,
 				activeMarker: null
 			})
 		}
@@ -52,7 +50,7 @@ export class MapContainer extends Component {
 	onMapClick = event => {
 		if (!!localStorage.getItem('user')) {
 			this.setState({
-				showingInfoWindow: false,
+				selectedSpot: null,
 				renderNewMarker: true
 			})
 			this.props.renderSpotForm()
@@ -112,7 +110,7 @@ export class MapContainer extends Component {
 				closeOnClick={false}
 				onClose={() =>
 					this.setState({
-						popupInfo: null
+						selectedSpot: null
 					})
 				}>
 				<Card>

@@ -4,6 +4,18 @@ import * as actions from '../actions'
 
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
+const formStyle = {
+	position: 'absolute',
+	top: '45px',
+
+	paddingLeft: '60px',
+	paddingRight: '60px',
+	left: 0,
+	right: 0,
+	margin: 'auto',
+	zIndex: 1
+}
+
 class NewSpotForm extends Component {
 	state = { newSpotDescription: '', selectedFile: null, loaded: 0 }
 
@@ -38,7 +50,7 @@ class NewSpotForm extends Component {
 
 	render() {
 		return (
-			<Form onSubmit={this.handleFormSubmit}>
+			<Form style={formStyle} onSubmit={this.handleFormSubmit}>
 				<label>Add description</label>
 				<TextArea
 					onChange={(event, data) => this.handleChange(event, data)}
