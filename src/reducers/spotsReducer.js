@@ -3,7 +3,8 @@ export default function spotsReducer(
 		spots: [],
 		userSpots: [],
 		selectedLat: '',
-		selectedLng: ''
+		selectedLng: '',
+		selectedSpot: null
 	},
 	action
 ) {
@@ -22,6 +23,10 @@ export default function spotsReducer(
 				...state,
 				spots: [...state.spots, newSpot]
 			}
+		case 'SELECT_SPOT':
+			return { ...state, selectedSpot: action.payload }
+		case 'DESELECT_SPOT':
+			return { ...state, selectedSpot: null }
 		default:
 			return state
 	}

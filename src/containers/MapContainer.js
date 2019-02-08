@@ -17,9 +17,6 @@ const navStyle = {
 
 export class MapContainer extends Component {
 	state = {
-		showingPopUp: false,
-		selectedSpot: null,
-		renderNewMarker: false,
 		viewport: {
 			latitude: 51.520419,
 			longitude: -0.0887159,
@@ -30,29 +27,22 @@ export class MapContainer extends Component {
 	}
 
 	onMarkerClick = spot => {
-		this.setState({
-			selectedSpot: spot,
-			showingPopUp: true,
-			renderNewMarker: false
-		})
+		this.props.selectSpot(spot)
+		this.props.renderNewMarker()
+		this.props.renderPopUp()
 		this.props.removeSpotForm()
 	}
 
-	onClose = props => {
-		if (this.state.showingPopUp) {
-			this.setState({
-				showingPopUp: false,
-				activeMarker: null
-			})
-		}
+	onClose = () => {
+		this.props.removePopUp()
+		this.props.deselectSpot()
 	}
 
 	onMapClick = event => {
 		if (!!localStorage.getItem('user')) {
-			this.setState({
-				selectedSpot: null,
-				renderNewMarker: true
-			})
+			this.props.deSelectSpot()
+			this.props.removePopUp()
+			this.props.renderNewMarker()
 			this.props.renderSpotForm()
 			this.props.addNewSpotLatLng({ lat: event.lngLat[1], lng: event.lngLat[0] })
 		}
@@ -100,7 +90,7 @@ export class MapContainer extends Component {
 	}
 
 	renderPopup() {
-		const { selectedSpot } = this.state
+		const selectedSpot = this.props.spotsReducer.selectedSpot
 		return selectedSpot ? (
 			<Popup
 				tipSize={5}
@@ -114,18 +104,18 @@ export class MapContainer extends Component {
 					})
 				}>
 				<Card>
-					<Image src={this.state.selectedSpot.image} />
+					<Image src={selectedSpot.image} />
 					<Card.Content>
-						<Card.Header>{this.state.selectedSpot.description}</Card.Header>
+						<Card.Header>{selectedSpot.description}</Card.Header>
 						<Card.Meta>Date added</Card.Meta>
 						<Card.Description>
-							{this.state.selectedSpot.latitude} - {this.state.selectedSpot.longitude}
+							{selectedSpot.latitude} - {selectedSpot.longitude}
 						</Card.Description>
 					</Card.Content>
 					<Card.Content extra>
 						<a>
 							<Icon name="thumbs up outline" />
-							{this.state.spotRating}
+							{selectedSpot.rating}
 						</a>
 					</Card.Content>
 				</Card>
@@ -143,7 +133,6 @@ export class MapContainer extends Component {
 				mapboxApiAccessToken={TOKEN}
 				onClick={event => this.onMapClick(event)}>
 				{this.renderMarkers()}
-				{this.render}
 				{this.renderNewMarker()}
 				{this.renderPopup()}
 

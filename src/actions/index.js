@@ -75,6 +75,30 @@ export const removeSpotForm = () => {
 	return { type: 'REMOVE_SPOT_FORM' }
 }
 
+export const selectSpot = spot => {
+	return { type: 'SELECT_SPOT', payload: spot }
+}
+
+export const deSelectSpot = () => {
+	return { type: 'DESELECT_SPOT' }
+}
+
+export const renderNewMarker = () => {
+	return { type: 'RENDER_NEW_MARKER' }
+}
+
+export const removeNewMarker = () => {
+	return { type: 'REMOVE_NEW_MARKER' }
+}
+
+export const renderPopUp = () => {
+	return { type: 'RENDER_POP_UP' }
+}
+
+export const removePopUp = () => {
+	return { type: 'REMOVE_POP_UP' }
+}
+
 export const goToHome = () => {
 	return dispatch => {
 		history.push('/')
