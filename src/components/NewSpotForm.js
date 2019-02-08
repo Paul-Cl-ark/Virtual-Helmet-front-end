@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { removeSpotForm } from '../actions'
 
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
@@ -41,8 +41,8 @@ class NewSpotForm extends Component {
 		this.props.addNewSpot({
 			type: 'danger',
 			description: this.state.newSpotDescription,
-			latitude: this.props.spotsReducer.selectedLat,
-			longitude: this.props.spotsReducer.selectedLng,
+			latitude: this.props.selectedLat,
+			longitude: this.props.selectedLng,
 			image: formData
 		})
 		this.props.removeSpotForm()
@@ -67,9 +67,12 @@ class NewSpotForm extends Component {
 	}
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => ({
+	selectedLat: state.spots.selectedLat,
+	selectedLng: state.spots.selectedLng
+})
 
 export default connect(
 	mapStateToProps,
-	actions
+	{ removeSpotForm }
 )(NewSpotForm)

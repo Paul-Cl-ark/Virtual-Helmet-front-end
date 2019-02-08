@@ -10,6 +10,8 @@ export default function appActionsReducer(
 	switch (action.type) {
 		case 'TOGGLE_MENU':
 			return { ...state, renderMenu: !state.renderMenu }
+		case 'CLOSE_MENU':
+			return { ...state, renderMenu: false }
 		case 'RENDER_SPOT_FORM':
 			return { ...state, renderSpotForm: true }
 		case 'REMOVE_SPOT_FORM':

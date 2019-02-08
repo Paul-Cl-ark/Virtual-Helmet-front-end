@@ -14,14 +14,12 @@ import StatsPage from './StatsPage'
 import ProfileMenu from '../components/ProfileMenu'
 
 class App extends Component {
-	renderMenu = () => (this.props.appActionsReducer.renderMenu ? <ProfileMenu /> : null)
+	renderMenu = () => (this.props.renderMenu ? <ProfileMenu /> : null)
 	render() {
 		return (
 			<Router history={history}>
 				<Fragment>
-					{!!localStorage.getItem('user') ? (
-						<NavBar removeSpotForm={this.props.removeSpotForm} toggleMenu={this.props.toggleMenu} />
-					) : null}
+					{!!localStorage.getItem('user') ? <NavBar /> : null}
 					{this.renderMenu()}
 					<Route exact path="/" component={LandingPage} />
 					<Route exact path="/login" component={LoginPage} />
@@ -36,7 +34,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-	...state
+	renderMenu: state.appActions.renderMenu
 })
 
 export default connect(

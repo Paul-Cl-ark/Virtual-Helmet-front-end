@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { registerUser } from '../actions'
 
 import { Button, Input, Form, Header, Icon } from 'semantic-ui-react'
 
@@ -102,5 +102,5 @@ class RegisterForm extends Component {
 
 export default connect(
 	null,
-	actions
+	{ registerUser }
 )(RegisterForm)

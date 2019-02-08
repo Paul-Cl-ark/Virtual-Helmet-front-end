@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MapGL, { Popup } from 'react-map-gl'
-import * as actions from '../actions'
 import SpotPopUpCard from './SpotPopUpCard'
+import { deSelectSpot, removePopUp } from '../actions'
+
+const popUpStyle = {
+	width: '100px'
+}
 
 class SpotPopUp extends Component {
 	render() {
-		const selectedSpot = this.props.spotsReducer.selectedSpot
+		const selectedSpot = this.props.selectedSpot
 
 		return (
 			<Popup
 				tipSize={5}
+				style={popUpStyle}
 				anchor="top"
 				longitude={selectedSpot.longitude}
 				latitude={selectedSpot.latitude}
@@ -25,9 +30,11 @@ class SpotPopUp extends Component {
 	}
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => ({
+	selectedSpot: state.spots.selectedSpot
+})
 
 export default connect(
 	mapStateToProps,
-	actions
+	{ deSelectSpot, removePopUp }
 )(SpotPopUp)

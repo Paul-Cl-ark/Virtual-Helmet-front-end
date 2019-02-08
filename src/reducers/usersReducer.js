@@ -10,7 +10,6 @@ export default function usersReducer(
 		case 'AUTHENTICATE_USER':
 			return { ...state, user: action.payload.user }
 		case 'LOGOUT_USER':
-			console.log('logout')
 			return { ...state, user: '' }
 		default:
 			return state

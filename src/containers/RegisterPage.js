@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import * as actions from '../actions'
 import RegisterForm from '../components/RegisterForm'
 import HomeOrLoginButton from '../components/HomeOrLoginButton'
 
@@ -16,7 +14,4 @@ class RegisterPage extends Component {
 	}
 }
 
-export default connect(
-	null,
-	actions
-)(RegisterPage)
+export default RegisterPage

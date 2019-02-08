@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
 
 import { Card, Icon, Image } from 'semantic-ui-react'
 
 class SpotPopUpCard extends Component {
 	render() {
-		const selectedSpot = this.props.spotsReducer.selectedSpot
+		const selectedSpot = this.props.selectedSpot
 
 		return (
 			<Card>
@@ -29,9 +28,6 @@ class SpotPopUpCard extends Component {
 	}
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => ({ selectedSpot: state.spots.selectedSpot })
 
-export default connect(
-	mapStateToProps,
-	actions
-)(SpotPopUpCard)
+export default connect(mapStateToProps)(SpotPopUpCard)

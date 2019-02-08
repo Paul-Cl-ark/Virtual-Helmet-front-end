@@ -1,4 +1,6 @@
-import React, { Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { toggleMenu, removeSpotForm, removeNewMarker } from '../actions'
 
 const divStyle = {
 	backgroundColor: 'white',
@@ -17,19 +19,25 @@ const divStyle = {
 	zIndex: 1
 }
 
-const NavBar = props => {
-	return (
-		<Fragment>
-			<div
-				style={divStyle}
-				onClick={() => {
-					props.toggleMenu()
-					props.removeSpotForm()
-				}}>
-				P
-			</div>
-		</Fragment>
-	)
+class NavBar extends Component {
+	render() {
+		return (
+			<Fragment>
+				<div
+					style={divStyle}
+					onClick={() => {
+						this.props.toggleMenu()
+						this.props.removeSpotForm()
+						this.props.removeNewMarker()
+					}}>
+					pic
+				</div>
+			</Fragment>
+		)
+	}
 }
 
-export default NavBar
+export default connect(
+	null,
+	{ toggleMenu, removeSpotForm, removeNewMarker }
+)(NavBar)

@@ -99,6 +99,10 @@ export const removePopUp = () => {
 	return { type: 'REMOVE_POP_UP' }
 }
 
+export const closeMenu = () => {
+	return { type: 'CLOSE_MENU' }
+}
+
 export const goToHome = () => {
 	return dispatch => {
 		history.push('/')

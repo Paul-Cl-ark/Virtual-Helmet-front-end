@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { goToHome, goToRegister } from '../actions'
 import { Button } from 'semantic-ui-react'
 
 const buttonStyle = {
@@ -30,5 +30,5 @@ class HomeOrRegisterButton extends Component {
 
 export default connect(
 	null,
-	actions
+	{ goToHome, goToRegister }
 )(HomeOrRegisterButton)

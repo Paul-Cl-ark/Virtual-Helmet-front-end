@@ -1,14 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
-
 import Map from '../components/Map'
 import NewSpotForm from '../components/NewSpotForm'
 import RegisterOrLoginButton from '../components/RegisterOrLoginButton'
 
 class LandingPage extends Component {
 	renderNewSpotForm = () => {
-		return this.props.appActionsReducer.renderSpotForm ? <NewSpotForm /> : null
+		return this.props.renderSpotForm ? <NewSpotForm /> : null
 	}
 	render() {
 		return (
@@ -22,10 +20,7 @@ class LandingPage extends Component {
 }
 
 const mapStateToProps = state => ({
-	...state
+	renderSpotForm: state.appActions.renderSpotForm
 })
 
-export default connect(
-	mapStateToProps,
-	actions
-)(LandingPage)
+export default connect(mapStateToProps)(LandingPage)

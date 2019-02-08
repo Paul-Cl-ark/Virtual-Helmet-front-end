@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import MapGL, { Marker, NavigationControl } from 'react-map-gl'
@@ -27,9 +27,10 @@ export class Map extends Component {
 
 	onMarkerClick = spot => {
 		this.props.selectSpot(spot)
-		this.props.renderNewMarker()
+		this.props.removeNewMarker()
 		this.props.renderPopUp()
 		this.props.removeSpotForm()
+		this.props.closeMenu()
 	}
 
 	onClose = () => {
@@ -44,12 +45,13 @@ export class Map extends Component {
 			this.props.renderNewMarker()
 			this.props.renderSpotForm()
 			this.props.addNewSpotLatLng({ lat: event.lngLat[1], lng: event.lngLat[0] })
+			this.props.closeMenu()
 		}
 	}
 
 	renderMarkers = () => {
-		return this.props.spotsReducer.spots.length !== 0
-			? this.props.spotsReducer.spots.map(spot => (
+		return this.props.spots.length !== 0
+			? this.props.spots.map(spot => (
 					<Marker longitude={spot.longitude} latitude={spot.latitude} key={spot.id}>
 						<SpotMarker size={20} onClick={() => this.onMarkerClick(spot)} />
 					</Marker>
@@ -58,9 +60,9 @@ export class Map extends Component {
 	}
 
 	renderNewMarker = () => {
-		const lat = this.props.spotsReducer.selectedLat
-		const lng = this.props.spotsReducer.selectedLng
-		return this.state.renderNewMarker ? (
+		const lat = this.props.selectedLat
+		const lng = this.props.selectedLng
+		return this.props.renderNewMarker ? (
 			<Marker key="new" latitude={lat} longitude={lng}>
 				<SpotMarker size={20} />
 			</Marker>
@@ -89,7 +91,7 @@ export class Map extends Component {
 	}
 
 	renderPopup() {
-		const selectedSpot = this.props.spotsReducer.selectedSpot
+		const selectedSpot = this.props.selectedSpot
 		return selectedSpot ? <SpotPopUp /> : null
 	}
 
@@ -114,7 +116,12 @@ export class Map extends Component {
 	}
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => ({
+	spots: state.spots.spots,
+	selectedLat: state.spots.selectedLat,
+	selectedLng: state.spots.selectedLng,
+	selectedSpot: state.spots.selectedSpot
+})
 
 export default connect(
 	mapStateToProps,

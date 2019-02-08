@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import { getUserSpots } from '../actions'
 
 class StatsPage extends Component {
 	state = {}
@@ -12,8 +12,8 @@ class StatsPage extends Component {
 	displayUserSpots = () => {
 		return (
 			<ul>
-				{this.props.spotsReducer.userSpots.length !== 0
-					? this.props.spotsReducer.userSpots.map(spot => <li>{spot.description}</li>)
+				{this.props.userSpots.length !== 0
+					? this.props.userSpots.map(spot => <li>{spot.description}</li>)
 					: null}
 			</ul>
 		)
@@ -30,9 +30,11 @@ class StatsPage extends Component {
 	}
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => ({
+	userSpots: state.spots.userSpots
+})
 
 export default connect(
 	mapStateToProps,
-	actions
+	{ getUserSpots }
 )(StatsPage)
