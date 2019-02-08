@@ -14,7 +14,6 @@ export const registerUser = user => {
 export const authenticateUser = user => {
 	return dispatch => {
 		return API.authenticateUser(user).then(data => {
-			console.log(data)
 			history.push('/')
 			localStorage.setItem('user', data.user.firstName)
 			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
@@ -25,7 +24,6 @@ export const authenticateUser = user => {
 export const logOutUser = () => {
 	return dispatch => {
 		return API.logOutUser().then(data => {
-			console.log('in the actions index: ', data)
 			history.push('/')
 			localStorage.removeItem('user')
 			dispatch({ type: 'TOGGLE_MENU' })
@@ -108,12 +106,16 @@ export const goToHome = () => {
 		history.push('/')
 	}
 }
-export const goToLogin = () => {
-	history.push('/login')
+export const goToLogIn = () => {
+	return dispatch => {
+		history.push('/login')
+	}
 }
 
-export const goToRegister = () => {
-	history.push('/register')
+export const goToSignUp = () => {
+	return dispatch => {
+		history.push('/register')
+	}
 }
 export const goToProfile = () => {
 	return dispatch => {
