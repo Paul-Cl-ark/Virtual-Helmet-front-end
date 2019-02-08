@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-import MapContainer from './MapContainer'
+import Map from '../components/Map'
 import NewSpotForm from '../components/NewSpotForm'
 import RegisterOrLoginButton from '../components/RegisterOrLoginButton'
 
@@ -13,7 +13,7 @@ class LandingPage extends Component {
 	render() {
 		return (
 			<Fragment>
-				<MapContainer />
+				<Map />
 				{this.renderNewSpotForm()}
 				{!!!localStorage.getItem('user') ? <RegisterOrLoginButton /> : null}
 			</Fragment>

@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import MapGL, { Marker, NavigationControl } from 'react-map-gl'
-import SpotMarker from '../components/SpotMarker'
-import SpotPopUp from '../components/SpotPopUp'
+import SpotMarker from './SpotMarker'
+import SpotPopUp from './SpotPopUp'
 
 const TOKEN = process.env.REACT_APP_MAPBOX_API_KEY
 
@@ -14,7 +14,7 @@ const navStyle = {
 	padding: '10px'
 }
 
-export class MapContainer extends Component {
+export class Map extends Component {
 	state = {
 		viewport: {
 			latitude: 51.520419,
@@ -119,4 +119,4 @@ const mapStateToProps = state => state
 export default connect(
 	mapStateToProps,
 	actions
-)(MapContainer)
+)(Map)
