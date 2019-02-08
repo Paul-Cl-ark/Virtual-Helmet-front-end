@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl'
+import MapGL, { Marker, NavigationControl } from 'react-map-gl'
 import SpotMarker from '../components/SpotMarker'
-
-import { Card, Icon, Image } from 'semantic-ui-react'
+import SpotPopUp from '../components/SpotPopUp'
 
 const TOKEN = process.env.REACT_APP_MAPBOX_API_KEY
 
@@ -91,36 +90,7 @@ export class MapContainer extends Component {
 
 	renderPopup() {
 		const selectedSpot = this.props.spotsReducer.selectedSpot
-		return selectedSpot ? (
-			<Popup
-				tipSize={5}
-				anchor="top"
-				longitude={selectedSpot.longitude}
-				latitude={selectedSpot.latitude}
-				closeOnClick={false}
-				onClose={() =>
-					this.setState({
-						selectedSpot: null
-					})
-				}>
-				<Card>
-					<Image src={selectedSpot.image} />
-					<Card.Content>
-						<Card.Header>{selectedSpot.description}</Card.Header>
-						<Card.Meta>Date added</Card.Meta>
-						<Card.Description>
-							{selectedSpot.latitude} - {selectedSpot.longitude}
-						</Card.Description>
-					</Card.Content>
-					<Card.Content extra>
-						<a>
-							<Icon name="thumbs up outline" />
-							{selectedSpot.rating}
-						</a>
-					</Card.Content>
-				</Card>
-			</Popup>
-		) : null
+		return selectedSpot ? <SpotPopUp /> : null
 	}
 
 	render() {
