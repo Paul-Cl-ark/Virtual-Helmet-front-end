@@ -62,8 +62,9 @@ export class Map extends Component {
 	renderNewMarker = () => {
 		const lat = this.props.selectedLat
 		const lng = this.props.selectedLng
-		return this.props.renderNewMarker ? (
-			<Marker key="new" latitude={Number(lat)} longitude={Number(lng)}>
+		const newMarker = this.props.renderNewSpotMarker
+		return newMarker ? (
+			<Marker key="new-marker" latitude={Number(lat)} longitude={Number(lng)}>
 				<SpotMarker size={20} />
 			</Marker>
 		) : null
@@ -73,8 +74,6 @@ export class Map extends Component {
 		this.locateUser()
 		this.props.getAllSpots()
 	}
-
-	// new mapbox functions
 
 	updateViewport = viewport => {
 		this.setState({ viewport })
@@ -107,7 +106,6 @@ export class Map extends Component {
 				{this.renderMarkers()}
 				{this.renderNewMarker()}
 				{this.renderPopup()}
-
 				<div className="nav" style={navStyle}>
 					<NavigationControl onViewportChange={this.updateViewport} />
 				</div>
@@ -121,6 +119,7 @@ const mapStateToProps = state => ({
 	selectedLat: state.spots.selectedLat,
 	selectedLng: state.spots.selectedLng,
 	selectedSpot: state.spots.selectedSpot,
+	renderNewSpotMarker: state.appActions.renderNewMarker,
 	user: state.users.user
 })
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { removeSpotForm, addNewSpot } from '../actions'
+import { removeSpotForm, addNewSpot, removeNewMarker } from '../actions'
 
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
@@ -48,6 +48,11 @@ class NewSpotForm extends Component {
 		this.props.removeSpotForm()
 	}
 
+	handleFormClose = () => {
+		this.props.removeSpotForm()
+		this.props.removeNewMarker()
+	}
+
 	render() {
 		return (
 			<Form style={formStyle} onSubmit={this.handleFormSubmit}>
@@ -60,7 +65,7 @@ class NewSpotForm extends Component {
 				/>
 				<input type="file" onChange={this.handleSelectedFile} />
 				<Button type="submit">Add</Button>
-				<Button onClick={this.props.removeSpotForm}>Cancel</Button>
+				<Button onClick={this.handleFormClose}>Cancel</Button>
 				<div>{Math.round(this.state.loaded, 2)} %</div>
 			</Form>
 		)
@@ -74,5 +79,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ removeSpotForm, addNewSpot }
+	{ removeSpotForm, addNewSpot, removeNewMarker }
 )(NewSpotForm)
