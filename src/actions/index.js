@@ -60,7 +60,6 @@ export const getAllSpots = () => {
 export const getUserSpots = () => {
 	return dispatch => {
 		API.getUserSpots().then(data => {
-			console.log('user spot data: ', data)
 			dispatch({ type: 'GET_USER_SPOTS', payload: data })
 		})
 	}
