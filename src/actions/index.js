@@ -4,9 +4,8 @@ import history from '../history'
 export const registerUser = user => {
 	return dispatch => {
 		API.registerUser(user).then(data => {
-			dispatch({ type: 'REGISTER_USER', payload: data })
 			history.push('/')
-			localStorage.setItem('user', data.data.firstName)
+			dispatch({ type: 'REGISTER_USER', payload: data })
 		})
 	}
 }
@@ -15,7 +14,6 @@ export const authenticateUser = user => {
 	return dispatch => {
 		return API.authenticateUser(user).then(data => {
 			history.push('/')
-			localStorage.setItem('user', data.user.firstName)
 			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
 		})
 	}
@@ -25,7 +23,6 @@ export const logOutUser = () => {
 	return dispatch => {
 		return API.logOutUser().then(data => {
 			history.push('/')
-			localStorage.removeItem('user')
 			dispatch({ type: 'TOGGLE_MENU' })
 			dispatch({ type: 'LOGOUT_USER' })
 		})
@@ -65,6 +62,10 @@ export const toggleMenu = () => {
 	return { type: 'TOGGLE_MENU' }
 }
 
+export const closeMenu = () => {
+	return { type: 'CLOSE_MENU' }
+}
+
 export const renderSpotForm = () => {
 	return { type: 'RENDER_SPOT_FORM' }
 }
@@ -95,10 +96,6 @@ export const renderPopUp = () => {
 
 export const removePopUp = () => {
 	return { type: 'REMOVE_POP_UP' }
-}
-
-export const closeMenu = () => {
-	return { type: 'CLOSE_MENU' }
 }
 
 export const goToHome = () => {
