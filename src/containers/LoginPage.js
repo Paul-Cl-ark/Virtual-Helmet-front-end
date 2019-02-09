@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import LoginForm from '../components/LoginForm'
-import HomeRegisterLogInButton from '../components/HomeRegisterLogInButton'
 
 class LoginPage extends Component {
 	state = {}
@@ -8,7 +7,6 @@ class LoginPage extends Component {
 		return (
 			<Fragment>
 				<LoginForm />
-				<HomeRegisterLogInButton />
 			</Fragment>
 		)
 	}
