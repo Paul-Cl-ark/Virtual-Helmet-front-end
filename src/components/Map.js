@@ -52,8 +52,8 @@ export class Map extends Component {
 	renderMarkers = () => {
 		return this.props.spots.length !== 0
 			? this.props.spots.map(spot => (
-					<Marker longitude={spot.longitude} latitude={spot.latitude} key={spot.id}>
-						<SpotMarker size={20} onClick={() => this.onMarkerClick(spot)} />
+					<Marker key={spot._id} longitude={spot.longitude} latitude={spot.latitude}>
+						<SpotMarker key={`s-m${spot._id}`} size={20} onClick={() => this.onMarkerClick(spot)} />
 					</Marker>
 			  ))
 			: null
@@ -63,7 +63,7 @@ export class Map extends Component {
 		const lat = this.props.selectedLat
 		const lng = this.props.selectedLng
 		return this.props.renderNewMarker ? (
-			<Marker key="new" latitude={lat} longitude={lng}>
+			<Marker key="new" latitude={Number(lat)} longitude={Number(lng)}>
 				<SpotMarker size={20} />
 			</Marker>
 		) : null
