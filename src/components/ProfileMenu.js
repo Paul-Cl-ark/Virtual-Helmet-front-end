@@ -29,6 +29,8 @@ class ProfileMenu extends Component {
 			case 'logOut':
 				this.props.logOutUser()
 				break
+			default:
+				break
 		}
 		return this.setState({ activeItem: name })
 	}

@@ -26,6 +26,8 @@ class HomeRegisterLoginButton extends Component {
 				return (buttonText = { a: 'Home', b: 'Sign Up' })
 			case '/':
 				return (buttonText = { a: 'Log In', b: 'Sign Up' })
+			default:
+				break
 		}
 		return buttonText
 	}
