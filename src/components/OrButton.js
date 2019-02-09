@@ -15,7 +15,7 @@ const buttonStyle = {
 	zIndex: 1
 }
 
-class HomeRegisterLoginButton extends Component {
+class OrButton extends Component {
 	buttonText = () => {
 		let path = this.props.location.pathname
 		let buttonText = {}
@@ -51,4 +51,4 @@ class HomeRegisterLoginButton extends Component {
 export default connect(
 	null,
 	{ goToHome, goToLogIn, goToSignUp }
-)(withRouter(HomeRegisterLoginButton))
+)(withRouter(OrButton))
