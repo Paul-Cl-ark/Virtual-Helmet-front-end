@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import { Card, Icon, Image } from 'semantic-ui-react'
 
 class SpotPopUpCard extends Component {
 	render() {
-		const selectedSpot = this.props.selectedSpot
-
+		const { image, date, description, latitude, longitude, rating } = this.props.selectedSpot
 		return (
 			<Card>
-				<Image src={selectedSpot.image} />
+				<Image src={image} />
 				<Card.Content>
-					<Card.Header>{selectedSpot.description}</Card.Header>
-					<Card.Meta>Date added</Card.Meta>
+					<Card.Header>{description}</Card.Header>
+					<Card.Meta>Date added: {date}</Card.Meta>
 					<Card.Description>
-						{selectedSpot.latitude} - {selectedSpot.longitude}
+						Latitude: {latitude}, Longitude: {longitude}
 					</Card.Description>
 				</Card.Content>
 				<Card.Content extra>
+					Rating : {rating}
 					<a>
 						<Icon name="thumbs up outline" />
-						{selectedSpot.rating}
+					</a>
+					<a>
+						<Icon name="thumbs down outline" />
 					</a>
 				</Card.Content>
 			</Card>
