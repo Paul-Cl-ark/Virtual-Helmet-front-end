@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { goToProfile, goToHome, goToSettings, goToStats, logOutUser } from '../actions'
+import { goToProfile, goToHome, goToSettings, goToStats, logOutUser, closeMenu } from '../actions'
 import { Icon, Menu } from 'semantic-ui-react'
 
 const menuStyle = {
@@ -15,15 +15,19 @@ class ProfileMenu extends Component {
 	handleItemClick = (event, { name }) => {
 		switch (name) {
 			case 'profile':
+				this.props.closeMenu()
 				this.props.goToProfile()
 				break
 			case 'home':
+				this.props.closeMenu()
 				this.props.goToHome()
 				break
 			case 'settings':
+				this.props.closeMenu()
 				this.props.goToSettings()
 				break
 			case 'stats':
+				this.props.closeMenu()
 				this.props.goToStats()
 				break
 			case 'logOut':
@@ -74,5 +78,5 @@ class ProfileMenu extends Component {
 
 export default connect(
 	null,
-	{ goToProfile, goToHome, goToSettings, goToStats, logOutUser }
+	{ goToProfile, goToHome, goToSettings, goToStats, logOutUser, closeMenu }
 )(ProfileMenu)
