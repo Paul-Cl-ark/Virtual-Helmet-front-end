@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getUserSpots } from '../actions'
+import { Card } from 'semantic-ui-react'
 
 class StatsPage extends Component {
 	state = {}
@@ -9,22 +10,22 @@ class StatsPage extends Component {
 		this.props.getUserSpots()
 	}
 
-	displayUserSpots = () => {
-		return (
-			<ul>
-				{this.props.userSpots.length !== 0
-					? this.props.userSpots.map(spot => <li>{spot.description}</li>)
-					: null}
-			</ul>
-		)
+	spots = () => {
+		let spotList = []
+		this.props.userSpots.map(spot => {
+			spotList.push({
+				header: `Date added: ${spot.date}`,
+				description: `Description: ${spot.description}`,
+				meta: `Rating: ${spot.rating}`
+			})
+		})
+		return spotList
 	}
 
 	render() {
 		return (
 			<Fragment>
-				Stats page - Current user's spots will show here, along with some stats eg. number of spots
-				added, how many upvotes/downvotes etc
-				{this.displayUserSpots()}
+				<Card.Group items={this.spots()} />
 			</Fragment>
 		)
 	}
