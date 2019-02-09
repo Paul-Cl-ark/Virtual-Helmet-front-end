@@ -45,7 +45,7 @@ class NewSpotForm extends Component {
 		let formData = null
 		if (file) {
 			formData = new FormData()
-			return formData.append('file', file, file.name)
+			formData.append('file', file, file.name)
 		}
 
 		this.props.addNewSpot({
