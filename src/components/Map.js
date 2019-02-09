@@ -52,7 +52,7 @@ export class Map extends Component {
 	renderMarkers = () => {
 		return this.props.spots.length !== 0
 			? this.props.spots.map(spot => (
-					<Marker key={spot._id} longitude={spot.longitude} latitude={spot.latitude}>
+					<Marker key={spot._id} id={spot._id} longitude={spot.longitude} latitude={spot.latitude}>
 						<SpotMarker key={`s-m${spot._id}`} size={20} onClick={() => this.onMarkerClick(spot)} />
 					</Marker>
 			  ))
