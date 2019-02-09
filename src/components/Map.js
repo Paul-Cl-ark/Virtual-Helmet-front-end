@@ -39,14 +39,14 @@ export class Map extends Component {
 	}
 
 	onMapClick = event => {
-		if (!!localStorage.getItem('user')) {
-			this.props.deSelectSpot()
-			this.props.removePopUp()
-			this.props.renderNewMarker()
-			this.props.renderSpotForm()
-			this.props.addNewSpotLatLng({ lat: event.lngLat[1], lng: event.lngLat[0] })
-			this.props.closeMenu()
-		}
+		return this.props.user
+			? (this.props.deSelectSpot(),
+			  this.props.removePopUp(),
+			  this.props.renderNewMarker(),
+			  this.props.renderSpotForm(),
+			  this.props.addNewSpotLatLng({ lat: event.lngLat[1], lng: event.lngLat[0] }),
+			  this.props.closeMenu())
+			: null
 	}
 
 	renderMarkers = () => {
@@ -120,7 +120,8 @@ const mapStateToProps = state => ({
 	spots: state.spots.spots,
 	selectedLat: state.spots.selectedLat,
 	selectedLng: state.spots.selectedLng,
-	selectedSpot: state.spots.selectedSpot
+	selectedSpot: state.spots.selectedSpot,
+	user: state.users.user
 })
 
 export default connect(
