@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { removeSpotForm, addNewSpot, removeNewMarker } from '../actions'
 
-import { Form, TextArea, Button } from 'semantic-ui-react'
+import { Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 
 const formStyle = {
 	position: 'absolute',
@@ -16,8 +16,10 @@ const formStyle = {
 	zIndex: 1
 }
 
+const spotTypes = [{ text: 'Danger', value: 'danger' }]
+
 class NewSpotForm extends Component {
-	state = { newSpotDescription: '', selectedFile: null, loaded: 0 }
+	state = { newSpotDescription: '', selectedFile: null, loaded: 0, type: '' }
 
 	handleChange = (event, data) => {
 		this.setState({
@@ -32,6 +34,10 @@ class NewSpotForm extends Component {
 		})
 	}
 
+	handleDropdownChange = (event, data) => {
+		this.setState({ type: data.value })
+	}
+
 	handleFormSubmit = event => {
 		event.preventDefault()
 
@@ -43,7 +49,7 @@ class NewSpotForm extends Component {
 		}
 
 		this.props.addNewSpot({
-			type: 'danger',
+			type: this.state.type,
 			description: this.state.newSpotDescription,
 			latitude: this.props.selectedLat,
 			longitude: this.props.selectedLng,
@@ -60,17 +66,29 @@ class NewSpotForm extends Component {
 	render() {
 		return (
 			<Form style={formStyle} onSubmit={this.handleFormSubmit}>
-				<label>Add description</label>
-				<TextArea
-					onChange={(event, data) => this.handleChange(event, data)}
-					label="Description"
-					placeholder="Description"
-					name="newSpotDescription"
-				/>
+				<Form.Field required>
+					<label>Add description</label>
+					<TextArea
+						onChange={(event, data) => this.handleChange(event, data)}
+						label="Description"
+						placeholder="Description"
+						name="newSpotDescription"
+						required
+					/>
+				</Form.Field>
 				<input type="file" onChange={this.handleSelectedFile} />
+				<Form.Field required>
+					<label>Add type</label>
+					<Dropdown
+						selection
+						placeholder="Select type"
+						options={spotTypes}
+						onChange={this.handleDropdownChange}
+					/>
+				</Form.Field>
 				<Button type="submit">Add</Button>
 				<Button onClick={this.handleFormClose}>Cancel</Button>
-				<div>{Math.round(this.state.loaded, 2)} %</div>
+				{/* <div>{Math.round(this.state.loaded, 2)} %</div> */}
 			</Form>
 		)
 	}
