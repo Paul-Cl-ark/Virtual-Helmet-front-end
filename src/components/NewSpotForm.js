@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { removeSpotForm } from '../actions'
+import { removeSpotForm, addNewSpot } from '../actions'
 
 import { Form, TextArea, Button } from 'semantic-ui-react'
 
@@ -74,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ removeSpotForm }
+	{ removeSpotForm, addNewSpot }
 )(NewSpotForm)
