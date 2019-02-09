@@ -5,7 +5,8 @@ export default function appActionsReducer(
 		renderPopUp: false,
 		renderNewMarker: false,
 		renderOrButton: true,
-		renderNavBar: false
+		renderNavBar: false,
+		renderRatingButtons: false
 	},
 	action
 ) {
@@ -34,6 +35,10 @@ export default function appActionsReducer(
 			return { ...state, renderOrButton: false }
 		case 'RENDER_OR_BUTTON':
 			return { ...state, renderOrButton: true }
+		case 'REMOVE_RATING_BUTTONS':
+			return { ...state, renderRatingButtons: false }
+		case 'RENDER_RATING_BUTTONS':
+			return { ...state, renderRatingButtons: true }
 		default:
 			return state
 	}

@@ -8,6 +8,7 @@ export const registerUser = user => {
 			dispatch({ type: 'REGISTER_USER', payload: data })
 			dispatch({ type: 'REMOVE_OR_BUTTON' })
 			dispatch({ type: 'RENDER_NAVBAR' })
+			dispatch({ type: 'RENDER_RATING_BUTTONS' })
 		})
 	}
 }
@@ -19,6 +20,7 @@ export const authenticateUser = user => {
 			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
 			dispatch({ type: 'REMOVE_OR_BUTTON' })
 			dispatch({ type: 'RENDER_NAVBAR' })
+			dispatch({ type: 'RENDER_RATING_BUTTONS' })
 		})
 	}
 }
@@ -33,6 +35,7 @@ export const logOutUser = () => {
 			dispatch({ type: 'REMOVE_NAVBAR' })
 			dispatch({ type: 'REMOVE_POP_UP' })
 			dispatch({ type: 'RENDER_OR_BUTTON' })
+			dispatch({ type: 'REMOVE_RATING_BUTTONS' })
 		})
 	}
 }
@@ -61,7 +64,6 @@ export const rateSpot = (spot, rating) => {
 	return dispatch => {
 		API.rateSpot(spot, rating).then(data => {
 			dispatch({ type: 'RATE_SPOT', payload: data })
-			console.log(data)
 		})
 	}
 }
@@ -112,6 +114,14 @@ export const renderPopUp = () => {
 
 export const removePopUp = () => {
 	return { type: 'REMOVE_POP_UP' }
+}
+
+export const renderRatingButtons = () => {
+	return { type: 'RENDER_RATING_BUTTONS' }
+}
+
+export const removeRatingButtons = () => {
+	return { type: 'REMOVE_RATING_BUTTONS' }
 }
 
 export const goToHome = () => {

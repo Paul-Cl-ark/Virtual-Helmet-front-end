@@ -1,34 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import RatingButtons from './RatingButtons'
+import { Card, Image } from 'semantic-ui-react'
 
 class SpotPopUpCard extends Component {
+	renderRatingButtons = () => (this.props.renderRatingButtons ? <RatingButtons /> : null)
 	render() {
-		const { image, date, description, latitude, longitude, rating } = this.props.selectedSpot
+		const spot = this.props.selectedSpot
+		const { type, image, date, description, latitude, longitude } = spot
 		return (
 			<Card>
 				<Image src={image} />
 				<Card.Content>
 					<Card.Header>{description}</Card.Header>
-					<Card.Meta>Date added: {date}</Card.Meta>
+					<Card.Meta>
+						Date added: {date}, type: {type}
+					</Card.Meta>
 					<Card.Description>
 						Latitude: {latitude}, Longitude: {longitude}
 					</Card.Description>
 				</Card.Content>
-				<Card.Content extra>
-					Rating : {rating}
-					<a>
-						<Icon name="thumbs up outline" />
-					</a>
-					<a>
-						<Icon name="thumbs down outline" />
-					</a>
-				</Card.Content>
+				{this.renderRatingButtons()}
 			</Card>
 		)
 	}
 }
 
-const mapStateToProps = state => ({ selectedSpot: state.spots.selectedSpot })
+const mapStateToProps = state => ({
+	selectedSpot: state.spots.selectedSpot,
+	renderRatingButtons: state.appActions.renderRatingButtons
+})
 
 export default connect(mapStateToProps)(SpotPopUpCard)
