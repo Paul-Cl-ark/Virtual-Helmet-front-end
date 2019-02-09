@@ -49,14 +49,12 @@ export class Map extends Component {
 			: null
 	}
 
-	renderMarkers = () => {
-		return this.props.spots.length !== 0
-			? this.props.spots.map(spot => (
-					<Marker key={spot._id} id={spot._id} longitude={spot.longitude} latitude={spot.latitude}>
-						<SpotMarker key={`s-m${spot._id}`} size={20} onClick={() => this.onMarkerClick(spot)} />
-					</Marker>
-			  ))
-			: null
+	renderMarker = spot => {
+		return (
+			<Marker key={spot._id} id={spot._id} longitude={spot.longitude} latitude={spot.latitude}>
+				<SpotMarker key={`s-m${spot._id}`} size={20} onClick={() => this.onMarkerClick(spot)} />
+			</Marker>
+		)
 	}
 
 	renderNewMarker = () => {
@@ -103,7 +101,7 @@ export class Map extends Component {
 				onViewportChange={this.updateViewport}
 				mapboxApiAccessToken={TOKEN}
 				onClick={event => this.onMapClick(event)}>
-				{this.renderMarkers()}
+				{this.props.spots.map(this.renderMarker)}
 				{this.renderNewMarker()}
 				{this.renderPopup()}
 				<div className="nav" style={navStyle}>
