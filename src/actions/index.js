@@ -57,6 +57,15 @@ export const getAllSpots = () => {
 	}
 }
 
+export const rateSpot = (spot, rating) => {
+	return dispatch => {
+		API.rateSpot(spot, rating).then(data => {
+			dispatch({ type: 'RATE_SPOT', payload: data })
+			console.log(data)
+		})
+	}
+}
+
 export const getUserSpots = () => {
 	return dispatch => {
 		API.getUserSpots().then(data => {

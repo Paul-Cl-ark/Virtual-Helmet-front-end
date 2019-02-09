@@ -35,22 +35,40 @@ class API {
 		const newSpot = spot
 		delete newSpot.image
 
-		return fetch(this.cloudinaryURL, {
-			method: 'POST',
-			body: image
-		})
-			.then(response => response.json())
-			.then(imageData => {
-				return fetch(this.spotsURL, {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ ...newSpot, image: imageData[0].url })
-				}).then(response => response.json())
+		if (image) {
+			return fetch(this.cloudinaryURL, {
+				method: 'POST',
+				body: image
 			})
+				.then(response => response.json())
+				.then(imageData => {
+					return fetch(this.spotsURL, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ ...newSpot, image: imageData[0].url })
+					}).then(response => response.json())
+				})
+		} else {
+			return fetch(this.spotsURL, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(newSpot)
+			}).then(response => response.json())
+		}
 	}
 
 	static getAllSpots() {
 		return fetch(this.spotsURL).then(response => response.json())
+	}
+
+	static rateSpot(spot, rating) {
+		const newRating = spot.rating + rating
+		const updatedSpot = { ...spot, rating: newRating }
+		return fetch(this.spotsURL + '/' + spot._id, {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ spot: updatedSpot, rating: rating })
+		}).then(response => response.json())
 	}
 
 	static getUserSpots() {

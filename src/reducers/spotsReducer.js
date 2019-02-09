@@ -27,6 +27,11 @@ export default function spotsReducer(
 			return { ...state, selectedSpot: action.payload }
 		case 'DESELECT_SPOT':
 			return { ...state, selectedSpot: null }
+		case 'RATE_SPOT':
+			const ratedSpotId = action.payload.data._id
+			const rating = action.payload.data.rating
+			const ratedSpot = state.spots.find(spot => (spot._id = ratedSpotId))
+			return { ...state, spots: [...state.spots, { ...ratedSpot, rating: rating }] }
 		default:
 			return state
 	}

@@ -35,8 +35,12 @@ class NewSpotForm extends Component {
 	handleFormSubmit = event => {
 		event.preventDefault()
 
-		const formData = new FormData()
-		formData.append('file', this.state.selectedFile, this.state.selectedFile.name)
+		const file = this.state.selectedFile
+		let formData = null
+		if (file) {
+			formData = new FormData()
+			return formData.append('file', file, file.name)
+		}
 
 		this.props.addNewSpot({
 			type: 'danger',
