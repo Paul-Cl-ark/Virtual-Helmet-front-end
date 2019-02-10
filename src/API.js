@@ -30,16 +30,20 @@ class API {
 		return fetch(this.logOutURL).then(response => response.json())
 	}
 
+	static uploadImage(image) {
+		return fetch(this.cloudinaryURL, {
+			method: 'POST',
+			body: image
+		})
+	}
+
 	static addNewSpot(spot) {
 		const image = spot.image
 		const newSpot = spot
 		delete newSpot.image
 
 		if (image) {
-			return fetch(this.cloudinaryURL, {
-				method: 'POST',
-				body: image
-			})
+			return this.uploadImage(image)
 				.then(response => response.json())
 				.then(imageData => {
 					return fetch(this.spotsURL, {
@@ -55,6 +59,18 @@ class API {
 				body: JSON.stringify(newSpot)
 			}).then(response => response.json())
 		}
+	}
+
+	static addUserImage(image) {
+		return this.uploadImage(image)
+			.then(response => response.json())
+			.then(imageData => {
+				return fetch(this.usersURL, {
+					method: 'PUT',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ image: imageData[0].url })
+				}).then(response => response.json())
+			})
 	}
 
 	static getAllSpots() {
