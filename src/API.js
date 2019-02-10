@@ -62,12 +62,10 @@ class API {
 	}
 
 	static rateSpot(spot, rating) {
-		const newRating = spot.rating + rating
-		const updatedSpot = { ...spot, rating: newRating }
 		return fetch(this.spotsURL + '/' + spot._id, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ spot: updatedSpot, rating: rating })
+			body: JSON.stringify({ spot: spot, rating: rating })
 		}).then(response => response.json())
 	}
 
