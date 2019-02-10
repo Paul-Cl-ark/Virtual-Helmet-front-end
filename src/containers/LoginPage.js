@@ -1,15 +1,23 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import LoginForm from '../components/LoginForm'
+import OrButton from '../components/OrButton'
 
 class LoginPage extends Component {
-	state = {}
+	renderOrButton = () => (this.props.renderOrButton ? <OrButton /> : null)
+
 	render() {
 		return (
 			<Fragment>
 				<LoginForm />
+				{this.renderOrButton()}
 			</Fragment>
 		)
 	}
 }
 
-export default LoginPage
+const mapStateToProps = state => ({
+	renderOrButton: state.appActions.renderOrButton
+})
+
+export default connect(mapStateToProps)(LoginPage)

@@ -11,19 +11,16 @@ import SettingsPage from './SettingsPage'
 import StatsPage from './StatsPage'
 import ProfileMenu from '../components/ProfileMenu'
 import NavBar from '../components/NavBar'
-import OrButton from '../components/OrButton'
 
 class App extends Component {
 	renderNavBar = () => (this.props.renderNavBar ? <NavBar /> : null)
 	renderMenu = () => (this.props.renderMenu ? <ProfileMenu /> : null)
-	renderOrButton = () => (this.props.renderOrButton ? <OrButton /> : null)
 	render() {
 		return (
 			<Router history={history}>
 				<Fragment>
 					{this.renderNavBar()}
 					{this.renderMenu()}
-					{this.renderOrButton()}
 					<Route exact path="/" component={LandingPage} />
 					<Route exact path="/login" component={LoginPage} />
 					<Route exact path="/register" component={RegisterPage} />
@@ -38,8 +35,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
 	renderNavBar: state.appActions.renderNavBar,
-	renderMenu: state.appActions.renderMenu,
-	renderOrButton: state.appActions.renderOrButton
+	renderMenu: state.appActions.renderMenu
 })
 
 export default connect(mapStateToProps)(App)
