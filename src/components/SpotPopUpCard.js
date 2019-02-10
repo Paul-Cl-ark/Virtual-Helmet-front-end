@@ -19,7 +19,7 @@ class SpotPopUpCard extends Component {
 			<Card>
 				{imageContent}
 				<Card.Content>
-					<Card.Header>{description}</Card.Header>
+					<Card.Header style={{ overflow: 'auto', maxHeight: 150 }}>{description}</Card.Header>
 					<Card.Meta>
 						Date added: {date}, type: {type}
 					</Card.Meta>
