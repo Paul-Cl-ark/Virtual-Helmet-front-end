@@ -5,7 +5,7 @@ import { Icon, Menu } from 'semantic-ui-react'
 
 const menuStyle = {
 	position: 'absolute',
-	top: '80px',
+	top: '90px',
 	right: '3px',
 	zIndex: 1
 }
