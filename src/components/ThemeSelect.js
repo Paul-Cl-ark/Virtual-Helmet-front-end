@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 const colourOptions = [
-	{ text: 'Green', value: 'green' },
-	{ text: 'Blue', value: 'blue' },
-	{ text: 'Red', value: 'red' },
-	{ text: 'Black', value: 'black' }
+	{ label: { color: 'green', empty: true, circular: true }, text: 'Green', value: 'green' },
+	{ label: { color: 'blue', empty: true, circular: true }, text: 'Blue', value: 'blue' },
+	{ label: { color: 'red', empty: true, circular: true }, text: 'Red', value: 'red' },
+	{ label: { color: 'black', empty: true, circular: true }, text: 'Black', value: 'black' }
 ]
 
 class ThemeSelect extends Component {
@@ -21,8 +21,8 @@ class ThemeSelect extends Component {
 	render() {
 		return (
 			<Dropdown
+				text="Choose default theme"
 				onChange={this.onChange}
-				placeholder="Select Theme"
 				fluid
 				selection
 				options={colourOptions}
