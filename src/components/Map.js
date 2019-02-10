@@ -11,7 +11,7 @@ const navStyle = {
 	position: 'absolute',
 	top: 0,
 	left: 0,
-	padding: '10px'
+	margin: '10px'
 }
 
 export class Map extends Component {
@@ -60,12 +60,21 @@ export class Map extends Component {
 	renderNewMarker = () => {
 		const lat = this.props.selectedLat
 		const lng = this.props.selectedLng
-		const newMarker = this.props.renderNewSpotMarker
-		return newMarker ? (
-			<Marker key="new-marker" latitude={Number(lat)} longitude={Number(lng)}>
+		const render = this.props.renderNewSpotMarker
+		const onDragEnd = event => {
+			this.props.addNewSpotLatLng({ lat: event.lngLat[1], lng: event.lngLat[0] })
+		}
+		let marker = (
+			<Marker
+				draggable={true}
+				onDragEnd={onDragEnd}
+				key="new-marker"
+				latitude={Number(lat)}
+				longitude={Number(lng)}>
 				<SpotMarker size={20} />
 			</Marker>
-		) : null
+		)
+		return render ? marker : null
 	}
 
 	componentDidMount() {
