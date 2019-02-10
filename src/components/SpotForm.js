@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { removeSpotForm, addNewSpot, removeNewMarker } from '../actions'
 
-import { Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
+import { Form, TextArea, Button, Dropdown, Card } from 'semantic-ui-react'
 
 const formStyle = {
 	backgroundColor: 'white',
@@ -69,31 +69,33 @@ class SpotForm extends Component {
 
 	render() {
 		return (
-			<Form style={formStyle} onSubmit={this.handleFormSubmit}>
-				<Form.Field required>
-					<label>Add description</label>
-					<TextArea
-						onChange={(event, data) => this.handleChange(event, data)}
-						label="Description"
-						placeholder="Description"
-						name="newSpotDescription"
-						required
-					/>
-				</Form.Field>
-				<input type="file" onChange={this.handleSelectedFile} />
-				<Form.Field required>
-					<label>Add type</label>
-					<Dropdown
-						selection
-						placeholder="Select type"
-						options={spotTypes}
-						onChange={this.handleDropdownChange}
-					/>
-				</Form.Field>
-				<Button type="submit">Add</Button>
-				<Button onClick={this.handleFormClose}>Cancel</Button>
-				{/* <div>{Math.round(this.state.loaded, 2)} %</div> */}
-			</Form>
+			<Card style={formStyle}>
+				<Form onSubmit={this.handleFormSubmit}>
+					<Form.Field required>
+						<label>Add description</label>
+						<TextArea
+							onChange={(event, data) => this.handleChange(event, data)}
+							label="Description"
+							placeholder="Description"
+							name="newSpotDescription"
+							required
+						/>
+					</Form.Field>
+					<input type="file" onChange={this.handleSelectedFile} />
+					<Form.Field required>
+						<label>Add type</label>
+						<Dropdown
+							selection
+							placeholder="Select type"
+							options={spotTypes}
+							onChange={this.handleDropdownChange}
+						/>
+					</Form.Field>
+					<Button type="submit">Add</Button>
+					<Button onClick={this.handleFormClose}>Cancel</Button>
+					{/* <div>{Math.round(this.state.loaded, 2)} %</div> */}
+				</Form>
+			</Card>
 		)
 	}
 }
