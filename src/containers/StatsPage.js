@@ -1,11 +1,18 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import TextLogo from '../components/TextLogo'
 import { getUserSpots } from '../actions'
-import { Card } from 'semantic-ui-react'
+import { Card, Container } from 'semantic-ui-react'
+
+const containerStyle = {
+	display: 'flex',
+	justifyContent: 'center',
+	margin: '25px',
+	height: '90%',
+	width: '90%'
+}
 
 class StatsPage extends Component {
-	state = {}
-
 	componentDidMount() {
 		this.props.getUserSpots()
 	}
@@ -25,7 +32,10 @@ class StatsPage extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Card.Group items={this.spots()} />
+				<TextLogo />
+				<Container style={containerStyle}>
+					<Card.Group items={this.spots()} />
+				</Container>
 			</Fragment>
 		)
 	}
