@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Container, Header, Icon, Button, Image } from 'semantic-ui-react'
 import API from '../API'
+import TextLogo from '../components/TextLogo'
 
 const containerStyle = {
-	// display: 'flex',
-	// alignItems: 'center',
-	// justifyContent: 'center',
+	display: 'flex',
+	justifyContent: 'center',
 	margin: '25px',
 	height: '90%',
 	width: '90%'
@@ -63,15 +63,20 @@ class ProfilePage extends Component {
 	render() {
 		const { firstName, lastName, date } = this.props.user
 		return (
-			<Container style={containerStyle}>
-				<Header as="h1">
-					{this.userImage()}
-					<Header.Content>{firstName + ' ' + lastName}</Header.Content>
-				</Header>
-				{this.showUploadForm()}
-				<Header as="h4">Member since:</Header>
-				<p>{date}</p>
-			</Container>
+			<Fragment>
+				<TextLogo />
+				<Container style={containerStyle}>
+					<div>
+						<Header as="h1">
+							{this.userImage()}
+							<Header.Content>{firstName + ' ' + lastName}</Header.Content>
+						</Header>
+						{this.showUploadForm()}
+						<Header as="h4">Member since:</Header>
+						<p>{date}</p>
+					</div>
+				</Container>
+			</Fragment>
 		)
 	}
 }
