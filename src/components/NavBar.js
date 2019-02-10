@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { toggleMenu, removeSpotForm, removeNewMarker, removePopUp } from '../actions'
+import Logo from './Logo'
 
 const divStyle = {
 	backgroundColor: 'white',
-	height: '50px',
-	width: '50px',
+	height: '55px',
+	width: '55px',
 	borderStyle: 'solid',
 	borderColor: 'limeGreen',
 	borderWidth: '3px',
@@ -13,10 +14,11 @@ const divStyle = {
 	position: 'absolute',
 	top: '20px',
 	right: '20px',
-	color: 'black',
-	textAlign: 'center',
 	boxShadow: '4px 4px 4px grey',
-	zIndex: 1
+	zIndex: 1,
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center'
 }
 
 class NavBar extends Component {
@@ -31,7 +33,7 @@ class NavBar extends Component {
 						this.props.removeNewMarker()
 						this.props.removePopUp()
 					}}>
-					pic
+					<Logo />
 				</div>
 			</Fragment>
 		)

@@ -3,6 +3,15 @@ import { connect } from 'react-redux'
 import { Container, Header, Icon, Button, Image } from 'semantic-ui-react'
 import API from '../API'
 
+const containerStyle = {
+	// display: 'flex',
+	// alignItems: 'center',
+	// justifyContent: 'center',
+	margin: '25px',
+	height: '90%',
+	width: '90%'
+}
+
 class ProfilePage extends Component {
 	state = {
 		showUploadForm: false,
@@ -39,6 +48,7 @@ class ProfilePage extends Component {
 		const image = this.props.user.image
 		return image ? (
 			<Image
+				circular
 				src={image}
 				onClick={() => this.setState({ showUploadForm: !this.state.showUploadForm })}
 			/>
@@ -53,7 +63,7 @@ class ProfilePage extends Component {
 	render() {
 		const { firstName, lastName, date } = this.props.user
 		return (
-			<Container>
+			<Container style={containerStyle}>
 				<Header as="h1">
 					{this.userImage()}
 					<Header.Content>{firstName + ' ' + lastName}</Header.Content>
