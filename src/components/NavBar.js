@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { toggleMenu, removeSpotForm, removeNewMarker, removePopUp } from '../actions'
 import Logo from './Logo'
 
-const divStyle = {
+const navBarStyle = {
 	backgroundColor: 'white',
 	height: '55px',
 	width: '55px',
@@ -26,7 +26,7 @@ class NavBar extends Component {
 		return (
 			<Fragment>
 				<div
-					style={divStyle}
+					style={navBarStyle}
 					onClick={() => {
 						this.props.toggleMenu()
 						this.props.removeSpotForm()
