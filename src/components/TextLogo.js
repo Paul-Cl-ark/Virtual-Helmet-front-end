@@ -2,8 +2,7 @@ import React from 'react'
 import { Image } from 'semantic-ui-react'
 
 const textLogoStyle = {
-	top: '20px',
-	margin: 'auto'
+	margin: '20px auto 20px'
 }
 
 const TextLogo = props => (
