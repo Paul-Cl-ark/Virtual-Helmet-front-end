@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Map from '../components/Map'
-import NewSpotForm from '../components/NewSpotForm'
+import SpotForm from '../components/SpotForm'
 import OrButton from '../components/OrButton'
 
 class LandingPage extends Component {
-	renderNewSpotForm = () => {
-		return this.props.renderSpotForm ? <NewSpotForm /> : null
+	renderSpotForm = () => {
+		return this.props.renderSpotForm ? <SpotForm /> : null
 	}
 	renderOrButton = () => (this.props.renderOrButton ? <OrButton /> : null)
 
@@ -14,7 +14,7 @@ class LandingPage extends Component {
 		return (
 			<Fragment>
 				<Map />
-				{this.renderNewSpotForm()}
+				{this.renderSpotForm()}
 				{this.renderOrButton()}
 			</Fragment>
 		)

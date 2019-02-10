@@ -5,11 +5,15 @@ import { removeSpotForm, addNewSpot, removeNewMarker } from '../actions'
 import { Form, TextArea, Button, Dropdown } from 'semantic-ui-react'
 
 const formStyle = {
+	backgroundColor: 'white',
+	borderStyle: 'solid',
+	borderColor: 'limeGreen',
 	position: 'absolute',
-	top: '45px',
-
-	paddingLeft: '60px',
-	paddingRight: '60px',
+	borderWidth: '3px',
+	padding: '10px',
+	boxShadow: '4px 4px 4px grey',
+	top: '42%',
+	width: '70%',
 	left: 0,
 	right: 0,
 	margin: 'auto',
@@ -18,7 +22,7 @@ const formStyle = {
 
 const spotTypes = [{ text: 'Danger', value: 'danger' }]
 
-class NewSpotForm extends Component {
+class SpotForm extends Component {
 	state = { newSpotDescription: '', selectedFile: null, loaded: 0, type: '' }
 
 	handleChange = (event, data) => {
@@ -102,4 +106,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{ removeSpotForm, addNewSpot, removeNewMarker }
-)(NewSpotForm)
+)(SpotForm)
