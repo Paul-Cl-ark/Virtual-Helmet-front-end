@@ -76,6 +76,14 @@ export const getUserSpots = () => {
 	}
 }
 
+export const getBicycleThefts = (lat, lng) => {
+	return dispatch => {
+		API.getBicycleThefts(lat, lng).then(data => {
+			dispatch({ type: 'GET_BICYCLE_THEFTS', payload: data })
+		})
+	}
+}
+
 export const toggleMenu = () => {
 	return { type: 'TOGGLE_MENU' }
 }

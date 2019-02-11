@@ -8,6 +8,7 @@ class API {
 		this.spotsURL = this.baseURL + '/spots'
 		this.userSpotsURL = this.spotsURL + '/user-spots'
 		this.cloudinaryURL = this.baseURL + '/image-upload'
+		this.bicycleTheftsURL = 'https://data.police.uk/api/crimes-street/bicycle-theft?'
 	}
 
 	static registerUser(user) {
@@ -87,6 +88,22 @@ class API {
 
 	static getUserSpots() {
 		return fetch(this.userSpotsURL).then(response => response.json())
+	}
+
+	static getBicycleThefts(lat, lng) {
+		return fetch(this.bicycleTheftsURL + `lat=${lat}&lng=${lng}`)
+			.then(response => response.json())
+			.then(data => {
+				return data.map(theft => {
+					const { id, location } = theft
+					return {
+						id: id,
+						latitude: location.latitude,
+						longitude: location.longitude,
+						type: 'theft'
+					}
+				})
+			})
 	}
 }
 
