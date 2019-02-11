@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Container, Header, Icon, Button, Image } from 'semantic-ui-react'
-import API from '../API'
+import { uploadProfilePhoto } from '../actions'
 import TextLogo from '../components/TextLogo'
+import { Container, Header, Icon, Button, Image } from 'semantic-ui-react'
 
 const containerStyle = {
 	display: 'flex',
@@ -40,7 +40,7 @@ class ProfilePage extends Component {
 		if (file) {
 			formData = new FormData()
 			formData.append('file', file, file.name)
-			API.addUserImage(formData)
+			this.props.uploadProfilePhoto(formData)
 		}
 	}
 
@@ -115,4 +115,7 @@ const mapStateToProps = state => ({
 	spots: state.spots.spots.filter(spot => spot.user._id === state.users.user._id)
 })
 
-export default connect(mapStateToProps)(ProfilePage)
+export default connect(
+	mapStateToProps,
+	{ uploadProfilePhoto }
+)(ProfilePage)

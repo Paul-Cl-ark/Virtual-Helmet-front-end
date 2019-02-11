@@ -39,3 +39,12 @@ export const logOutUser = () => {
 		})
 	}
 }
+
+export const uploadProfilePhoto = formData => {
+	return dispatch => {
+		return API.uploadProfilePhoto(formData).then(data => {
+			console.log(data)
+			dispatch({ type: 'UPDATE_PROFILE_PHOTO', payload: data })
+		})
+	}
+}

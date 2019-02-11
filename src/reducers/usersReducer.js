@@ -11,6 +11,8 @@ export default function usersReducer(
 			return { ...state, user: action.payload.user }
 		case 'LOGOUT_USER':
 			return { ...state, user: null }
+		case 'UPDATE_PROFILE_PHOTO':
+			return { ...state, user: { ...state.user, image: action.payload } }
 		default:
 			return state
 	}

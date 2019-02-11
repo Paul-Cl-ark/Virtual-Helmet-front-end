@@ -35,7 +35,7 @@ class API {
 		return fetch(this.cloudinaryURL, {
 			method: 'POST',
 			body: image
-		})
+		}).then(response => response.json())
 	}
 
 	static addNewSpot(spot) {
@@ -44,15 +44,13 @@ class API {
 		delete newSpot.image
 
 		if (image) {
-			return this.uploadImage(image)
-				.then(response => response.json())
-				.then(imageData => {
-					return fetch(this.spotsURL, {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ ...newSpot, image: imageData[0].url })
-					}).then(response => response.json())
-				})
+			return this.uploadImage(image).then(imageData => {
+				return fetch(this.spotsURL, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ ...newSpot, image: imageData[0].url })
+				}).then(response => response.json())
+			})
 		} else {
 			return fetch(this.spotsURL, {
 				method: 'POST',
@@ -62,16 +60,14 @@ class API {
 		}
 	}
 
-	static addUserImage(image) {
-		return this.uploadImage(image)
-			.then(response => response.json())
-			.then(imageData => {
-				return fetch(this.usersURL, {
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ image: imageData[0].url })
-				}).then(response => response.json())
-			})
+	static uploadProfilePhoto(image) {
+		return this.uploadImage(image).then(imageData => {
+			return fetch(this.usersURL, {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ image: imageData[0].url })
+			}).then(response => response.json())
+		})
 	}
 
 	static getAllSpots() {
