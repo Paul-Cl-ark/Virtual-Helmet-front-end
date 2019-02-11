@@ -60,6 +60,14 @@ class ProfilePage extends Component {
 		)
 	}
 
+	calculateUpVotes = () => {
+		let totalUpVotes = 0
+		for (let spot of this.props.spots) {
+			totalUpVotes += spot.rating
+		}
+		return totalUpVotes
+	}
+
 	render() {
 		const { firstName, lastName, date } = this.props.user
 		return (
@@ -74,6 +82,8 @@ class ProfilePage extends Component {
 						{this.showUploadForm()}
 						<Header as="h4">Member since:</Header>
 						<p>{date}</p>
+						<Header as="h4">Total upvotes:</Header>
+						<p>{this.calculateUpVotes()}</p>
 					</div>
 				</Container>
 			</Fragment>
@@ -82,7 +92,8 @@ class ProfilePage extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.users.user
+	user: state.users.user,
+	spots: state.spots.spots.filter(spot => spot.user._id === state.users.user._id)
 })
 
 export default connect(mapStateToProps)(ProfilePage)
