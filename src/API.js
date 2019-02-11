@@ -78,11 +78,11 @@ class API {
 		return fetch(this.spotsURL).then(response => response.json())
 	}
 
-	static rateSpot(spot, rating) {
-		return fetch(this.spotsURL + '/' + spot._id, {
+	static rateSpot(_id, rating) {
+		return fetch(this.spotsURL + '/' + _id, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ spot: spot, rating: rating })
+			body: JSON.stringify({ _id: _id, rating: rating })
 		}).then(response => response.json())
 	}
 

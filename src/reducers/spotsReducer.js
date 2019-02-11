@@ -11,7 +11,7 @@ export default function spotsReducer(
 ) {
 	switch (action.type) {
 		case 'GET_ALL_SPOTS':
-			return { ...state, spots: [...state.spots, ...action.payload.data.spots] }
+			return { ...state, spots: action.payload.data.spots }
 		case 'GET_BICYCLE_THEFTS':
 			return { ...state, theftSpots: action.payload }
 		case 'GET_USER_SPOTS':
@@ -36,11 +36,7 @@ export default function spotsReducer(
 		case 'RATE_SPOT':
 			const ratedSpot = action.payload.data
 			const newSpots = state.spots.filter(spot => spot._id !== ratedSpot._id)
-			console.log('newSpots before: ', newSpots)
 			newSpots.push(ratedSpot)
-			console.log('newSpots after: ', newSpots)
-			console.log('selected spot: ', state.selectedSpot.rating)
-			console.log('ratedSpot: ', ratedSpot.rating)
 			return {
 				...state,
 				spots: newSpots,

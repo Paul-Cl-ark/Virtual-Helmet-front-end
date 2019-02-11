@@ -60,9 +60,9 @@ export const getAllSpots = () => {
 	}
 }
 
-export const rateSpot = (spot, rating) => {
+export const rateSpot = (_id, rating) => {
 	return dispatch => {
-		API.rateSpot(spot, rating).then(data => {
+		API.rateSpot(_id, rating).then(data => {
 			dispatch({ type: 'RATE_SPOT', payload: data })
 		})
 	}
