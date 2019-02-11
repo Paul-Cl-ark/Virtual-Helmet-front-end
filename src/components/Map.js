@@ -62,11 +62,7 @@ export class Map extends Component {
 		const { id, latitude, longitude, type } = theft
 		return (
 			<Marker key={id} id={id} longitude={longitude} latitude={latitude} type={type}>
-				<SpotMarker
-					key={`t-m${id}`}
-					size={20}
-					// onClick={() => this.onMarkerClick(spot)}
-				/>
+				<SpotMarker key={`t-m${id}`} size={20} onClick={() => this.onMarkerClick(theft)} />
 			</Marker>
 		)
 	}
