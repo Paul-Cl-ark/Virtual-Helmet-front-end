@@ -72,10 +72,16 @@ class ProfilePage extends Component {
 		const spot = this.props.spots.reduce((a, b) => {
 			return a.rating > b.rating ? a : b
 		})
-		console.log(spot)
+		return spot._id
 	}
 
 	mostUpVotedVotes = () => Math.max.apply(Math, this.props.spots.map(spot => spot.rating))
+
+	totalCurrentUserVotes = () => {
+		return this.props.spots.filter(spot =>
+			spot.raters.filter(rating => rating.user === this.props.user._id)
+		).length
+	}
 
 	render() {
 		const { firstName, lastName, date } = this.props.user
@@ -91,10 +97,12 @@ class ProfilePage extends Component {
 						{this.showUploadForm()}
 						<Header as="h4">Member since:</Header>
 						<p>{date}</p>
-						<Header as="h4">Total upvotes of all spots:</Header>
+						<Header as="h4">Total votes of all current user spots:</Header>
 						<p>{this.totalUpVotes()}</p>
-						<Header as="h4">Most upvoted spot:</Header>
+						<Header as="h4">Your most upvoted spot:</Header>
 						<p>{this.mostUpVoted()}</p>
+						<Header as="h4">Total current user votes:</Header>
+						<p>{this.totalCurrentUserVotes()}</p>
 					</div>
 				</Container>
 			</Fragment>
