@@ -26,7 +26,7 @@ class ProfileMenu extends Component {
 				this.props.closeMenu()
 				this.props.goToSettings()
 				break
-			case 'stats':
+			case 'spots':
 				this.props.closeMenu()
 				this.props.goToStats()
 				break
@@ -62,9 +62,9 @@ class ProfileMenu extends Component {
 					Settings
 				</Menu.Item>
 
-				<Menu.Item name="stats" active={activeItem === 'stats'} onClick={this.handleItemClick}>
-					<Icon name="line graph" />
-					Stats
+				<Menu.Item name="spots" active={activeItem === 'spots'} onClick={this.handleItemClick}>
+					<Icon name="map marker alternate" />
+					Spots
 				</Menu.Item>
 
 				<Menu.Item name="logOut" active={activeItem === 'logOut'} onClick={this.handleItemClick}>

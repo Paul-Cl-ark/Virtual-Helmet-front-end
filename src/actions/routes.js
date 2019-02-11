@@ -30,6 +30,6 @@ export const goToSettings = () => {
 
 export const goToStats = () => {
 	return dispatch => {
-		history.push('/stats')
+		history.push('/spots')
 	}
 }

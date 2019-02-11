@@ -8,7 +8,7 @@ import LoginPage from './LoginPage'
 import RegisterPage from './RegisterPage'
 import ProfilePage from './ProfilePage'
 import SettingsPage from './SettingsPage'
-import StatsPage from './StatsPage'
+import UserSpotsPage from './UserSpotsPage'
 import ProfileMenu from '../components/ProfileMenu'
 import NavBar from '../components/NavBar'
 
@@ -26,7 +26,7 @@ class App extends Component {
 					<Route exact path="/register" component={RegisterPage} />
 					<Route exact path="/profile" component={ProfilePage} />
 					<Route exact path="/settings" component={SettingsPage} />
-					<Route exact path="/stats" component={StatsPage} />
+					<Route exact path="/spots" component={UserSpotsPage} />
 				</Fragment>
 			</Router>
 		)
