@@ -50,9 +50,23 @@ export class Map extends Component {
 	}
 
 	renderMarker = spot => {
+		const { _id, latitude, longitude, type } = spot
 		return (
-			<Marker key={spot._id} id={spot._id} longitude={spot.longitude} latitude={spot.latitude}>
-				<SpotMarker key={`s-m${spot._id}`} size={20} onClick={() => this.onMarkerClick(spot)} />
+			<Marker key={_id} id={_id} longitude={longitude} latitude={latitude} type={type}>
+				<SpotMarker key={`s-m${_id}`} size={20} onClick={() => this.onMarkerClick(spot)} />
+			</Marker>
+		)
+	}
+
+	renderTheftMarker = theft => {
+		const { id, latitude, longitude, type } = theft
+		return (
+			<Marker key={id} id={id} longitude={longitude} latitude={latitude} type={type}>
+				<SpotMarker
+					key={`t-m${id}`}
+					size={20}
+					// onClick={() => this.onMarkerClick(spot)}
+				/>
 			</Marker>
 		)
 	}
@@ -79,16 +93,17 @@ export class Map extends Component {
 
 	componentDidMount() {
 		this.locateUser()
-		this.props.getAllSpots()
+		return this.props.spots.length === 0 ? this.props.getAllSpots() : null
 	}
 
-	updateViewport = viewport => {
+	handleViewportChange = viewport => {
 		this.setState({ viewport })
+		this.props.getBicycleThefts(viewport.latitude, viewport.longitude)
 	}
 
 	locateUser() {
 		navigator.geolocation.getCurrentPosition(position => {
-			this.updateViewport({
+			this.handleViewportChange({
 				longitude: position.coords.longitude,
 				latitude: position.coords.latitude,
 				zoom: 16
@@ -108,10 +123,11 @@ export class Map extends Component {
 				{...this.state.viewport}
 				width="100vw"
 				height="100vh"
-				onViewportChange={this.updateViewport}
+				onViewportChange={this.handleViewportChange}
 				mapboxApiAccessToken={TOKEN}
 				onClick={event => this.onMapClick(event)}>
 				{this.props.spots.map(this.renderMarker)}
+				{this.props.theftSpots.map(this.renderTheftMarker)}
 				{this.renderNewMarker()}
 				{this.renderPopup()}
 				<div className="nav" style={navStyle}>
@@ -124,6 +140,7 @@ export class Map extends Component {
 
 const mapStateToProps = state => ({
 	spots: state.spots.spots,
+	theftSpots: state.spots.theftSpots,
 	selectedLat: state.spots.selectedLat,
 	selectedLng: state.spots.selectedLng,
 	selectedSpot: state.spots.selectedSpot,

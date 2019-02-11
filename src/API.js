@@ -98,8 +98,8 @@ class API {
 					const { id, location } = theft
 					return {
 						id: id,
-						latitude: location.latitude,
-						longitude: location.longitude,
+						latitude: Number(location.latitude),
+						longitude: Number(location.longitude),
 						type: 'theft'
 					}
 				})

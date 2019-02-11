@@ -1,6 +1,7 @@
 export default function spotsReducer(
 	state = {
 		spots: [],
+		theftSpots: [],
 		userSpots: [],
 		selectedLat: '',
 		selectedLng: '',
@@ -10,7 +11,9 @@ export default function spotsReducer(
 ) {
 	switch (action.type) {
 		case 'GET_ALL_SPOTS':
-			return { ...state, spots: action.payload.data.spots }
+			return { ...state, spots: [...state.spots, ...action.payload.data.spots] }
+		case 'GET_BICYCLE_THEFTS':
+			return { ...state, theftSpots: action.payload }
 		case 'GET_USER_SPOTS':
 			return { ...state, userSpots: action.payload.data.spots }
 		case 'ADD_NEW_SPOT_LAT_LNG':
@@ -18,20 +21,31 @@ export default function spotsReducer(
 			const lng = action.payload.lng
 			return { ...state, selectedLat: lat, selectedLng: lng }
 		case 'ADD_NEW_SPOT':
-			const newSpot = action.payload.data
-			return {
-				...state,
-				spots: [...state.spots, newSpot]
+			if (action.payload.data) {
+				const newSpot = action.payload.data
+				return {
+					...state,
+					spots: [...state.spots, newSpot]
+				}
 			}
+			break
 		case 'SELECT_SPOT':
 			return { ...state, selectedSpot: action.payload }
 		case 'DESELECT_SPOT':
 			return { ...state, selectedSpot: null }
 		case 'RATE_SPOT':
-			const ratedSpotId = action.payload.data._id
-			const rating = action.payload.data.rating
-			const ratedSpot = state.spots.find(spot => (spot._id = ratedSpotId))
-			return { ...state, spots: [...state.spots, { ...ratedSpot, rating: rating }] }
+			const ratedSpot = action.payload.data
+			const newSpots = state.spots.filter(spot => spot._id !== ratedSpot._id)
+			console.log('newSpots before: ', newSpots)
+			newSpots.push(ratedSpot)
+			console.log('newSpots after: ', newSpots)
+			console.log('selected spot: ', state.selectedSpot.rating)
+			console.log('ratedSpot: ', ratedSpot.rating)
+			return {
+				...state,
+				spots: newSpots,
+				selectedSpot: ratedSpot
+			}
 		default:
 			return state
 	}
