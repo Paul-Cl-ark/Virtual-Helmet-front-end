@@ -127,7 +127,7 @@ export class Map extends Component {
 				{this.renderNewMarker()}
 				{this.renderPopup()}
 				<div className="nav" style={navStyle}>
-					<NavigationControl onViewportChange={this.updateViewport} />
+					<NavigationControl onViewportChange={this.handleViewportChange} />
 				</div>
 			</MapGL>
 		)
