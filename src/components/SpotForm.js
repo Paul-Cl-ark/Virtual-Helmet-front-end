@@ -20,7 +20,31 @@ const formStyle = {
 	zIndex: 1
 }
 
-const spotTypes = [{ text: 'Danger', value: 'danger' }]
+const spotTypes = [
+	{
+		image: {
+			src: '/images/danger-icon.svg'
+		},
+		text: 'Danger',
+		value: 'danger'
+	},
+	{
+		image: {
+			src: '/images/works-icon.svg'
+		},
+		text: 'Works',
+		value: 'works'
+	},
+	{
+		image: {
+			src: '/images/pothole-icon.svg'
+		},
+		text: 'Pothole',
+		value: 'pothole'
+	}
+]
+
+//closed road, speed bumps, temporary traffic lights, cycle lane closure, puddle, bottle neck, bollards, steep climb, blind corner, cars parked on cycle lane, blind exit
 
 class SpotForm extends Component {
 	state = { newSpotDescription: '', selectedFile: null, loaded: 0, type: '' }
