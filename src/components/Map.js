@@ -50,12 +50,12 @@ export class Map extends Component {
 	}
 
 	renderMarker = spot => {
-		const { id, latitude, longitude, type } = spot
+		const { _id, latitude, longitude, type } = spot
 		return (
-			<Marker key={id} id={id} longitude={longitude} latitude={latitude}>
+			<Marker key={_id} id={_id} longitude={longitude} latitude={latitude}>
 				<SpotMarker
-					key={`s-m${id}`}
-					id={`s-m${id}`}
+					key={`s-m${_id}`}
+					id={`s-m${_id}`}
 					type={type}
 					onClick={() => this.onMarkerClick(spot)}
 				/>

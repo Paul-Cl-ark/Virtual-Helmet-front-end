@@ -89,7 +89,7 @@ class API {
 				return data.map(theft => {
 					const { id, location } = theft
 					return {
-						id: id,
+						_id: id,
 						latitude: Number(location.latitude),
 						longitude: Number(location.longitude),
 						type: 'theft'
