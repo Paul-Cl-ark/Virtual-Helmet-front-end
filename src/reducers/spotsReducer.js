@@ -1,14 +1,16 @@
-export default function spotsReducer(
-	state = {
-		spots: [],
-		theftSpots: [],
-		userSpots: [],
-		selectedLat: '',
-		selectedLng: '',
-		selectedSpot: null
-	},
-	action
-) {
+import storage from 'redux-persist/lib/storage'
+import { persistReducer } from 'redux-persist'
+
+const INITIAL_STATE = {
+	spots: [],
+	theftSpots: [],
+	userSpots: [],
+	selectedLat: '',
+	selectedLng: '',
+	selectedSpot: null
+}
+
+const spotsReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case 'GET_ALL_SPOTS':
 			return { ...state, spots: action.payload.data.spots }
@@ -47,3 +49,11 @@ export default function spotsReducer(
 			return state
 	}
 }
+
+const persistConfig = {
+	key: 'spots',
+	storage: storage,
+	blacklist: ['selectedLat', 'selectedLng', 'selectedSpot']
+}
+
+export default persistReducer(persistConfig, spotsReducer)
