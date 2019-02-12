@@ -63,7 +63,7 @@ class ProfilePage extends Component {
 
 	totalUpVotes = () => {
 		let totalUpVotes = 0
-		for (let spot of this.props.spots) {
+		for (let spot of this.props.userSpots) {
 			totalUpVotes += spot.rating
 		}
 		return totalUpVotes
@@ -71,18 +71,18 @@ class ProfilePage extends Component {
 
 	mostUpVoted = () => {
 		let spot = null
-		if (this.props.spots.length > 0) {
-			spot = this.props.spots.reduce((a, b) => {
+		if (this.props.userSpots.length > 0) {
+			spot = this.props.userSpots.reduce((a, b) => {
 				return a.rating > b.rating ? a : b
 			})
 		}
 		return spot ? spot._id : null
 	}
 
-	mostUpVotedVotes = () => Math.max.apply(Math, this.props.spots.map(spot => spot.rating))
+	mostUpVotedVotes = () => Math.max.apply(Math, this.props.userSpots.map(spot => spot.rating))
 
 	totalCurrentUserVotes = () => {
-		return this.props.spots.filter(spot =>
+		return this.props.allSpots.filter(spot =>
 			spot.raters.filter(rating => rating.user === this.props.user._id)
 		).length
 	}
@@ -117,7 +117,8 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => ({
 	user: state.users.user,
-	spots: state.spots.userSpots
+	userSpots: state.spots.userSpots,
+	allSpots: state.spots.spots
 })
 
 export default connect(
