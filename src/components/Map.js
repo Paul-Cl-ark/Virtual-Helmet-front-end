@@ -86,7 +86,6 @@ export class Map extends Component {
 	componentDidMount() {
 		this.locateUser()
 		this.props.getAllSpots()
-		this.props.getUserSpots()
 	}
 
 	handleViewportChange = viewport => {
