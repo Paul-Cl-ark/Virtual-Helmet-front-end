@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
+import { Image, Container, Header } from 'semantic-ui-react'
 // import { connect } from 'react-redux'
 
 class SpotPage extends Component {
+	state = { spot: null }
 	componentDidMount() {
 		const { id } = this.props.match.params
 		fetch(`/API/spots/${id}`)
@@ -11,13 +13,18 @@ class SpotPage extends Component {
 			})
 	}
 
-	renderSpotId = () => {
-		// return this.state.spot._id ? this.state.spot._id : null
-		console.log(this.state)
+	renderImage = () => {
+		return this.state.spot ? this.state.spot.image : null
 	}
 
 	render() {
-		return <p>{this.renderSpotId()}</p>
+		return (
+			<Fragment>
+				<Container>
+					<Image src={this.renderImage()} />
+				</Container>
+			</Fragment>
+		)
 	}
 }
 
