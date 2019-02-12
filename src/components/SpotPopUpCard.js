@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import RatingButtons from './RatingButtons'
 import CardImage from './CardImage'
 import { Card } from 'semantic-ui-react'
@@ -12,6 +13,9 @@ class SpotPopUpCard extends Component {
 	render() {
 		const spot = this.props.selectedSpot
 		const { type, date, description, latitude, longitude } = spot
+		let momentDate = moment(date)
+			.endOf('day')
+			.fromNow()
 		const imageContent = this.props.user ? (
 			<CardImage />
 		) : (
@@ -24,7 +28,7 @@ class SpotPopUpCard extends Component {
 				<Card.Content>
 					<Card.Header style={{ overflow: 'auto', maxHeight: 150 }}>{description}</Card.Header>
 					<Card.Meta>
-						Date added: {date}, type: {type}
+						Date added:{momentDate}, type: {type}
 					</Card.Meta>
 					<Card.Description>
 						Latitude: {latitude}, Longitude: {longitude}
