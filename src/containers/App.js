@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Router, Route } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import history from '../history'
 
@@ -11,6 +11,8 @@ import SettingsPage from './SettingsPage'
 import UserSpotsPage from './UserSpotsPage'
 import ProfileMenu from '../components/ProfileMenu'
 import NavBar from '../components/NavBar'
+import SpotPage from './SpotPage'
+import Notfound from '../components/NotFound'
 
 class App extends Component {
 	renderNavBar = () => (this.props.renderNavBar ? <NavBar /> : null)
@@ -21,12 +23,16 @@ class App extends Component {
 				<Fragment>
 					{this.renderNavBar()}
 					{this.renderMenu()}
-					<Route exact path="/" component={LandingPage} />
-					<Route exact path="/login" component={LoginPage} />
-					<Route exact path="/register" component={RegisterPage} />
-					<Route exact path="/profile" component={ProfilePage} />
-					<Route exact path="/settings" component={SettingsPage} />
-					<Route exact path="/spots" component={UserSpotsPage} />
+					<Switch>
+						<Route exact path="/" component={LandingPage} />
+						<Route exact path="/login" component={LoginPage} />
+						<Route exact path="/register" component={RegisterPage} />
+						<Route exact path="/profile" component={ProfilePage} />
+						<Route exact path="/settings" component={SettingsPage} />
+						<Route exact path="/spots" component={UserSpotsPage} />
+						<Route path="/viewspot/:id" component={SpotPage} />
+						<Route component={Notfound} />
+					</Switch>
 				</Fragment>
 			</Router>
 		)
