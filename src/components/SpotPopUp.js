@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import MapGL, { Popup } from 'react-map-gl'
+import { Popup } from 'react-map-gl'
 import SpotPopUpCard from './SpotPopUpCard'
 import { deSelectSpot, removePopUp } from '../actions'
 
