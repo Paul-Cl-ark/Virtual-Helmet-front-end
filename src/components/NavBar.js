@@ -22,17 +22,21 @@ const navBarStyle = {
 }
 
 class NavBar extends Component {
+	handleClick = () => {
+		if (this.props.user) {
+			this.props.toggleMenu()
+			this.props.removeSpotForm()
+			this.props.removeNewMarker()
+			this.props.removePopUp()
+		} else {
+			alert('Please log in!')
+		}
+	}
+
 	render() {
 		return (
 			<Fragment>
-				<div
-					style={navBarStyle}
-					onClick={() => {
-						this.props.toggleMenu()
-						this.props.removeSpotForm()
-						this.props.removeNewMarker()
-						this.props.removePopUp()
-					}}>
+				<div style={navBarStyle} onClick={this.handleClick}>
 					<Logo />
 				</div>
 			</Fragment>
@@ -40,7 +44,11 @@ class NavBar extends Component {
 	}
 }
 
+const mapStateToProps = state => ({
+	user: state.users.user
+})
+
 export default connect(
-	null,
+	mapStateToProps,
 	{ toggleMenu, removeSpotForm, removeNewMarker, removePopUp }
 )(NavBar)

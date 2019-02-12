@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 	renderPopUp: false,
 	renderNewMarker: false,
 	renderOrButton: true,
-	renderNavBar: false,
 	renderRatingButtons: false
 }
 
@@ -25,10 +24,6 @@ const appReducer = (state = INITIAL_STATE, action) => {
 			return { ...state, renderNewMarker: true }
 		case 'REMOVE_NEW_MARKER':
 			return { ...state, renderNewMarker: false }
-		case 'RENDER_NAVBAR':
-			return { ...state, renderNavBar: true }
-		case 'REMOVE_NAVBAR':
-			return { ...state, renderNavBar: false }
 		case 'RENDER_POP_UP':
 			return { ...state, renderPopUp: true }
 		case 'REMOVE_POP_UP':

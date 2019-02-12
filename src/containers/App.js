@@ -15,13 +15,12 @@ import SpotPage from './SpotPage'
 import Notfound from '../components/NotFound'
 
 class App extends Component {
-	renderNavBar = () => (this.props.renderNavBar ? <NavBar /> : null)
 	renderMenu = () => (this.props.renderMenu ? <ProfileMenu /> : null)
 	render() {
 		return (
 			<Router history={history}>
 				<Fragment>
-					{this.renderNavBar()}
+					<NavBar />
 					{this.renderMenu()}
 					<Switch>
 						<Route exact path="/" component={LandingPage} />
@@ -40,7 +39,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-	renderNavBar: state.app.renderNavBar,
 	renderMenu: state.app.renderMenu
 })
 
