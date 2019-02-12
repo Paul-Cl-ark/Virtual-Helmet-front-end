@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { goToProfile, goToHome, goToSettings, goToStats, logOutUser, closeMenu } from '../actions'
+import { goToProfile, goToHome, goToSettings, goToSpots, logOutUser, closeMenu } from '../actions'
 import { Icon, Menu } from 'semantic-ui-react'
 
 const menuStyle = {
@@ -28,7 +28,7 @@ class ProfileMenu extends Component {
 				break
 			case 'spots':
 				this.props.closeMenu()
-				this.props.goToStats()
+				this.props.goToSpots()
 				break
 			case 'logOut':
 				this.props.logOutUser()
@@ -78,5 +78,5 @@ class ProfileMenu extends Component {
 
 export default connect(
 	null,
-	{ goToProfile, goToHome, goToSettings, goToStats, logOutUser, closeMenu }
+	{ goToProfile, goToHome, goToSettings, goToSpots, logOutUser, closeMenu }
 )(ProfileMenu)
