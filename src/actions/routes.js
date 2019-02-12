@@ -28,8 +28,14 @@ export const goToSettings = () => {
 	}
 }
 
-export const goToStats = () => {
+export const goToSpots = () => {
 	return dispatch => {
 		history.push('/spots')
+	}
+}
+
+export const goToSpotPage = _id => {
+	return dispatch => {
+		history.push(`/viewspot/${_id}`)
 	}
 }
