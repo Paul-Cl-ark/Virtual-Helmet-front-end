@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import TextLogo from '../components/TextLogo'
-import { getUserSpots } from '../actions'
 import { Card, Container } from 'semantic-ui-react'
 
 const containerStyle = {
