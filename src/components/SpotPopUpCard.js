@@ -5,7 +5,10 @@ import CardImage from './CardImage'
 import { Card } from 'semantic-ui-react'
 
 class SpotPopUpCard extends Component {
-	renderRatingButtons = () => (this.props.renderRatingButtons ? <RatingButtons /> : null)
+	renderRatingButtons = () =>
+		this.props.renderRatingButtons && this.props.selectedSpot.type !== 'theft' ? (
+			<RatingButtons />
+		) : null
 	render() {
 		const spot = this.props.selectedSpot
 		const { type, date, description, latitude, longitude } = spot
