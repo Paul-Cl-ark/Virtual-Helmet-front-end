@@ -21,6 +21,7 @@ export const authenticateUser = user => {
 			dispatch({ type: 'REMOVE_OR_BUTTON' })
 			dispatch({ type: 'RENDER_NAVBAR' })
 			dispatch({ type: 'RENDER_RATING_BUTTONS' })
+			dispatch({ type: 'GET_USER_SPOTS', payload: data.user.id })
 		})
 	}
 }

@@ -115,7 +115,7 @@ class ProfilePage extends Component {
 
 const mapStateToProps = state => ({
 	user: state.users.user,
-	spots: state.spots.spots.filter(spot => spot.user._id === state.users.user._id)
+	spots: state.spots.userSpots
 })
 
 export default connect(

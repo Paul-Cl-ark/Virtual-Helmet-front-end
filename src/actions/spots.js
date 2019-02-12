@@ -30,9 +30,7 @@ export const rateSpot = (_id, rating) => {
 
 export const getUserSpots = () => {
 	return dispatch => {
-		API.getUserSpots().then(data => {
-			dispatch({ type: 'GET_USER_SPOTS', payload: data })
-		})
+		dispatch({ type: 'GET_USER_SPOTS' })
 	}
 }
 

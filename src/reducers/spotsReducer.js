@@ -15,7 +15,8 @@ export default function spotsReducer(
 		case 'GET_BICYCLE_THEFTS':
 			return { ...state, theftSpots: action.payload }
 		case 'GET_USER_SPOTS':
-			return { ...state, userSpots: action.payload.data.spots }
+			const userSpots = [...state.spots.filter(spot => spot.user === action.payload)]
+			return { ...state, userSpots: userSpots }
 		case 'ADD_NEW_SPOT_LAT_LNG':
 			const lat = action.payload.lat
 			const lng = action.payload.lng
