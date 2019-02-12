@@ -11,7 +11,7 @@ const containerStyle = {
 	width: '90%'
 }
 
-class StatsPage extends Component {
+class UserSpotsPage extends Component {
 	spots = () => {
 		let spotList = []
 		this.props.spots.map(spot => {
@@ -40,4 +40,4 @@ const mapStateToProps = state => ({
 	spots: state.spots.userSpots
 })
 
-export default connect(mapStateToProps)(StatsPage)
+export default connect(mapStateToProps)(UserSpotsPage)
