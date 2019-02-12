@@ -17,7 +17,7 @@ class RegisterPage extends Component {
 }
 
 const mapStateToProps = state => ({
-	renderOrButton: state.appActions.renderOrButton
+	renderOrButton: state.app.renderOrButton
 })
 
 export default connect(mapStateToProps)(RegisterPage)

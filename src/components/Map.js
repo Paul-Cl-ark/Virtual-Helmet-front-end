@@ -136,7 +136,7 @@ const mapStateToProps = state => ({
 	selectedLat: state.spots.selectedLat,
 	selectedLng: state.spots.selectedLng,
 	selectedSpot: state.spots.selectedSpot,
-	renderNewSpotMarker: state.appActions.renderNewMarker,
+	renderNewSpotMarker: state.app.renderNewMarker,
 	user: state.users.user
 })
 

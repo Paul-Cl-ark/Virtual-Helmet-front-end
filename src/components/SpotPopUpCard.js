@@ -44,7 +44,7 @@ class SpotPopUpCard extends Component {
 
 const mapStateToProps = state => ({
 	selectedSpot: state.spots.selectedSpot,
-	renderRatingButtons: state.appActions.renderRatingButtons,
+	renderRatingButtons: state.app.renderRatingButtons,
 	user: state.users.user
 })
 

@@ -22,8 +22,8 @@ class LandingPage extends Component {
 }
 
 const mapStateToProps = state => ({
-	renderSpotForm: state.appActions.renderSpotForm,
-	renderOrButton: state.appActions.renderOrButton
+	renderSpotForm: state.app.renderSpotForm,
+	renderOrButton: state.app.renderOrButton
 })
 
 export default connect(mapStateToProps)(LandingPage)

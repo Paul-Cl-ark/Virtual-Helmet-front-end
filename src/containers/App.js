@@ -40,8 +40,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-	renderNavBar: state.appActions.renderNavBar,
-	renderMenu: state.appActions.renderMenu
+	renderNavBar: state.app.renderNavBar,
+	renderMenu: state.app.renderMenu
 })
 
 export default connect(mapStateToProps)(App)
