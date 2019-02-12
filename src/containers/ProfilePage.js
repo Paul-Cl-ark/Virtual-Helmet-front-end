@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import { uploadProfilePhoto } from '../actions'
 import TextLogo from '../components/TextLogo'
 import { Container, Header, Icon, Button, Image } from 'semantic-ui-react'
@@ -88,6 +89,7 @@ class ProfilePage extends Component {
 
 	render() {
 		const { firstName, lastName, date } = this.props.user
+		const momentDate = moment(date).format('LL')
 		return (
 			<Fragment>
 				<TextLogo />
@@ -99,7 +101,7 @@ class ProfilePage extends Component {
 						</Header>
 						{this.showUploadForm()}
 						<Header as="h4">Member since:</Header>
-						<p>{date}</p>
+						<p>{momentDate}</p>
 						<Header as="h4">Total votes of all current user spots:</Header>
 						<p>{this.totalUpVotes()}</p>
 						<Header as="h4">Your most upvoted spot:</Header>

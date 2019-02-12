@@ -13,7 +13,7 @@ class SpotPopUpCard extends Component {
 	render() {
 		const spot = this.props.selectedSpot
 		const { type, date, description, latitude, longitude } = spot
-		let momentDate = moment(date)
+		const momentDate = moment(date)
 			.endOf('day')
 			.fromNow()
 		const imageContent = this.props.user ? (
