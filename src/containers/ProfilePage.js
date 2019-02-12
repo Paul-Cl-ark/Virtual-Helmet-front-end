@@ -69,10 +69,13 @@ class ProfilePage extends Component {
 	}
 
 	mostUpVoted = () => {
-		const spot = this.props.spots.reduce((a, b) => {
-			return a.rating > b.rating ? a : b
-		})
-		return spot._id
+		let spot = null
+		if (this.props.spots.length > 0) {
+			spot = this.props.spots.reduce((a, b) => {
+				return a.rating > b.rating ? a : b
+			})
+		}
+		return spot ? spot._id : null
 	}
 
 	mostUpVotedVotes = () => Math.max.apply(Math, this.props.spots.map(spot => spot.rating))

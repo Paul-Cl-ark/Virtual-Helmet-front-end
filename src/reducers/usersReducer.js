@@ -12,7 +12,7 @@ export default function usersReducer(
 		case 'LOGOUT_USER':
 			return { ...state, user: null }
 		case 'UPDATE_PROFILE_PHOTO':
-			return { ...state, user: { ...state.user, image: action.payload } }
+			return { ...state, user: action.payload.data }
 		default:
 			return state
 	}
