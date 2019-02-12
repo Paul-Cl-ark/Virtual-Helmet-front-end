@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import MapGL, { Marker, NavigationControl } from 'react-map-gl'
 import SpotMarker from './SpotMarker'
+import TheftMarker from './TheftMarker'
 import SpotPopUp from './SpotPopUp'
 
 const TOKEN = process.env.REACT_APP_MAPBOX_API_KEY
@@ -51,9 +52,21 @@ export class Map extends Component {
 
 	renderMarker = spot => {
 		const { _id, latitude, longitude, type } = spot
+		// let marker = null
+		// switch (type) {
+		// 	case 'danger':
+		// 		marker = <SpotMarker key={`s-m${_id}`} onClick={() => this.onMarkerClick(spot)} />
+		// 		break
+		// 	case 'theft':
+		// 		marker = <TheftMarker key={`s-m${_id}`} onClick={() => this.onMarkerClick(spot)} />
+		// 		break
+		// 	default:
+		// 		marker = <SpotMarker key={`s-m${_id}`} onClick={() => this.onMarkerClick(spot)} />
+		// 		break
+		// }
 		return (
 			<Marker key={_id} id={_id} longitude={longitude} latitude={latitude} type={type}>
-				<SpotMarker key={`s-m${_id}`} size={20} onClick={() => this.onMarkerClick(spot)} />
+				<SpotMarker key={`s-m${_id}`} onClick={() => this.onMarkerClick(spot)} />
 			</Marker>
 		)
 	}
@@ -62,7 +75,7 @@ export class Map extends Component {
 		const { id, latitude, longitude, type } = theft
 		return (
 			<Marker key={id} id={id} longitude={longitude} latitude={latitude} type={type}>
-				<SpotMarker key={`t-m${id}`} size={20} onClick={() => this.onMarkerClick(theft)} />
+				<TheftMarker key={`s-m${id}`} onClick={() => this.onMarkerClick(theft)} />
 			</Marker>
 		)
 	}
