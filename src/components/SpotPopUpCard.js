@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import { goToSpotPage } from '../actions'
 import RatingButtons from './RatingButtons'
 import CardImage from './CardImage'
 import { Card } from 'semantic-ui-react'
@@ -12,7 +13,7 @@ class SpotPopUpCard extends Component {
 		) : null
 	render() {
 		const spot = this.props.selectedSpot
-		const { type, date, description, latitude, longitude } = spot
+		const { _id, type, date, description, latitude, longitude } = spot
 		const momentDate = moment(date)
 			.endOf('day')
 			.fromNow()
@@ -23,7 +24,7 @@ class SpotPopUpCard extends Component {
 		)
 
 		return (
-			<Card>
+			<Card key={_id}>
 				{imageContent}
 				<Card.Content>
 					<Card.Header style={{ overflow: 'auto', maxHeight: 150 }}>{description}</Card.Header>
@@ -32,6 +33,7 @@ class SpotPopUpCard extends Component {
 					</Card.Meta>
 					<Card.Description>
 						Latitude: {latitude}, Longitude: {longitude}
+						<a onClick={() => this.props.goToSpotPage(_id)}>See more!</a>
 					</Card.Description>
 				</Card.Content>
 				{this.renderRatingButtons()}
@@ -46,4 +48,7 @@ const mapStateToProps = state => ({
 	user: state.users.user
 })
 
-export default connect(mapStateToProps)(SpotPopUpCard)
+export default connect(
+	mapStateToProps,
+	{ goToSpotPage }
+)(SpotPopUpCard)
