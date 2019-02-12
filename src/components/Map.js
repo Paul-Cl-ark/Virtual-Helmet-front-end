@@ -77,7 +77,7 @@ export class Map extends Component {
 				key="new-marker"
 				latitude={Number(lat)}
 				longitude={Number(lng)}>
-				<SpotMarker size={20} />
+				<SpotMarker type={'new'} />
 			</Marker>
 		)
 		return render ? marker : null
