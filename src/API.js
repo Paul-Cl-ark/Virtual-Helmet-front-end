@@ -82,10 +82,6 @@ class API {
 		}).then(response => response.json())
 	}
 
-	static getUserSpots() {
-		return fetch(this.userSpotsURL).then(response => response.json())
-	}
-
 	static getBicycleThefts(lat, lng) {
 		return fetch(this.bicycleTheftsURL + `lat=${lat}&lng=${lng}`)
 			.then(response => response.json())

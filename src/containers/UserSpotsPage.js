@@ -13,13 +13,9 @@ const containerStyle = {
 }
 
 class StatsPage extends Component {
-	componentDidMount() {
-		this.props.getUserSpots()
-	}
-
 	spots = () => {
 		let spotList = []
-		this.props.userSpots.map(spot => {
+		this.props.spots.map(spot => {
 			spotList.push({
 				header: `Date added: ${spot.date}`,
 				description: `Description: ${spot.description}`,
@@ -42,10 +38,7 @@ class StatsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-	userSpots: state.spots.userSpots
+	spots: state.spots.userSpots
 })
 
-export default connect(
-	mapStateToProps,
-	{ getUserSpots }
-)(StatsPage)
+export default connect(mapStateToProps)(StatsPage)
