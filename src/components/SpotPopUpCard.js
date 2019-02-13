@@ -42,7 +42,9 @@ class SpotPopUpCard extends Component {
 					</Card.Meta>
 					<Card.Description>
 						Latitude: {latitude}, Longitude: {longitude}
-						<a onClick={() => this.props.goToSpotPage(_id)}>See more!</a>
+						<p>
+							<a onClick={() => this.props.goToSpotPage(_id)}>See more!</a>
+						</p>
 					</Card.Description>
 				</Card.Content>
 				{this.renderRatingButtons()}
