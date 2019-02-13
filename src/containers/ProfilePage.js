@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { uploadProfilePhoto } from '../actions'
+import { uploadProfilePhoto, goToSpotPage } from '../actions'
 import TextLogo from '../components/TextLogo'
-import { Container, Header, Icon, Button, Image } from 'semantic-ui-react'
+import { Label, Segment, Header, Icon, Button, Image } from 'semantic-ui-react'
 
 const containerStyle = {
 	display: 'flex',
 	justifyContent: 'center',
-	margin: '25px',
+	margin: '20px',
 	height: '90%',
 	width: '90%'
 }
@@ -93,7 +93,7 @@ class ProfilePage extends Component {
 		return (
 			<Fragment>
 				<TextLogo />
-				<Container style={containerStyle}>
+				<Segment raised style={containerStyle}>
 					<div>
 						<Header as="h1">
 							{this.userImage()}
@@ -102,14 +102,25 @@ class ProfilePage extends Component {
 						{this.showUploadForm()}
 						<Header as="h4">Member since:</Header>
 						<p>{momentDate}</p>
-						<Header as="h4">Total votes of all current user spots:</Header>
+						<Header as="h4">Your current rating:</Header>
+						<Label ribbon color="green">
+							The total of up and downvotes on your spots, wow!
+						</Label>
 						<p>{this.totalUpVotes()}</p>
 						<Header as="h4">Your most upvoted spot:</Header>
-						<p>{this.mostUpVoted()}</p>
-						<Header as="h4">Total current user votes:</Header>
+						<Label ribbon color="green">
+							The highest rated spot you've added, nice job!
+						</Label>
+						<p>
+							<a onClick={() => this.props.goToSpotPage(this.mostUpVoted())}>Show me!</a>
+						</p>
+						<Header as="h4">Total votes:</Header>
+						<Label ribbon color="green">
+							How many times you have rated a spot, keep it up!
+						</Label>
 						<p>{this.totalCurrentUserVotes()}</p>
 					</div>
-				</Container>
+				</Segment>
 			</Fragment>
 		)
 	}
@@ -123,5 +134,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ uploadProfilePhoto }
+	{ uploadProfilePhoto, goToSpotPage }
 )(ProfilePage)
