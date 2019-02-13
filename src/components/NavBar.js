@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { toast } from 'react-toastify'
 import { toggleMenu, removeSpotForm, removeNewMarker, removePopUp } from '../actions'
 import Logo from './Logo'
 
@@ -29,7 +30,7 @@ class NavBar extends Component {
 			this.props.removeNewMarker()
 			this.props.removePopUp()
 		} else {
-			alert('Please log in!')
+			toast('Please log in to do that!')
 		}
 	}
 

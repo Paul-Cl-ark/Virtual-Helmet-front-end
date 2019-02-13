@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import store from './store'
 import 'semantic-ui-css/semantic.min.css'
-import 'react-notifications/lib/notifications.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import App from './containers/App'
 import * as serviceWorker from './serviceWorker'

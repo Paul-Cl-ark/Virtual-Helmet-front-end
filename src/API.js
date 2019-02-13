@@ -24,7 +24,11 @@ class API {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(user)
-		}).then(response => (response.status !== 500 ? response.json() : { message: 'Unauthorised' }))
+		}).then(response =>
+			response.status === 200
+				? response.json()
+				: { message: 'Invalid email or password, please try again' }
+		)
 	}
 
 	static logOutUser() {

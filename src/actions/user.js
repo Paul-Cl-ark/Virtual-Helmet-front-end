@@ -1,5 +1,6 @@
 import API from '../API'
 import history from '../history'
+import { toast } from 'react-toastify'
 
 export const registerUser = user => {
 	return dispatch => {
@@ -15,11 +16,15 @@ export const registerUser = user => {
 export const authenticateUser = user => {
 	return dispatch => {
 		return API.authenticateUser(user).then(data => {
-			history.push('/')
-			dispatch({ type: 'AUTHENTICATE_USER', payload: data })
-			dispatch({ type: 'REMOVE_OR_BUTTON' })
-			dispatch({ type: 'RENDER_RATING_BUTTONS' })
-			dispatch({ type: 'GET_USER_SPOTS', payload: data.user.id })
+			if (data.user) {
+				history.push('/')
+				dispatch({ type: 'AUTHENTICATE_USER', payload: data })
+				dispatch({ type: 'REMOVE_OR_BUTTON' })
+				dispatch({ type: 'RENDER_RATING_BUTTONS' })
+				dispatch({ type: 'GET_USER_SPOTS', payload: data.user.id })
+			} else {
+				toast.warn(data.message)
+			}
 		})
 	}
 }
