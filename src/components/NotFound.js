@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const imgStyle = {
 	height: '100vh',
-	width: 'auto'
+	width: '100%'
 }
 
 class NotFound extends Component {
