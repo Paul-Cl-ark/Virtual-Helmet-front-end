@@ -32,7 +32,7 @@ class RatingButtons extends Component {
 
 const mapStateToProps = state => ({
 	spot: state.spots.selectedSpot,
-	userId: state.users.user._id
+	userId: state.users.user.id
 })
 
 export default connect(
