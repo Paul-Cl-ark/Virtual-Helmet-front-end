@@ -1,6 +1,20 @@
 import React, { Component, Fragment } from 'react'
-import { Image, Container, Header } from 'semantic-ui-react'
+import { Image, Container, Card } from 'semantic-ui-react'
+import TextLogo from '../components/TextLogo'
 // import { connect } from 'react-redux'
+
+const containerStyle = {
+	// display: 'flex',
+	// justifyContent: 'center',
+	margin: '25px',
+	height: '90%',
+	width: '90%'
+}
+
+const imageStyle = {
+	margin: 'auto',
+	marginBottom: '20px'
+}
 
 class SpotPage extends Component {
 	componentDidMount() {
@@ -30,12 +44,12 @@ class SpotPage extends Component {
 	render() {
 		return (
 			<Fragment>
-				<Container>
-					<Image src={this.renderImage()} />
+				<TextLogo />
+				<Container style={containerStyle}>
+					<Image style={imageStyle} src={this.renderImage()} />
 					<p>{this.renderDescription()}</p>
-					<p>
-						Latitude: {this.renderLatitude()}, Longitude: {this.renderLongitude()}
-					</p>
+					<p>Latitude: {this.renderLatitude()}</p>
+					<p>Longitude: {this.renderLongitude()}</p>
 				</Container>
 			</Fragment>
 		)
