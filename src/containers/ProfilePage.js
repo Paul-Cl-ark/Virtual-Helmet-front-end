@@ -8,7 +8,7 @@ import { Label, Segment, Header, Icon, Button, Image } from 'semantic-ui-react'
 const containerStyle = {
 	display: 'flex',
 	justifyContent: 'center',
-	margin: '20px',
+	margin: 'auto',
 	height: '90%',
 	width: '90%'
 }
@@ -55,7 +55,7 @@ class ProfilePage extends Component {
 			/>
 		) : (
 			<Icon
-				name="user outline"
+				name="user plus"
 				onClick={() => this.setState({ showUploadForm: !this.state.showUploadForm })}
 			/>
 		)
