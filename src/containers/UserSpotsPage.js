@@ -29,7 +29,7 @@ class UserSpotsPage extends Component {
 			<Fragment>
 				<TextLogo />
 				<Container style={containerStyle}>
-					<Card.Group items={this.spots()} />
+					<Card.Group centered items={this.spots()} />
 				</Container>
 			</Fragment>
 		)
