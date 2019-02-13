@@ -6,7 +6,7 @@ import { Button } from 'semantic-ui-react'
 
 const buttonStyle = {
 	position: 'absolute',
-	bottom: '35px',
+	bottom: '20px',
 	marginLeft: '60px',
 	marginRight: '60px',
 	left: 0,
