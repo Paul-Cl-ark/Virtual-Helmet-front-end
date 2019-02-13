@@ -1,4 +1,5 @@
 import API from '../API'
+import { toast } from 'react-toastify'
 
 export const addNewSpotLatLng = latLng => {
 	return { type: 'ADD_NEW_SPOT_LAT_LNG', payload: latLng }
@@ -8,6 +9,7 @@ export const addNewSpot = spot => {
 	return dispatch => {
 		API.addNewSpot(spot).then(data => {
 			dispatch({ type: 'ADD_NEW_SPOT', payload: data })
+			toast.success('Spot added, thanks for your contribution!')
 		})
 	}
 }
