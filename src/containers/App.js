@@ -12,7 +12,7 @@ import UserSpotsPage from './UserSpotsPage'
 import ProfileMenu from '../components/ProfileMenu'
 import NavBar from '../components/NavBar'
 import SpotPage from './SpotPage'
-import Notfound from '../components/NotFound'
+import NotfoundPage from './NotFoundPage'
 
 class App extends Component {
 	renderMenu = () => (this.props.renderMenu ? <ProfileMenu /> : null)
@@ -30,7 +30,7 @@ class App extends Component {
 						<Route exact path="/settings" component={SettingsPage} />
 						<Route exact path="/spots" component={UserSpotsPage} />
 						<Route path="/viewspot/:id" component={SpotPage} />
-						<Route component={Notfound} />
+						<Route component={NotfoundPage} />
 					</Switch>
 				</Fragment>
 			</Router>
