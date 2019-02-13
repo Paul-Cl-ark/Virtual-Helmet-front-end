@@ -11,6 +11,7 @@ export const addNewSpot = spot => {
 			dispatch({ type: 'ADD_NEW_SPOT', payload: data })
 			dispatch({ type: 'REMOVE_SPOT_FORM' })
 			dispatch({ type: 'REMOVE_NEW_MARKER' })
+			dispatch({ type: 'REMOVE_NEW_MARKER' })
 			toast.success('Spot added, thanks for your contribution!')
 		})
 	}
