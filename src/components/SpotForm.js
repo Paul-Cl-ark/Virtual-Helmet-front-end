@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { toast } from 'react-toastify'
 import { removeSpotForm, addNewSpot, removeNewMarker } from '../actions'
 
 import { Form, TextArea, Button, Dropdown, Card } from 'semantic-ui-react'
@@ -68,7 +69,9 @@ class SpotForm extends Component {
 
 	handleFormSubmit = event => {
 		event.preventDefault()
-
+		if (!this.state.type) {
+			return toast.warn('Please add a spot type')
+		}
 		const file = this.state.selectedFile
 		let formData = null
 		if (file) {
