@@ -44,6 +44,7 @@ export const logOutUser = () => {
 			dispatch({ type: 'RENDER_OR_BUTTON' })
 			dispatch({ type: 'REMOVE_RATING_BUTTONS' })
 			dispatch({ type: 'ClEAR_USER_SPOTS' })
+			dispatch({ type: 'RESET_THEME' })
 		})
 	}
 }

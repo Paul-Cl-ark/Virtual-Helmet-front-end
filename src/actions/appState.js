@@ -45,3 +45,11 @@ export const renderRatingButtons = () => {
 export const removeRatingButtons = () => {
 	return { type: 'REMOVE_RATING_BUTTONS' }
 }
+
+export const changeTheme = colour => {
+	return { type: 'CHANGE_THEME', payload: colour }
+}
+
+export const resetTheme = () => {
+	return { type: 'RESET_THEME' }
+}

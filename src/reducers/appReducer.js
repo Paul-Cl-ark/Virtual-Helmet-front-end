@@ -7,7 +7,8 @@ const INITIAL_STATE = {
 	renderPopUp: false,
 	renderNewMarker: false,
 	renderOrButton: true,
-	renderRatingButtons: false
+	renderRatingButtons: false,
+	theme: 'green'
 }
 
 const appReducer = (state = INITIAL_STATE, action) => {
@@ -36,6 +37,10 @@ const appReducer = (state = INITIAL_STATE, action) => {
 			return { ...state, renderRatingButtons: false }
 		case 'RENDER_RATING_BUTTONS':
 			return { ...state, renderRatingButtons: true }
+		case 'CHANGE_THEME':
+			return { ...state, theme: action.payload }
+		case 'RESET_THEME':
+			return { ...state, theme: 'green' }
 		default:
 			return state
 	}

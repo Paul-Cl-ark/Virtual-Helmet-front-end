@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { changeTheme } from '../actions'
 import { Dropdown } from 'semantic-ui-react'
 
 const colourOptions = [
@@ -10,12 +12,11 @@ const colourOptions = [
 
 class ThemeSelect extends Component {
 	state = {
-		selectedTheme: 'green'
+		selectedTheme: ''
 	}
 
 	onChange = (event, data) => {
-		console.log(data.value)
-		this.setState({ selectedTheme: data.value })
+		this.props.changeTheme(data.value)
 	}
 
 	render() {
@@ -31,4 +32,7 @@ class ThemeSelect extends Component {
 	}
 }
 
-export default ThemeSelect
+export default connect(
+	null,
+	{ changeTheme }
+)(ThemeSelect)
