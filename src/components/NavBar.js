@@ -30,7 +30,7 @@ class NavBar extends Component {
 			this.props.removeNewMarker()
 			this.props.removePopUp()
 		} else {
-			toast('Please log in to do that!')
+			toast.info('Please log in to do that!')
 		}
 	}
 

@@ -16,7 +16,9 @@ class API {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(user)
-		}).then(response => response.json())
+		}).then(response =>
+			response.status !== 409 ? response.json() : { message: 'Email already in use, please log in' }
+		)
 	}
 
 	static authenticateUser(user) {

@@ -19,6 +19,8 @@ const spotsReducer = (state = INITIAL_STATE, action) => {
 		case 'GET_USER_SPOTS':
 			const userSpots = [...state.spots.filter(spot => spot.user === action.payload)]
 			return { ...state, userSpots: userSpots }
+		case 'ClEAR_USER_SPOTS':
+			return { ...state, userSpots: [] }
 		case 'ADD_NEW_SPOT_LAT_LNG':
 			const lat = action.payload.lat
 			const lng = action.payload.lng
