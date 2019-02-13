@@ -6,6 +6,12 @@ import RatingButtons from './RatingButtons'
 import CardImage from './CardImage'
 import { Card } from 'semantic-ui-react'
 
+const popUpStyle = {
+	width: '60vw',
+	height: '40vh',
+	overflow: 'auto'
+}
+
 class SpotPopUpCard extends Component {
 	renderRatingButtons = () =>
 		this.props.renderRatingButtons && this.props.selectedSpot.type !== 'theft' ? (
@@ -24,10 +30,10 @@ class SpotPopUpCard extends Component {
 		)
 
 		return (
-			<Card key={_id}>
+			<Card key={_id} style={popUpStyle}>
 				{imageContent}
 				<Card.Content>
-					<Card.Header style={{ overflow: 'auto', maxHeight: 150 }}>{description}</Card.Header>
+					<Card.Header>{description}</Card.Header>
 					<Card.Meta>
 						Date added:{momentDate}, type: {type}
 					</Card.Meta>

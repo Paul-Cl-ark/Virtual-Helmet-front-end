@@ -4,10 +4,6 @@ import { Popup } from 'react-map-gl'
 import SpotPopUpCard from './SpotPopUpCard'
 import { deSelectSpot, removePopUp } from '../actions'
 
-const popUpStyle = {
-	width: '100px'
-}
-
 class SpotPopUp extends Component {
 	render() {
 		const selectedSpot = this.props.selectedSpot
@@ -15,7 +11,6 @@ class SpotPopUp extends Component {
 		return (
 			<Popup
 				tipSize={5}
-				style={popUpStyle}
 				anchor="top"
 				longitude={selectedSpot.longitude}
 				latitude={selectedSpot.latitude}
