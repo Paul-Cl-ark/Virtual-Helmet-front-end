@@ -30,7 +30,8 @@ const spotsReducer = (state = INITIAL_STATE, action) => {
 				const newSpot = action.payload.data
 				return {
 					...state,
-					spots: [...state.spots, newSpot]
+					spots: [...state.spots, newSpot],
+					userSpots: [...state.userSpots, newSpot]
 				}
 			}
 			break
