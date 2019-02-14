@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 const imgStyle = {
-	width: '20px',
-	height: '20px'
+	width: '28px',
+	height: '28px'
 }
 
 class SpotMarker extends Component {

@@ -42,6 +42,20 @@ const spotTypes = [
 		},
 		text: 'Pothole',
 		value: 'pothole'
+	},
+	{
+		image: {
+			src: '/images/steepIncline-icon.svg'
+		},
+		text: 'Steep incline',
+		value: 'steepIncline'
+	},
+	{
+		image: {
+			src: '/images/hiddenBollard-icon.svg'
+		},
+		text: 'Bollard on cycle path',
+		value: 'hiddenBollard'
 	}
 ]
 
