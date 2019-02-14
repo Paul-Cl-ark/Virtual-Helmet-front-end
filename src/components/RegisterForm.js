@@ -2,12 +2,13 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions'
 import TextLogo from '../components/TextLogo'
-import { Button, Input, Form, Header, Icon, Container, Grid } from 'semantic-ui-react'
+import { Button, Input, Form, Header, Icon, Container, Grid, Label } from 'semantic-ui-react'
 import { toast } from 'react-toastify'
 
 const buttonStyle = {
 	maxWidth: '300px',
-	width: '80vh'
+	width: '80vh',
+	margin: '0 auto'
 }
 
 class RegisterForm extends Component {
@@ -44,7 +45,7 @@ class RegisterForm extends Component {
 				<Container>
 					<Header as="h2">
 						<Icon name="sign in" />
-						<Header.Content>Register</Header.Content>
+						<Header.Content>Sign Up</Header.Content>
 					</Header>
 					<Form unstackable onSubmit={this.handleSubmit}>
 						<Form.Group widths={2}>
@@ -110,7 +111,7 @@ class RegisterForm extends Component {
 						<Grid>
 							<Grid.Column textAlign="center">
 								<Button size="large" primary style={buttonStyle} type="submit">
-									Register
+									Sign Up
 								</Button>
 							</Grid.Column>
 						</Grid>

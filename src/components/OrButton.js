@@ -7,11 +7,11 @@ import { toast } from 'react-toastify'
 
 const buttonContainerStyle = {
 	maxWidth: '300px',
-	width: '80vw',
+	width: '80vh',
 	flex: '1 1 auto',
 	display: 'flex',
 	alignItems: 'flex-end',
-	margin: '30px 0'
+	margin: '44px auto 15px'
 }
 
 class OrButton extends Component {

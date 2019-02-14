@@ -8,12 +8,13 @@ const buttonStyle = {
 	position: 'absolute',
 	display: 'flex',
 	justifyContent: 'center',
-	bottom: '20px',
-	marginLeft: '60px',
-	marginRight: '60px',
+	bottom: '6px',
+	marginLeft: 'auto',
+	marginRight: 'auto',
 	left: 0,
 	right: 0,
-	zIndex: 1
+	zIndex: 1,
+	size: 'large'
 }
 
 class LandingPage extends Component {

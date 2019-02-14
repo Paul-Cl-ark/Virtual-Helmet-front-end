@@ -7,7 +7,8 @@ import { Button, Input, Form, Header, Icon, Grid, Container } from 'semantic-ui-
 
 const buttonStyle = {
 	maxWidth: '300px',
-	width: '80vh'
+	width: '80vh',
+	margin: '0 auto'
 }
 
 class LoginForm extends Component {
