@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { goToHome } from '../actions'
 import { Image } from 'semantic-ui-react'
 
 const textLogoStyle = {
@@ -12,6 +13,7 @@ const TextLogo = props => (
 		size="small"
 		alt="Virtual Helmet Text Logo"
 		style={textLogoStyle}
+		onClick={props.goToHome}
 	/>
 )
 
@@ -19,4 +21,7 @@ const mapStateToProps = state => ({
 	colour: state.app.theme
 })
 
-export default connect(mapStateToProps)(TextLogo)
+export default connect(
+	mapStateToProps,
+	{ goToHome }
+)(TextLogo)
