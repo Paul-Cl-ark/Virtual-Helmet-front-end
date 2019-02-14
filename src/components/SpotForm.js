@@ -117,7 +117,7 @@ class SpotForm extends Component {
 						<TextArea
 							onChange={(event, data) => this.handleChange(event, data)}
 							label="Description"
-							placeholder="Description"
+							placeholder="Description..."
 							name="newSpotDescription"
 							required
 						/>
