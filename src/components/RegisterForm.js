@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { registerUser } from '../actions'
 import TextLogo from '../components/TextLogo'
 import { Button, Input, Form, Header, Icon, Container, Grid } from 'semantic-ui-react'
+import { toast } from 'react-toastify';
 
 const containerStyle = {
 	justifyContent: 'center',
@@ -22,12 +23,15 @@ class RegisterForm extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault()
+		if (this.state.password === this.state.passwordConfirmation) {
 		this.props.registerUser({
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
 			email: this.state.email,
 			password: this.state.password
-		})
+		})} else {
+			toast.warn('Passwords do not match!')
+		}
 	}
 
 	render() {
