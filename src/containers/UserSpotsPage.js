@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import TextLogo from '../components/TextLogo'
-import { Card, Container } from 'semantic-ui-react'
+import { Card, Container, Header } from 'semantic-ui-react'
 
 const containerStyle = {
 	display: 'flex',
@@ -25,6 +25,19 @@ class UserSpotsPage extends Component {
 		return spotList
 	}
 
+	showMarker = () => {
+		if (this.props.spots.length === 0) {
+			return (
+				<div>
+					<p>
+						<img src={'/images/map-marker.png'} />
+					</p>
+					<Header as="h2">Try adding some spots first!</Header>
+				</div>
+			)
+		}
+	}
+
 	render() {
 		return (
 			<Fragment>
@@ -39,6 +52,7 @@ class UserSpotsPage extends Component {
 								meta={spot.meta}
 							/>
 						))}
+						{this.showMarker()}
 					</Card.Group>
 				</Container>
 			</Fragment>
