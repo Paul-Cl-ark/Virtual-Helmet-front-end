@@ -5,14 +5,13 @@ import { goToHome, goToLogIn, goToSignUp } from '../actions'
 import { Button } from 'semantic-ui-react'
 import { toast } from 'react-toastify'
 
-const buttonStyle = {
-	position: 'absolute',
-	bottom: '20px',
-	marginLeft: '60px',
-	marginRight: '60px',
-	left: 0,
-	right: 0,
-	zIndex: 1
+const buttonContainerStyle = {
+	maxWidth: '300px',
+	width: '80vw',
+	flex: '1 1 auto',
+	display: 'flex',
+	alignItems: 'flex-end',
+	margin: '30px 0'
 }
 
 class OrButton extends Component {
@@ -39,7 +38,7 @@ class OrButton extends Component {
 		const regexTextB = textB.replace(/\s+/g, '')
 
 		return (
-			<Button.Group size="large" style={buttonStyle}>
+			<Button.Group size="large" style={buttonContainerStyle}>
 				<Button onClick={this.props[`goTo${regexTextA}`]}>{textA}</Button>
 				<Button.Or onClick={() => toast('Wear a Helmet!')} />
 				<Button onClick={this.props[`goTo${regexTextB}`]}>{textB}</Button>

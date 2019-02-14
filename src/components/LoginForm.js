@@ -5,9 +5,9 @@ import TextLogo from '../components/TextLogo'
 
 import { Button, Input, Form, Header, Icon, Grid, Container } from 'semantic-ui-react'
 
-const containerStyle = {
-	justifyContent: 'center',
-	margin: '20px'
+const buttonStyle = {
+	maxWidth: '300px',
+	width: '80vh'
 }
 
 class LoginForm extends Component {
@@ -29,13 +29,13 @@ class LoginForm extends Component {
 		return (
 			<Fragment>
 				<TextLogo />
-				<Container style={containerStyle}>
+				<Container>
 					<Header as="h2">
 						<Icon name="sign in" />
 						<Header.Content>Log In</Header.Content>
 					</Header>
 					<Form onSubmit={this.handleSubmit}>
-						<Form.Field>
+						<Form.Field required>
 							<label>Email</label>
 							<Input
 								fluid
@@ -47,7 +47,7 @@ class LoginForm extends Component {
 								onChange={this.handleChange}
 							/>
 						</Form.Field>
-						<Form.Field>
+						<Form.Field required>
 							<label>Password</label>
 							<Input
 								fluid
@@ -61,7 +61,9 @@ class LoginForm extends Component {
 						</Form.Field>
 						<Grid>
 							<Grid.Column textAlign="center">
-								<Button type="submit">Log In</Button>
+								<Button primary size="large" style={buttonStyle} type="submit">
+									Log In
+								</Button>
 							</Grid.Column>
 						</Grid>
 					</Form>

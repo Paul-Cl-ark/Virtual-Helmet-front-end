@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { registerUser } from '../actions'
 import TextLogo from '../components/TextLogo'
 import { Button, Input, Form, Header, Icon, Container, Grid } from 'semantic-ui-react'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
-const containerStyle = {
-	justifyContent: 'center',
-	margin: '20px'
+const buttonStyle = {
+	maxWidth: '300px',
+	width: '80vh'
 }
 
 class RegisterForm extends Component {
@@ -24,12 +24,13 @@ class RegisterForm extends Component {
 	handleSubmit = event => {
 		event.preventDefault()
 		if (this.state.password === this.state.passwordConfirmation) {
-		this.props.registerUser({
-			firstName: this.state.firstName,
-			lastName: this.state.lastName,
-			email: this.state.email,
-			password: this.state.password
-		})} else {
+			this.props.registerUser({
+				firstName: this.state.firstName,
+				lastName: this.state.lastName,
+				email: this.state.email,
+				password: this.state.password
+			})
+		} else {
 			toast.warn('Passwords do not match!')
 		}
 	}
@@ -40,35 +41,37 @@ class RegisterForm extends Component {
 		return (
 			<Fragment>
 				<TextLogo />
-				<Container style={containerStyle}>
+				<Container>
 					<Header as="h2">
 						<Icon name="sign in" />
 						<Header.Content>Register</Header.Content>
 					</Header>
-					<Form onSubmit={this.handleSubmit}>
-						<Form.Field>
-							<label>First Name</label>
-							<Input
-								fluid
-								required
-								placeholder="First Name"
-								name="firstName"
-								value={firstName}
-								onChange={this.handleChange}
-							/>
-						</Form.Field>
-						<Form.Field>
-							<label>Last Name</label>
-							<Input
-								fluid
-								required
-								placeholder="Last Name"
-								name="lastName"
-								value={lastName}
-								onChange={this.handleChange}
-							/>
-						</Form.Field>
-						<Form.Field>
+					<Form unstackable onSubmit={this.handleSubmit}>
+						<Form.Group widths={2}>
+							<Form.Field required>
+								<label>First Name</label>
+								<Input
+									fluid
+									required
+									placeholder="First Name"
+									name="firstName"
+									value={firstName}
+									onChange={this.handleChange}
+								/>
+							</Form.Field>
+							<Form.Field required>
+								<label>Last Name</label>
+								<Input
+									fluid
+									required
+									placeholder="Last Name"
+									name="lastName"
+									value={lastName}
+									onChange={this.handleChange}
+								/>
+							</Form.Field>
+						</Form.Group>
+						<Form.Field required>
 							<label>Email</label>
 							<Input
 								fluid
@@ -80,7 +83,7 @@ class RegisterForm extends Component {
 								onChange={this.handleChange}
 							/>
 						</Form.Field>
-						<Form.Field>
+						<Form.Field required>
 							<label>Password</label>
 							<Input
 								fluid
@@ -92,7 +95,7 @@ class RegisterForm extends Component {
 								onChange={this.handleChange}
 							/>
 						</Form.Field>
-						<Form.Field>
+						<Form.Field required>
 							<label>Confirm Password</label>
 							<Input
 								fluid
@@ -106,7 +109,9 @@ class RegisterForm extends Component {
 						</Form.Field>
 						<Grid>
 							<Grid.Column textAlign="center">
-								<Button type="submit">Register</Button>
+								<Button size="large" primary style={buttonStyle} type="submit">
+									Register
+								</Button>
 							</Grid.Column>
 						</Grid>
 					</Form>

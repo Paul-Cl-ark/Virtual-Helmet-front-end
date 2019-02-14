@@ -4,7 +4,7 @@ import { goToHome } from '../actions'
 import { Image } from 'semantic-ui-react'
 
 const textLogoStyle = {
-	margin: '20px auto 20px'
+	margin: '20px auto'
 }
 
 const TextLogo = props => (
