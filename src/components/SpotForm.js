@@ -8,7 +8,6 @@ import { Form, TextArea, Button, Dropdown, Card } from 'semantic-ui-react'
 const formStyle = {
 	backgroundColor: 'white',
 	borderStyle: 'solid',
-	borderColor: 'limeGreen',
 	position: 'absolute',
 	borderWidth: '3px',
 	padding: '10px',
@@ -111,7 +110,7 @@ class SpotForm extends Component {
 
 	render() {
 		return (
-			<Card style={formStyle}>
+			<Card style={{ ...formStyle, borderColor: this.props.colour }}>
 				<Form onSubmit={this.handleFormSubmit}>
 					<Form.Field required>
 						<label>Add description</label>
@@ -144,7 +143,8 @@ class SpotForm extends Component {
 
 const mapStateToProps = state => ({
 	selectedLat: state.spots.selectedLat,
-	selectedLng: state.spots.selectedLng
+	selectedLng: state.spots.selectedLng,
+	colour: state.app.theme
 })
 
 export default connect(
