@@ -4,6 +4,7 @@ import * as actions from '../actions'
 import MapGL, { Marker, NavigationControl } from 'react-map-gl'
 import SpotMarker from './SpotMarker'
 import SpotPopUp from './SpotPopUp'
+import { toast } from 'react-toastify'
 
 const TOKEN = process.env.REACT_APP_MAPBOX_API_KEY
 
@@ -46,7 +47,7 @@ export class Map extends Component {
 			  this.props.renderSpotForm(),
 			  this.props.addNewSpotLatLng({ lat: event.lngLat[1], lng: event.lngLat[0] }),
 			  this.props.closeMenu())
-			: null
+			: toast.info('Log in to add your own spots!')
 	}
 
 	renderMarker = spot => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { goToHome, goToLogIn, goToSignUp } from '../actions'
 import { Button } from 'semantic-ui-react'
+import { toast } from 'react-toastify'
 
 const buttonStyle = {
 	position: 'absolute',
@@ -40,7 +41,7 @@ class OrButton extends Component {
 		return (
 			<Button.Group size="large" style={buttonStyle}>
 				<Button onClick={this.props[`goTo${regexTextA}`]}>{textA}</Button>
-				<Button.Or onClick={() => alert('Wear a Helmet!')} />
+				<Button.Or onClick={() => toast('Wear a Helmet!')} />
 				<Button onClick={this.props[`goTo${regexTextB}`]}>{textB}</Button>
 			</Button.Group>
 		)
