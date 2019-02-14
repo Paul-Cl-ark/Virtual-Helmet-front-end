@@ -56,6 +56,13 @@ const spotTypes = [
 		},
 		text: 'Bollard on cycle path',
 		value: 'hiddenBollard'
+	},
+	{
+		image: {
+			src: '/images/puddle-icon.svg'
+		},
+		text: 'Large puddle',
+		value: 'puddle'
 	}
 ]
 
@@ -101,6 +108,7 @@ class SpotForm extends Component {
 			image: formData
 		})
 		this.props.removeSpotForm()
+		window.scrollTo(0)
 	}
 
 	handleFormClose = () => {
