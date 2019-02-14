@@ -104,7 +104,7 @@ export class Map extends Component {
 		this.props.getBicycleThefts(viewport.latitude, viewport.longitude)
 	}
 
-	locateUser() {
+	locateUser = () => {
 		navigator.geolocation.getCurrentPosition(position => {
 			this.handleViewportChange({
 				longitude: position.coords.longitude,
