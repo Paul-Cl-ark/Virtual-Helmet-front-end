@@ -11,7 +11,7 @@ const buttonContainerStyle = {
 	flex: '1 1 auto',
 	display: 'flex',
 	alignItems: 'flex-end',
-	margin: '44px auto 15px'
+	margin: '54px auto 15px'
 }
 
 class OrButton extends Component {
