@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import TextLogo from '../components/TextLogo'
 import { Card, Container } from 'semantic-ui-react'
 
@@ -16,7 +17,7 @@ class UserSpotsPage extends Component {
 		let spotList = []
 		this.props.spots.map(spot => {
 			spotList.push({
-				header: `Date added: ${spot.date}`,
+				header: `Date added: ${moment(spot.header).format('LL')}`,
 				description: `Description: ${spot.description}`,
 				meta: `Rating: ${spot.rating}`
 			})
@@ -31,7 +32,12 @@ class UserSpotsPage extends Component {
 				<Container style={containerStyle}>
 					<Card.Group centered items={this.spots()}>
 						{this.spots().map(spot => (
-							<Card style={{boxShadow: `1px 1px 1px 1px ${this.props.colour}`}} header={spot.header} description={spot.description} meta={spot.meta} />
+							<Card
+								style={{ boxShadow: `1px 1px 1px 1px ${this.props.colour}` }}
+								header={spot.header}
+								description={spot.description}
+								meta={spot.meta}
+							/>
 						))}
 					</Card.Group>
 				</Container>
