@@ -65,7 +65,10 @@ class ProfilePage extends Component {
 		for (let spot of this.props.userSpots) {
 			totalUpVotes += spot.rating
 		}
-		return totalUpVotes
+		if (totalUpVotes) {
+			return totalUpVotes
+		}
+		return 'Nobody has voted on your spots yet!'
 	}
 
 	mostUpVoted = () => {
@@ -75,15 +78,25 @@ class ProfilePage extends Component {
 				return a.rating > b.rating ? a : b
 			})
 		}
-		return spot ? spot._id : null
+		return spot.rating > 0 ? (
+			<a onClick={() => this.props.goToSpotPage(spot._id)}> Show me!</a>
+		) : (
+			'Nobody has voted on your spots yet!'
+		)
 	}
 
 	mostUpVotedVotes = () => Math.max.apply(Math, this.props.userSpots.map(spot => spot.rating))
 
 	totalCurrentUserVotes = () => {
-		return this.props.allSpots.filter(spot =>
-			spot.raters.filter(rating => rating.user === this.props.user._id)
-		).length
+		let spots = []
+		this.props.allSpots.forEach(spot => {
+			spot.raters.forEach(rating => {
+				if (rating.user === this.props.user.id) {
+					spots.push(1)
+				}
+			})
+		})
+		return spots.length
 	}
 
 	render() {
@@ -114,9 +127,7 @@ class ProfilePage extends Component {
 						<Label ribbon color={this.props.colour}>
 							The highest rated spot you've added, nice job!
 						</Label>
-						<p>
-							<a onClick={() => this.props.goToSpotPage(this.mostUpVoted())}>Show me!</a>
-						</p>
+						<p>{this.mostUpVoted()}</p>
 						<Header as="h4">Total votes:</Header>
 						<Label ribbon color={this.props.colour}>
 							How many times you have rated a spot, keep it up!
