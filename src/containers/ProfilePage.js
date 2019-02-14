@@ -8,7 +8,8 @@ import { Label, Segment, Header, Icon, Button, Image } from 'semantic-ui-react'
 const containerStyle = {
 	justifyContent: 'center',
 	margin: 'auto',
-	width: '90%'
+	width: '90%',
+	maxWidth: '400px'
 }
 
 class ProfilePage extends Component {
@@ -98,7 +99,11 @@ class ProfilePage extends Component {
 							<Header.Content>{firstName + ' ' + lastName}</Header.Content>
 						</Header>
 						{this.showUploadForm()}
-						<Header as="h4">Member since:</Header>
+						<Header
+							as="h4"
+							style={{ borderBottom: `solid ${this.props.colour} 3px`, width: '100px' }}>
+							Member since:
+						</Header>
 						<p>{momentDate}</p>
 						<Header as="h4">Your current rating:</Header>
 						<Label ribbon color={this.props.colour}>

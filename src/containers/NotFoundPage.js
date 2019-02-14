@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 
 const imgStyle = {
-	height: '100vh',
-	width: '100%'
+	minHeight: '100%',
+	minWidth: '1024px',
+	width: '100%',
+	height: 'auto',
+	position: 'fixed',
+	top: 0,
+	left: 0
 }
 
 class NotFound extends Component {
