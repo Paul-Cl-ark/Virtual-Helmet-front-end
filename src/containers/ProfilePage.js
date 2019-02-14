@@ -103,19 +103,19 @@ class ProfilePage extends Component {
 						<Header as="h4">Member since:</Header>
 						<p>{momentDate}</p>
 						<Header as="h4">Your current rating:</Header>
-						<Label ribbon color="green">
+						<Label ribbon color={this.props.colour}>
 							The total of up and downvotes on your spots, wow!
 						</Label>
 						<p>{this.totalUpVotes()}</p>
 						<Header as="h4">Your most upvoted spot:</Header>
-						<Label ribbon color="green">
+						<Label ribbon color={this.props.colour}>
 							The highest rated spot you've added, nice job!
 						</Label>
 						<p>
 							<a onClick={() => this.props.goToSpotPage(this.mostUpVoted())}>Show me!</a>
 						</p>
 						<Header as="h4">Total votes:</Header>
-						<Label ribbon color="green">
+						<Label ribbon color={this.props.colour}>
 							How many times you have rated a spot, keep it up!
 						</Label>
 						<p>{this.totalCurrentUserVotes()}</p>
@@ -129,7 +129,8 @@ class ProfilePage extends Component {
 const mapStateToProps = state => ({
 	user: state.users.user,
 	userSpots: state.spots.userSpots,
-	allSpots: state.spots.spots
+	allSpots: state.spots.spots,
+	colour: state.app.theme
 })
 
 export default connect(

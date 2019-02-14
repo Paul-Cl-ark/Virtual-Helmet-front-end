@@ -9,7 +9,6 @@ const navBarStyle = {
 	height: '55px',
 	width: '55px',
 	borderStyle: 'solid',
-	borderColor: 'limeGreen',
 	borderWidth: '3px',
 	borderRadius: '50%',
 	position: 'absolute',
@@ -37,7 +36,12 @@ class NavBar extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div style={navBarStyle} onClick={this.handleClick}>
+				<div
+					style={{
+						...navBarStyle,
+						borderColor: this.props.colour
+					}}
+					onClick={this.handleClick}>
 					<Logo />
 				</div>
 			</Fragment>
@@ -46,7 +50,8 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.users.user
+	user: state.users.user,
+	colour: state.app.theme
 })
 
 export default connect(

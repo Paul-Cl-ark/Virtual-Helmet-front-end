@@ -45,12 +45,12 @@ class ProfileMenu extends Component {
 		return (
 			<Menu style={menuStyle} compact icon="labeled" vertical>
 				<Menu.Item name="profile" active={activeItem === 'profile'} onClick={this.handleItemClick}>
-					<Icon name="user outline" />
+					<Icon color={this.props.colour} name="user" />
 					Profile
 				</Menu.Item>
 
 				<Menu.Item name="home" active={activeItem === 'home'} onClick={this.handleItemClick}>
-					<Icon name="map outline" />
+					<Icon color={this.props.colour} name="map" />
 					Map
 				</Menu.Item>
 
@@ -58,17 +58,17 @@ class ProfileMenu extends Component {
 					name="settings"
 					active={activeItem === 'settings'}
 					onClick={this.handleItemClick}>
-					<Icon name="settings" />
+					<Icon color={this.props.colour} name="settings" />
 					Settings
 				</Menu.Item>
 
 				<Menu.Item name="spots" active={activeItem === 'spots'} onClick={this.handleItemClick}>
-					<Icon name="map marker alternate" />
+					<Icon color={this.props.colour} name="map marker alternate" />
 					Spots
 				</Menu.Item>
 
 				<Menu.Item name="logOut" active={activeItem === 'logOut'} onClick={this.handleItemClick}>
-					<Icon name="log out" />
+					<Icon color={this.props.colour} name="log out" />
 					Log Out
 				</Menu.Item>
 			</Menu>
@@ -76,7 +76,11 @@ class ProfileMenu extends Component {
 	}
 }
 
+const mapDispatchToProps = state => ({
+	colour: state.app.theme
+})
+
 export default connect(
-	null,
+	mapDispatchToProps,
 	{ goToProfile, goToHome, goToSettings, goToSpots, logOutUser, closeMenu }
 )(ProfileMenu)

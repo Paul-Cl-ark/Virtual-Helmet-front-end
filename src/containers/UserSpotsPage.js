@@ -29,7 +29,11 @@ class UserSpotsPage extends Component {
 			<Fragment>
 				<TextLogo />
 				<Container style={containerStyle}>
-					<Card.Group centered items={this.spots()} />
+					<Card.Group centered items={this.spots()}>
+						{this.spots().map(spot => (
+							<Card style={{boxShadow: `1px 1px 1px 1px ${this.props.colour}`}} header={spot.header} description={spot.description} meta={spot.meta} />
+						))}
+					</Card.Group>
 				</Container>
 			</Fragment>
 		)
@@ -37,7 +41,8 @@ class UserSpotsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-	spots: state.spots.userSpots
+	spots: state.spots.userSpots,
+	colour: state.app.theme
 })
 
 export default connect(mapStateToProps)(UserSpotsPage)
