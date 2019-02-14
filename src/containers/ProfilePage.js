@@ -6,10 +6,8 @@ import TextLogo from '../components/TextLogo'
 import { Label, Segment, Header, Icon, Button, Image } from 'semantic-ui-react'
 
 const containerStyle = {
-	display: 'flex',
 	justifyContent: 'center',
 	margin: 'auto',
-	height: '90%',
 	width: '90%'
 }
 

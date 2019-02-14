@@ -4,7 +4,6 @@ import ThemeSelect from '../components/ThemeSelect'
 import TextLogo from '../components/TextLogo'
 
 const containerStyle = {
-	display: 'flex',
 	justifyContent: 'center',
 	margin: '25px',
 	height: '90%',
