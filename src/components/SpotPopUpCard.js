@@ -7,9 +7,13 @@ import CardImage from './CardImage'
 import { Card } from 'semantic-ui-react'
 
 const popUpStyle = {
-	width: '60vw',
-	height: '40vh',
-	overflow: 'auto'
+	width: '65vw',
+	maxHeight: '55vh'
+}
+
+const descriptionStyle = {
+	overflow: 'auto',
+	height: '70px'
 }
 
 class SpotPopUpCard extends Component {
@@ -24,28 +28,35 @@ class SpotPopUpCard extends Component {
 		const imageContent = this.props.user ? (
 			<CardImage />
 		) : (
-			<Card.Meta>'Please log in to see more' </Card.Meta>
+			<Card.Meta>Log in or sign up to see photos here</Card.Meta>
 		)
 		const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1)
+		const link =
+			this.props.selectedSpot.type !== 'theft' ? (
+				<Card.Description>
+					<p>
+						<a onClick={() => this.props.goToSpotPage(_id)}>See more!</a>
+					</p>
+				</Card.Description>
+			) : null
 		return (
 			<Card key={_id} style={popUpStyle}>
 				{imageContent}
 				<Card.Content>
-					<Card.Header>{description}</Card.Header>
+					{link}
 					<Card.Meta>
 						<p>Date added: {momentDate}</p>
 						<p>
-							Type:
+							Type: {capitalizedType}
 							<img style={{ height: '20px', width: '20px' }} src={`/images/${type}-icon.svg`} />
-							{capitalizedType}
 						</p>
 					</Card.Meta>
-					<Card.Description>
-						Latitude: {latitude}, Longitude: {longitude}
-						<p>
-							<a onClick={() => this.props.goToSpotPage(_id)}>See more!</a>
-						</p>
-					</Card.Description>
+					<div style={descriptionStyle}>
+						<Card.Description>{description}</Card.Description>
+						<Card.Meta>
+							Latitude: {latitude}, Longitude: {longitude}
+						</Card.Meta>
+					</div>
 				</Card.Content>
 				{this.renderRatingButtons()}
 			</Card>
