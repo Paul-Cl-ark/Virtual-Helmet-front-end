@@ -43,7 +43,7 @@ class RegisterForm extends Component {
 			<Fragment>
 				<TextLogo />
 				<Container>
-					<Header as="h2">
+					<Header style={{ borderBottom: 'solid green 3px' }} as="h2">
 						<Icon name="sign in" />
 						<Header.Content>Sign Up</Header.Content>
 					</Header>
