@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import MapGL, { Marker, NavigationControl } from 'react-map-gl'
 import SpotMarker from './SpotMarker'
+import NewSpotMarker from './NewSpotMarker'
 import SpotPopUp from './SpotPopUp'
 import { toast } from 'react-toastify'
 
@@ -78,7 +79,7 @@ export class Map extends Component {
 				key="new-marker"
 				latitude={Number(lat)}
 				longitude={Number(lng)}>
-				<SpotMarker type={'new'} />
+				<NewSpotMarker />
 			</Marker>
 		)
 		return render ? marker : null
