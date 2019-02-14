@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Image } from 'semantic-ui-react'
 
 const imageStyle = {
-	maxHeight: '150px',
+	maxHeight: '137px',
 	width: 'auto'
 }
 
