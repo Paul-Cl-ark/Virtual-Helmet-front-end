@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Image } from 'semantic-ui-react'
 
+const imageStyle = {
+	maxHeight: '150px',
+	width: 'auto'
+}
+
 class CardImage extends Component {
 	render() {
 		const spot = this.props.selectedSpot
 		const { image, _id } = spot
 
 		return (
-			<a href={image}>
-				<Image key={_id} src={image} onClick={event => event.preventDefault()} />
-			</a>
+			<Image style={imageStyle} key={_id} src={image} onClick={event => event.preventDefault()} />
 		)
 	}
 }
