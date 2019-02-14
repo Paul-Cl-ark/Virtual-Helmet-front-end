@@ -18,7 +18,8 @@ const formStyle = {
 	left: 0,
 	right: 0,
 	margin: 'auto',
-	zIndex: 1
+	zIndex: 1,
+	maxWidth: '350px'
 }
 
 const spotTypes = [
