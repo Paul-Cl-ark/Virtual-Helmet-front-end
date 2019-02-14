@@ -54,6 +54,8 @@ class RegisterForm extends Component {
 								<Input
 									fluid
 									required
+									icon="user circle"
+									iconPosition="left"
 									placeholder="First Name"
 									name="firstName"
 									value={firstName}
@@ -65,6 +67,8 @@ class RegisterForm extends Component {
 								<Input
 									fluid
 									required
+									icon="user circle"
+									iconPosition="left"
 									placeholder="Last Name"
 									name="lastName"
 									value={lastName}
@@ -77,6 +81,8 @@ class RegisterForm extends Component {
 							<Input
 								fluid
 								required
+								icon="at"
+								iconPosition="left"
 								type="email"
 								placeholder="Email"
 								name="email"
@@ -89,6 +95,8 @@ class RegisterForm extends Component {
 							<Input
 								fluid
 								required
+								icon="unlock"
+								iconPosition="left"
 								type="password"
 								placeholder="Password"
 								name="password"
@@ -101,6 +109,8 @@ class RegisterForm extends Component {
 							<Input
 								fluid
 								required
+								icon="check"
+								iconPosition="left"
 								type="password"
 								placeholder="Confirm Password"
 								name="passwordConfirmation"

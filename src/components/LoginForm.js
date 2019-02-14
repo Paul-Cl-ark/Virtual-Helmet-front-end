@@ -40,6 +40,8 @@ class LoginForm extends Component {
 							<label>Email</label>
 							<Input
 								fluid
+								icon="at"
+								iconPosition="left"
 								required
 								type="email"
 								placeholder="Email"
@@ -53,6 +55,8 @@ class LoginForm extends Component {
 							<Input
 								fluid
 								required
+								icon="unlock"
+								iconPosition="left"
 								type="password"
 								placeholder="Password"
 								name="password"
