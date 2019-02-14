@@ -47,7 +47,16 @@ export class Map extends Component {
 			  this.props.renderNewMarker(),
 			  this.props.renderSpotForm(),
 			  this.props.addNewSpotLatLng({ lat: event.lngLat[1], lng: event.lngLat[0] }),
-			  this.props.closeMenu())
+			  this.props.closeMenu(),
+			  this.setState({
+					viewport: {
+						latitude: event.lngLat[1] - 0.001,
+						longitude: event.lngLat[0],
+						zoom: 16,
+						bearing: 0,
+						pitch: 0
+					}
+			  }))
 			: toast.info('Log in to add your own spots!')
 	}
 
