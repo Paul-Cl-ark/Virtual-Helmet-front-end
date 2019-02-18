@@ -122,7 +122,7 @@ export class Map extends Component {
 	render() {
 		return (
 			<MapGL
-				// mapStyle="mapbox://styles/paul-clark/cjrzh8sqd0r0w1fn6it3ir903"
+				mapStyle="mapbox://styles/paul-clark/cjrzh8sqd0r0w1fn6it3ir903"
 				{...this.state.viewport}
 				width="100vw"
 				height="100vh"
