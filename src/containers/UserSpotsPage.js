@@ -14,15 +14,17 @@ const containerStyle = {
 
 class UserSpotsPage extends Component {
 	spots = () => {
-		let spotList = []
-		this.props.spots.map(spot => {
-			spotList.push({
-				header: `Date added: ${moment(spot.header).format('LL')}`,
-				description: `Description: ${spot.description}`,
-				meta: `Rating: ${spot.rating}`
-			})
+		return this.props.spots.map(spot => {
+			return (
+				<Card
+					key={spot._id}
+					style={{ boxShadow: `1px 1px 1px 1px ${this.props.colour}` }}
+					header={`Date added: ${moment(spot.header).format('LL')}`}
+					description={`Description: ${spot.description}`}
+					meta={`Rating: ${spot.rating}`}
+				/>
+			)
 		})
-		return spotList
 	}
 
 	showMarker = () => {
@@ -30,7 +32,7 @@ class UserSpotsPage extends Component {
 			return (
 				<div>
 					<p>
-						<img src={'/images/map-marker.png'} />
+						<img src={'/images/map-marker.png'} alt="A marker pin" />
 					</p>
 					<Header as="h2">Try adding some spots first!</Header>
 				</div>
@@ -43,15 +45,8 @@ class UserSpotsPage extends Component {
 			<Fragment>
 				<TextLogo />
 				<Container style={containerStyle}>
-					<Card.Group centered items={this.spots()}>
-						{this.spots().map(spot => (
-							<Card
-								style={{ boxShadow: `1px 1px 1px 1px ${this.props.colour}` }}
-								header={spot.header}
-								description={spot.description}
-								meta={spot.meta}
-							/>
-						))}
+					<Card.Group centered>
+						{this.spots()}
 						{this.showMarker()}
 					</Card.Group>
 				</Container>

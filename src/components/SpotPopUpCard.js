@@ -8,6 +8,7 @@ import { Card } from 'semantic-ui-react'
 
 const popUpStyle = {
 	width: '65vw',
+	maxWidth: '300px',
 	maxHeight: '55vh'
 }
 
@@ -35,7 +36,9 @@ class SpotPopUpCard extends Component {
 			this.props.selectedSpot.type !== 'theft' ? (
 				<Card.Description>
 					<p>
-						<a onClick={() => this.props.goToSpotPage(_id)}>See more!</a>
+						<span style={{ color: 'blue' }} onClick={() => this.props.goToSpotPage(_id)}>
+							See more!
+						</span>
 					</p>
 				</Card.Description>
 			) : null
@@ -48,7 +51,11 @@ class SpotPopUpCard extends Component {
 						<p>Date added: {momentDate}</p>
 						<p>
 							Type: {capitalizedType}
-							<img style={{ height: '20px', width: '20px' }} src={`/images/${type}-icon.svg`} />
+							<img
+								style={{ height: '20px', width: '20px' }}
+								src={`/images/${type}-icon.svg`}
+								alt={`A ${type} icon`}
+							/>
 						</p>
 					</Card.Meta>
 					<div style={descriptionStyle}>

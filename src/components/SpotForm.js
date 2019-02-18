@@ -108,7 +108,6 @@ class SpotForm extends Component {
 			image: formData
 		})
 		this.props.removeSpotForm()
-		window.scrollTo(0)
 	}
 
 	handleFormClose = () => {

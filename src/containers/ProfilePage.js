@@ -78,25 +78,32 @@ class ProfilePage extends Component {
 				return a.rating > b.rating ? a : b
 			})
 		}
-		return spot.rating > 0 ? (
-			<a onClick={() => this.props.goToSpotPage(spot._id)}> Show me!</a>
-		) : (
-			'Nobody has voted on your spots yet!'
-		)
+		if (spot && spot.rating > 0) {
+			return (
+				<span style={{ color: 'blue' }} onClick={() => this.props.goToSpotPage(spot._id)}>
+					{' '}
+					Show me!
+				</span>
+			)
+		} else {
+			return 'Nobody has voted on your spots yet!'
+		}
 	}
 
 	mostUpVotedVotes = () => Math.max.apply(Math, this.props.userSpots.map(spot => spot.rating))
 
 	totalCurrentUserVotes = () => {
-		let spots = []
+		let counter = 0
+
 		this.props.allSpots.forEach(spot => {
 			spot.raters.forEach(rating => {
-				if (rating.user === this.props.user.id) {
-					spots.push(1)
+				if (rating.user === this.props.user._id) {
+					counter++
 				}
 			})
 		})
-		return spots.length
+
+		return counter
 	}
 
 	render() {

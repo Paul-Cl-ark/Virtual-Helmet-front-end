@@ -19,12 +19,12 @@ class RatingButtons extends Component {
 		return (
 			<Card.Content extra>
 				Rating : {rating}
-				<a onClick={() => this.handleRating(1)}>
+				<div onClick={() => this.handleRating(1)}>
 					<Icon name="thumbs up outline" />
-				</a>
-				<a onClick={() => this.handleRating(-1)}>
+				</div>
+				<div onClick={() => this.handleRating(-1)}>
 					<Icon name="thumbs down outline" />
-				</a>
+				</div>
 			</Card.Content>
 		)
 	}

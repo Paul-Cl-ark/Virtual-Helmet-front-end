@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions'
 import TextLogo from '../components/TextLogo'
-import { Button, Input, Form, Header, Icon, Container, Grid, Label } from 'semantic-ui-react'
+import { Button, Input, Form, Header, Icon, Container, Grid } from 'semantic-ui-react'
 import { toast } from 'react-toastify'
 
 const buttonStyle = {

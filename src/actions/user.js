@@ -25,7 +25,7 @@ export const authenticateUser = user => {
 				dispatch({ type: 'AUTHENTICATE_USER', payload: data })
 				dispatch({ type: 'REMOVE_OR_BUTTON' })
 				dispatch({ type: 'RENDER_RATING_BUTTONS' })
-				dispatch({ type: 'GET_USER_SPOTS', payload: data.user.id })
+				dispatch({ type: 'GET_USER_SPOTS', payload: data.user._id })
 			} else {
 				toast.error(data.message)
 			}

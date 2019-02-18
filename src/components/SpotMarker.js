@@ -8,7 +8,14 @@ const imgStyle = {
 class SpotMarker extends Component {
 	render() {
 		const { onClick, type } = this.props
-		return <img onClick={onClick} style={imgStyle} src={`/images/${type}-icon.svg`} />
+		return (
+			<img
+				onClick={onClick}
+				style={imgStyle}
+				src={`/images/${type}-icon.svg`}
+				alt={`A ${type} spot marker`}
+			/>
+		)
 	}
 }
 
