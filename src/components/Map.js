@@ -8,7 +8,7 @@ import SpotPopUp from './SpotPopUp'
 import { toast } from 'react-toastify'
 
 const TOKEN = process.env.REACT_APP_MAPBOX_API_KEY
-
+console.log(TOKEN)
 const navStyle = {
 	position: 'absolute',
 	top: 0,
